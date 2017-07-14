@@ -79,8 +79,7 @@
     ],
     "setupFiles": [
       "./Tests/Setup"
-    ],
-    "preset": "react-native"
+    ]
   },
   "config": {},
   "standard": {
