@@ -56,6 +56,7 @@
 		2CA17CAA1F1987D500209528 /* DummyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA17C961F1987D500209528 /* DummyView.m */; };
 		2CA17CAB1F1987D500209528 /* RCTConvert+GMSMapViewType.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CA17C981F1987D500209528 /* RCTConvert+GMSMapViewType.m */; };
 		2CA17CE71F1988CD00209528 /* libnanopb.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA17CE61F1988CD00209528 /* libnanopb.a */; };
+		2CA17D381F198E7800209528 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA17D1D1F198DCE00209528 /* libRCTFBSDK.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -182,6 +183,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNFirebase;
+		};
+		2CA17D1C1F198DCE00209528 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2CA17D141F198DCE00209528 /* RCTFBSDK.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 9350E0F11CE3B0920041D815;
+			remoteInfo = RCTFBSDK;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -388,6 +396,7 @@
 		2CA17C971F1987D500209528 /* RCTConvert+GMSMapViewType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "RCTConvert+GMSMapViewType.h"; sourceTree = "<group>"; };
 		2CA17C981F1987D500209528 /* RCTConvert+GMSMapViewType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+GMSMapViewType.m"; sourceTree = "<group>"; };
 		2CA17CE61F1988CD00209528 /* libnanopb.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libnanopb.a; path = "../../../Library/Developer/Xcode/DerivedData/aci-ayohzmftzgrxhqdkrqnvngwkedlp/Build/Products/Release-iphoneos/nanopb/libnanopb.a"; sourceTree = "<group>"; };
+		2CA17D141F198DCE00209528 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* aci-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "aci-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* aci-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "aci-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C1E28E0273947439218F0BA /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -421,6 +430,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CA17D381F198E7800209528 /* libRCTFBSDK.a in Frameworks */,
 				2CA17CE71F1988CD00209528 /* libnanopb.a in Frameworks */,
 				2C3D92F41F18F7DF00B4F3C8 /* libRNFirebase.a in Frameworks */,
 				146834051AC3E58100842450 /* libReact.a in Frameworks */,
@@ -673,6 +683,14 @@
 			path = "../node_modules/react-native-maps/lib/ios/AirGoogleMaps";
 			sourceTree = "<group>";
 		};
+		2CA17D151F198DCE00209528 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2CA17D1D1F198DCE00209528 /* libRCTFBSDK.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		5E91572E1DD0AC6500FF2AA8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -760,6 +778,7 @@
 		A8D06D5EA44D77F85AFE36A5 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2CA17D141F198DCE00209528 /* RCTFBSDK.xcodeproj */,
 				2CA17CE61F1988CD00209528 /* libnanopb.a */,
 				2C2DE84B1F18EADB00BD7318 /* FirebaseAnalytics.framework */,
 				2C2DE84C1F18EADB00BD7318 /* FirebaseCore.framework */,
@@ -907,6 +926,10 @@
 					ProjectRef = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
 				},
 				{
+					ProductGroup = 2CA17D151F198DCE00209528 /* Products */;
+					ProjectRef = 2CA17D141F198DCE00209528 /* RCTFBSDK.xcodeproj */;
+				},
+				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
 					ProjectRef = 00C302B51ABCB90400DB3ED1 /* RCTGeolocation.xcodeproj */;
 				},
@@ -1051,6 +1074,13 @@
 			fileType = archive.ar;
 			path = libRNFirebase.a;
 			remoteRef = 2C3D92F11F18F79900B4F3C8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		2CA17D1D1F198DCE00209528 /* libRCTFBSDK.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRCTFBSDK.a;
+			remoteRef = 2CA17D1C1F198DCE00209528 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */ = {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Dimensions, Text, View } from 'react-native';
 import { connect } from 'react-redux'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { AccessToken, LoginManager } from 'react-native-fbsdk';
 import NearbyActions from '../Redux/NearbyRedux'
 import mapStyle from './mapStyle';
 import firebase from '../Lib/firebase'
@@ -21,8 +22,39 @@ class LaunchScreen extends Component {
     this.state = {
     };
   }
+  tryLogin() {
+    LoginManager
+      .logInWithReadPermissions(['public_profile', 'email'])
+      .then((result) => {
+        if (result.isCancelled) {
+          return Promise.resolve('cancelled');
+        }
+        console.log(`Login success with permissions: ${result.grantedPermissions.toString()}`);
+        // get the access token
+        return AccessToken.getCurrentAccessToken();
+      })
+      .then(data => {
+        // create a new firebase credential with the token
+        const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+
+        // login with credential
+        return firebase.auth().signInWithCredential(credential);
+      })
+      .then((currentUser) => {
+        if (currentUser === 'cancelled') {
+          console.log('Login cancelled');
+        } else {
+          // now signed in
+          console.warn(JSON.stringify(currentUser.toJSON()));
+        }
+      })
+      .catch((error) => {
+        console.log(`Login fail with error: ${error}`);
+      });
+  }
   componentDidMount() {
     console.log('Hey we mounted')
+    this.tryLogin()
     this.props.findNearbyDrivers()
 
     firebase.database().ref('users').push()
