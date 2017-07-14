@@ -1,29 +1,52 @@
-import React, { Component } from 'react'
-import { ScrollView, Text, Image, View } from 'react-native'
-import { Images } from '../Themes'
+import React, { Component } from 'react';
+import { AppRegistry, StyleSheet, Dimensions, Text, View } from 'react-native';
 
-// Styles
-import styles from './Styles/LaunchScreenStyles'
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import mapStyle from './mapStyle';
+
+const { width, height } = Dimensions.get('window');
+
+const ASPECT_RATIO = width / height;
+const LATITUDE = 30.2672;
+const LONGITUDE = -97.7431;
+const LATITUDE_DELTA = 0.0922;
+const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 export default class LaunchScreen extends Component {
-  render () {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+    };
+  }
+  render() {
     return (
-      <View style={styles.mainContainer}>
-        <Image source={Images.background} style={styles.backgroundImage} resizeMode='stretch' />
-        <ScrollView style={styles.container}>
-          <View style={styles.centered}>
-            <Image source={Images.launch} style={styles.logo} />
-          </View>
-
-          <View style={styles.section} >
-            <Image source={Images.ready} />
-            <Text style={styles.sectionText}>
-              This probably isn't what your app is going to look like. Unless your designer handed you this screen and, in that case, congrats! You're ready to ship. For everyone else, this is where you'll see a live preview of your fully functioning app using Ignite.
-            </Text>
-          </View>
-
-        </ScrollView>
+      <View style={{ flex: 1 }}>
+        <View style={styles.container}>
+          <MapView
+            provider={PROVIDER_GOOGLE}
+            style={styles.map}
+            customMapStyle={mapStyle}
+            initialRegion={{
+              latitude: LATITUDE,
+              longitude: LONGITUDE,
+              latitudeDelta: LATITUDE_DELTA,
+              longitudeDelta: LONGITUDE_DELTA,
+            }}
+          />
+        </View>
       </View>
-    )
+    );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    ...StyleSheet.absoluteFillObject,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
+  },
+  map: {
+     ...StyleSheet.absoluteFillObject,
+  },
+});
