@@ -1,4 +1,6 @@
 const colors = {
+  acnavy: '#171A3D',
+  acturq: '#18C2C0',
   background: '#1F0808',
   clear: 'rgba(0,0,0,0)',
   facebook: '#3b5998',

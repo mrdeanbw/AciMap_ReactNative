@@ -1354,7 +1354,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 91FF0809B51DF385E1455133 /* Pods-aci.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = acicon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = KRX36M77JT;
@@ -1382,7 +1382,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A547CA04282C0DD11F306DAA /* Pods-aci.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = acicon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KRX36M77JT;
 				HEADER_SEARCH_PATHS = (
