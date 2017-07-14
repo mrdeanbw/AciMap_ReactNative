@@ -1,3 +1,6 @@
+
+
 target 'aci' do
 	pod 'GoogleMaps'
+	pod 'Firebase/Database'
 end

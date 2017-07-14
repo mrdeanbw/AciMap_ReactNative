@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Dimensions, Text, View } from 'react-native';
+import { StyleSheet, Dimensions, Text, View } from 'react-native';
 import { connect } from 'react-redux'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import NearbyActions from '../Redux/NearbyRedux'
 import mapStyle from './mapStyle';
+import firebase from '../Lib/firebase'
 
 const { width, height } = Dimensions.get('window');
 
@@ -23,6 +24,13 @@ class LaunchScreen extends Component {
   componentDidMount() {
     console.log('Hey we mounted')
     this.props.findNearbyDrivers()
+
+    firebase.database().ref('users').push()
+      .set({
+        driver: {
+          loc: [31.1613, -97.1891]
+        }
+      })
   }
   render() {
     return (
