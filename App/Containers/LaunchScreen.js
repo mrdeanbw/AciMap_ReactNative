@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Dimensions, Text, View } from 'react-native';
-
+import { connect } from 'react-redux'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import NearbyActions from '../Redux/NearbyRedux'
 import mapStyle from './mapStyle';
 
 const { width, height } = Dimensions.get('window');
@@ -12,12 +13,16 @@ const LONGITUDE = -97.7431;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
-export default class LaunchScreen extends Component {
+class LaunchScreen extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
     };
+  }
+  componentDidMount() {
+    console.log('Hey we mounted')
+    this.props.findNearbyDrivers()
   }
   render() {
     return (
@@ -50,3 +55,9 @@ const styles = StyleSheet.create({
      ...StyleSheet.absoluteFillObject,
   },
 });
+
+const mapDispatchToProps = (dispatch) => ({
+  findNearbyDrivers: () => dispatch(NearbyActions.findNearbyDrivers())
+})
+
+export default connect(null, mapDispatchToProps)(LaunchScreen)
