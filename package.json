@@ -22,9 +22,11 @@
     "fixcode": "standard --fix"
   },
   "dependencies": {
+    "adm-zip": "^0.4.7",
     "apisauce": "^0.14.0",
     "format-json": "^1.0.3",
     "lodash": "^4.17.2",
+    "plist": "^2.1.0",
     "prop-types": "^15.5.10",
     "querystringify": "0.0.4",
     "ramda": "^0.24.1",
@@ -34,6 +36,7 @@
     "react-native-config": "^0.2.1",
     "react-native-device-info": "^0.10.0",
     "react-native-drawer": "^2.3.0",
+    "react-native-fbsdk": "^0.6.1",
     "react-native-firebase": "^2.0.3",
     "react-native-maps": "^0.15.3",
     "react-native-vector-icons": "4.1.1",
@@ -43,7 +46,8 @@
     "redux-persist": "^4.1.0",
     "redux-saga": "^0.14.3",
     "reduxsauce": "0.4.1",
-    "seamless-immutable": "^7.0.1"
+    "seamless-immutable": "^7.0.1",
+    "xcode": "^0.9.3"
   },
   "devDependencies": {
     "babel-eslint": "7.1.1",
