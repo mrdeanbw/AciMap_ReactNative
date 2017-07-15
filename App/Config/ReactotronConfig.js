@@ -7,7 +7,7 @@ import sagaPlugin from 'reactotron-redux-saga'
 if (Config.useReactotron) {
   // https://github.com/infinitered/reactotron for more options!
   Reactotron
-    .configure({ name: 'Ignite App' })
+    .configure({ name: 'Arcade City', host: '192.168.0.6' })
     .useReactNative()
     .use(reduxPlugin({ onRestore: Immutable }))
     .use(sagaPlugin())

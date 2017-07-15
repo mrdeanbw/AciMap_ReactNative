@@ -1,0 +1,17 @@
+{
+    "displayName": "Christopher David",
+    "refreshToken": "APRrRCLEb1WMvYAyHEjDe3IGlC5ofYCpeTrENig2UD8FO-2yuOUdf7OpB993SlbTpwi1Iqzny1WAUGJB4rpN5cgk1vFpVXcRN7Lbsho3g0EW_JYRiJy1013f-QUTUrNbI2pAu1xv0MvaraU19YxvNnibZ1JaEicygtE4qSFADEV3XItRarZRoYFkYSqv76_Zie2B_nkeLO3BRMGAIawJt0q4MKfVIyumPh5ZqaD7PnGNvy4LDmaSosSTa_N59QORP8MJVVBojYveCQc6KqIih0yxLol5V9tgycWV0v_sIwFf2qRc_L5rXKIsS2T7XIBXBxZ1AZqxoyMkAS3nDexHfYPCcOkW1phKTsNkjXmWjEDlhHXKZ037ywfBF5F2EAvVArD_vKwfF06eXv7oUv4-1IVvWty2RBctcqoMO9zEgoXgteCtjIAbSXI",
+    "photoURL": "https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/19149077_872744746215821_3570726456667346281_n.jpg?oh=dc6afd902fca70438d479b66d1e6e917&oe=5A020094",
+    "providerId": "firebase",
+    "uid": "Fmu6D27WD8ZYecsxt2cu6KuvPH93",
+    "emailVerified": false,
+    "providerData": [{
+        "displayName": "Christopher David",
+        "uid": "582175661939399",
+        "providerId": "facebook.com",
+        "photoURL": "https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/19149077_872744746215821_3570726456667346281_n.jpg?oh=dc6afd902fca70438d479b66d1e6e917&oe=5A020094",
+        "email": "chris@arcade.city"
+    }],
+    "email": "chris@arcade.city",
+    "isAnonymous": false
+}
