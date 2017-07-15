@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import RootContainer from './RootContainer'
 import createStore from '../Redux'
+import codePush from "react-native-code-push"
 
 // create our store
 const store = createStore()
@@ -26,6 +27,8 @@ class App extends Component {
     )
   }
 }
+
+App = codePush(App)
 
 // allow reactotron overlay for fast design in dev mode
 export default DebugConfig.useReactotron

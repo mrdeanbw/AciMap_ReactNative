@@ -13,6 +13,7 @@
 #import <React/RCTRootView.h>
 #import "Firebase.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import <CodePush/CodePush.h>
 @import GoogleMaps;
 
 
@@ -21,8 +22,13 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
-
-  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
+  
+  #ifdef DEBUG
+      //jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
+      jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
+  #else
+      jsCodeLocation = [CodePush bundleURL];
+  #endif
 
   [GMSServices provideAPIKey:@"AIzaSyAQam9OaEgTJPC5_DpUaDlkWlkJbYMoxaM"];
   
