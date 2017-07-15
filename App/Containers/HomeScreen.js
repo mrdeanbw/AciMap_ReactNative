@@ -156,10 +156,17 @@ class HomeScreen extends Component {
       }
 
         </View>
-        <View style={{position: 'absolute', bottom: 0, height: 190, alignItems: 'center', width: width}}>
+        <View style={{position: 'absolute', bottom: 0, height: 240, alignItems: 'center', width: width}}>
+        { !this.state.user ? 
           <RoundedButton
             text='Login'
             onPress={this._tryLogin.bind(this)}
+            style={{alignSelf: 'center'}}
+          />
+          : <View /> }
+          <RoundedButton
+            text='Sign up to Drive'
+            onPress={() => alert('Driver signup')}
             style={{alignSelf: 'center'}}
           />
           <RoundedButton
