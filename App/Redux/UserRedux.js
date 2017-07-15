@@ -5,7 +5,7 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   userSuccess: ['obj'],
-  driverSignupSubmit: ['formData']
+  driverSignupSubmit: ['formData', 'user']
 })
 
 export const UserTypes = Types

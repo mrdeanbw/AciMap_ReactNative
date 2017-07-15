@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View, TouchableHighlight, ScrollView } from 'react-native';
 import { connect } from 'react-redux'
 import UserActions from '../Redux/UserRedux'
 import RoundedButton from '../Components/RoundedButton'
@@ -37,12 +37,12 @@ class DriverSignupScreen extends Component {
     var value = this.refs.form.getValue();
     if (value) { // if validation fails, value will be null
       console.tron.log(value); // value here is an instance of Person
-      this.props.driverSignupSubmit(value)
+      this.props.driverSignupSubmit(value, this.props.user)
     }    
   }
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Text style={styles.headline}>Drive for Arcade City</Text>
         <Text style={styles.explainer}>Want to drive for Arcade City?</Text>
         <Text style={styles.explainer}>You will gain instant access as Driver. Ability to put down beacons. TRIAL driver. Noob. Level 1 Driver</Text>
@@ -56,7 +56,7 @@ class DriverSignupScreen extends Component {
         <TouchableHighlight style={styles.submitBtn} onPress={this.onPress.bind(this)} underlayColor='#99d9f4'>
           <Text style={styles.buttonText}>SUBMIT</Text>
         </TouchableHighlight>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -104,8 +104,12 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  driverSignupSubmit: (formData) => dispatch(UserActions.driverSignupSubmit(formData)),
+const mapStateToProps = (state) => ({ 
+  user: state.user
 })
 
-export default connect(null, mapDispatchToProps)(DriverSignupScreen)
+const mapDispatchToProps = (dispatch) => ({
+  driverSignupSubmit: (formData, user) => dispatch(UserActions.driverSignupSubmit(formData, user)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(DriverSignupScreen)
