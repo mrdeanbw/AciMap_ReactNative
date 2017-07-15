@@ -16,8 +16,11 @@ const create = (baseURL = 'https://us-central1-aci1-87e53.cloudfunctions.net/') 
     email: user.email
   })
 
+  const driverSignupSubmit = (formData) => api.get('driverSignupSubmit', formData)
+
   return {
-    findNearbyDrivers
+    findNearbyDrivers,
+    driverSignupSubmit
   }
 }
 

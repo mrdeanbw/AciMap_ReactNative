@@ -141,7 +141,7 @@ class HomeScreen extends Component {
             customMapStyle={mapStyle}
             initialRegion={this.state.loc}>
             {this.props.nearbyDrivers.map(driver => {
-              console.tron.log(driver)
+              // console.tron.log(driver)
               return (
               <MapView.Marker
                 key={driver.key}
@@ -194,13 +194,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = (state, ownProps) => {
-  console.tron.log("mapStateToProps state:")
-  console.tron.log(state); // state
-  console.tron.log("mapStateToProps ownProps:")
-  console.tron.log(ownProps); // ownProps
-  return { nearbyDrivers: state.nearby.drivers || [] }
-}
+const mapStateToProps = (state) => ({ nearbyDrivers: state.nearby.drivers || [] })
 
 const mapDispatchToProps = (dispatch) => ({
   findNearbyDrivers: (user, loc) => dispatch(NearbyActions.findNearbyDrivers(user, loc)),
