@@ -9,6 +9,7 @@ import mapStyle from './mapStyle';
 import firebase from '../Lib/firebase'
 import { Fonts, Metrics, Colors } from '../Themes/'
 import RoundedButton from '../Components/RoundedButton'
+import DriverCallout from '../Components/DriverCallout'
 
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
@@ -132,8 +133,25 @@ class HomeScreen extends Component {
             provider={PROVIDER_GOOGLE}
             style={styles.map}
             customMapStyle={mapStyle}
-            initialRegion={this.state.loc}
-          />
+            initialRegion={this.state.loc}>
+            {this.props.nearbyDrivers.map(driver => {
+              console.tron.log(driver)
+              return (
+              <MapView.Marker
+                key={driver.key}
+                coordinate={{latitude: driver.location[0], longitude: driver.location[1]}}
+                title={"Test Name"}
+                description={"Test Description"}
+                onCalloutPress={ () => alert('touch') }
+                >
+                <MapView.Callout tooltip={true} onPress={ () => alert('o?' ) }> 
+                  <DriverCallout />
+                </MapView.Callout>
+              </MapView.Marker>
+              
+
+            )})}
+          </MapView>
         : <Text>Waiting for location...</Text>
       }
 
