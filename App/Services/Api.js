@@ -9,8 +9,12 @@ const create = (baseURL = 'https://us-central1-v2rn-3a663.cloudfunctions.net/') 
     timeout: 10000
   })
 
-  const findNearbyDrivers = () => api.get('findNearbyDrivers')
-  // const getUser = (username) => api.get('search/users', {q: username})
+  const findNearbyDrivers = (user, loc) => api.get('findNearbyDrivers', {
+    lat: loc.latitude,
+    lng: loc.longitude,
+    uid: user.uid,
+    email: user.email
+  })
 
   return {
     findNearbyDrivers

@@ -23,13 +23,38 @@ class HomeScreen extends Component {
 
     this.state = {
       loc: null,
-      error: null
+      error: null,
+      user: null,
+      fetchingDrivers: null
     };
   }
 
   componentDidMount() {
     console.tron.log('HomeScreen initialized')
     this._getLocation()
+  }
+
+  _getNearbyDrivers() {
+    // Wait until we have both user loc and logged in
+    // Only let this run once
+    if (!this.state.user) {
+      console.tron.log('Trying to fetch nearby drivers but we arent yet logged in')
+      return false
+    } else if (!this.state.loc) {
+      console.tron.log('Trying to fetch nearby drivers but we arent yet logged in')
+      return false
+    } else if (this.state.fetchingDrivers) {
+      console.tron.log('Already fetching drivers. Byebye...')
+      return false
+    }
+
+    console.tron.log('Okay we have user and loc. Lets check for nearby drivers...')
+    this.setState({
+      fetchingDrivers: true
+    })
+
+    this.props.findNearbyDrivers(this.state.user, this.state.loc)
+    
   }
 
   _getLocation() {
@@ -47,6 +72,7 @@ class HomeScreen extends Component {
         });
         console.tron.log("Updated component loc state with user location:")
         console.tron.log(loc)
+        this._getNearbyDrivers()
       },
       (error) => this.setState({ error: error.message }),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
@@ -80,7 +106,13 @@ class HomeScreen extends Component {
           console.log(JSON.stringify(currentUser.toJSON()));
           // alert(JSON.stringify(currentUser.toJSON()))
           // Send dat to REDUXgasm 
+          this.setState({
+            user: currentUser.toJSON()
+          })
+          console.tron.log("Updated user info in component state. State is now")
+          console.tron.log(this.state)
           this.props.userSuccess(currentUser.toJSON())
+          this._getNearbyDrivers()
         }
       })
       .catch((error) => {
@@ -127,7 +159,7 @@ const styles = StyleSheet.create({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  findNearbyDrivers: () => dispatch(NearbyActions.findNearbyDrivers()),
+  findNearbyDrivers: (user, loc) => dispatch(NearbyActions.findNearbyDrivers(user, loc)),
   userSuccess: (obj) => dispatch(UserActions.userSuccess(obj))
 })
 

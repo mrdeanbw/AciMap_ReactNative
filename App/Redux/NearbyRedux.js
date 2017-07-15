@@ -1,7 +1,7 @@
 import { createActions } from 'reduxsauce'
 
 const { Types, Creators } = createActions({
-  findNearbyDrivers: null
+  findNearbyDrivers: ['user', 'loc']
 })
 
 export const StartupTypes = Types
