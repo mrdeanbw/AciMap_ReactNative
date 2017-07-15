@@ -49,7 +49,7 @@ class HomeScreen extends Component {
     }
 
     console.tron.log('Okay we have user and loc. Lets check for nearby drivers...')
-    this.setState({
+    this.setState({ // Hm
       fetchingDrivers: true
     })
 
@@ -81,6 +81,9 @@ class HomeScreen extends Component {
 
   // User hit button to login with Facebook.
   _tryLogin() {
+    this.setState({
+      fetchingDrivers: false
+    })
     LoginManager
       .logInWithReadPermissions(['public_profile', 'email'])
       .then((result) => {
@@ -135,10 +138,15 @@ class HomeScreen extends Component {
       }
 
         </View>
-        <View style={{position: 'absolute', bottom: 0, height: 120, alignItems: 'center', width: width}}>
+        <View style={{position: 'absolute', bottom: 0, height: 190, alignItems: 'center', width: width}}>
           <RoundedButton
             text='Login'
             onPress={this._tryLogin.bind(this)}
+            style={{alignSelf: 'center'}}
+          />
+          <RoundedButton
+            text='NearbyDrivers?'
+            onPress={() => alert(this.props.nearbyDrivers.length)}
             style={{alignSelf: 'center'}}
           />
         </View>
@@ -158,9 +166,17 @@ const styles = StyleSheet.create({
   },
 });
 
+const mapStateToProps = (state, ownProps) => {
+  console.tron.log("mapStateToProps state:")
+  console.tron.log(state); // state
+  console.tron.log("mapStateToProps ownProps:")
+  console.tron.log(ownProps); // ownProps
+  return { nearbyDrivers: state.nearby.drivers || [] }
+}
+
 const mapDispatchToProps = (dispatch) => ({
   findNearbyDrivers: (user, loc) => dispatch(NearbyActions.findNearbyDrivers(user, loc)),
   userSuccess: (obj) => dispatch(UserActions.userSuccess(obj))
 })
 
-export default connect(null, mapDispatchToProps)(HomeScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
