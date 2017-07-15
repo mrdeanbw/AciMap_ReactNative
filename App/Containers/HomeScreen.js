@@ -18,9 +18,39 @@ const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 class HomeScreen extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loc: null,
+      error: null
+    };
+  }
 
   componentDidMount() {
-    console.log('HomeScreen initialized.')
+    console.tron.log('HomeScreen initialized')
+    this._getLocation()
+  }
+
+  _getLocation() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        var loc = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGITUDE_DELTA
+        }
+        this.setState({
+          loc: loc,
+          error: null
+        });
+        console.tron.log("Updated component loc state with user location:")
+        console.tron.log(loc)
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+    );
   }
 
   // User hit button to login with Facebook.
@@ -62,17 +92,16 @@ class HomeScreen extends Component {
     return (
       <View style={{ flex: 1, paddingBottom: '10%', backgroundColor: Colors.acnavy }}>
         <View style={styles.container}>
+        { this.state.loc ? 
           <MapView
             provider={PROVIDER_GOOGLE}
             style={styles.map}
             customMapStyle={mapStyle}
-            initialRegion={{
-              latitude: INIT_LATITUDE,
-              longitude: INIT_LONGITUDE,
-              latitudeDelta: LATITUDE_DELTA,
-              longitudeDelta: LONGITUDE_DELTA,
-            }}
+            initialRegion={this.state.loc}
           />
+        : <Text>Waiting for location...</Text>
+      }
+
         </View>
         <View style={{position: 'absolute', bottom: 0, height: 120, alignItems: 'center', width: width}}>
           <RoundedButton
