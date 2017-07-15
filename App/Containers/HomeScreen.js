@@ -30,6 +30,11 @@ class HomeScreen extends Component {
     };
   }
 
+  static navigationOptions = {
+    title: 'Arcade City',
+    headerTintColor: 'white'
+  };
+
   componentDidMount() {
     console.tron.log('HomeScreen initialized')
     this._getLocation()
@@ -125,6 +130,7 @@ class HomeScreen extends Component {
   }
 
   render() {
+    const { navigate } = this.props.navigation;
     return (
       <View style={{ flex: 1, paddingBottom: '10%', backgroundColor: Colors.acnavy }}>
         <View style={styles.container}>
@@ -156,24 +162,21 @@ class HomeScreen extends Component {
       }
 
         </View>
-        <View style={{position: 'absolute', bottom: 0, height: 240, alignItems: 'center', width: width}}>
+        <View style={{position: 'absolute', bottom: 0, height: 100, alignItems: 'center', width: width}}>
         { !this.state.user ? 
           <RoundedButton
             text='Login'
             onPress={this._tryLogin.bind(this)}
             style={{alignSelf: 'center'}}
           />
-          : <View /> }
+          : 
           <RoundedButton
             text='Sign up to Drive'
-            onPress={() => alert('Driver signup')}
+            onPress={() => navigate('DriverSignupScreen')}
             style={{alignSelf: 'center'}}
-          />
-          <RoundedButton
-            text='NearbyDrivers?'
-            onPress={() => alert(this.props.nearbyDrivers.length)}
-            style={{alignSelf: 'center'}}
-          />
+          /> 
+        }
+
         </View>
       </View>
     );

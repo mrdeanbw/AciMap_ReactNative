@@ -53,7 +53,6 @@ class LaunchScreen extends Component {
       });
   }
   componentDidMount() {
-    console.log('Hey we mounted')
     this.tryLogin()
     this.props.findNearbyDrivers()
 

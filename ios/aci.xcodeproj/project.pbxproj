@@ -408,6 +408,7 @@
 		2CA17D141F198DCE00209528 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 		2CA17D761F1AA1E700209528 /* CodePush.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		2CA17D7D1F1AA22700209528 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		2CA17D7F1F1AA8AF00209528 /* aci.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = aci.entitlements; path = aci/aci.entitlements; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* aci-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "aci-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* aci-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "aci-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C1E28E0273947439218F0BA /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
@@ -579,6 +580,7 @@
 		13B07FAE1A68108700A75B9A /* aci */ = {
 			isa = PBXGroup;
 			children = (
+				2CA17D7F1F1AA8AF00209528 /* aci.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -912,6 +914,11 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = KRX36M77JT;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -1505,6 +1512,7 @@
 			baseConfigurationReference = 91FF0809B51DF385E1455133 /* Pods-aci.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = acicon;
+				CODE_SIGN_ENTITLEMENTS = aci/aci.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = KRX36M77JT;
@@ -1541,6 +1549,7 @@
 			baseConfigurationReference = A547CA04282C0DD11F306DAA /* Pods-aci.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = acicon;
+				CODE_SIGN_ENTITLEMENTS = aci/aci.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KRX36M77JT;
 				FRAMEWORK_SEARCH_PATHS = (
