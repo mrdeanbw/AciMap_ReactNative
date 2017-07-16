@@ -9,38 +9,9 @@ import { connect } from 'react-redux'
 import firebase from '../Lib/firebase'
 
 class LoginButton extends Component {
-  // User hit button to login with Facebook.
-  _tryLogin() {
-    // this.setState({
-    //   fetchingDrivers: false
-    // })
-    LoginManager
-      .logInWithReadPermissions(['public_profile', 'email'])
-      .then((result) => {
-        if (result.isCancelled) {
-          return Promise.resolve('cancelled');
-        }
-        return AccessToken.getCurrentAccessToken();
-      })
-      .then(data => {
-        const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
-        return firebase.auth().signInWithCredential(credential);
-      })
-      .then((currentUser) => {
-        if (currentUser === 'cancelled') {
-          console.log('Login cancelled');
-        } else {
-          this.props.userSuccess(currentUser.toJSON())
-          this.props.findNearbyDrivers(currentUser.toJSON(), this.props.loc)
-        }
-      })
-      .catch((error) => {
-        console.log(`Login fail with error: ${error}`);
-      });
-  }
   render () {
     return (
-      <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={this._tryLogin.bind(this)} style={styles.button}>
+      <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={() => this.props.userLogin(this.props.loc)} style={styles.button}>
         <Text style={styles.buttonText}>&nbsp;Log in</Text>
       </Icon.Button>
     )
@@ -72,6 +43,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  userLogin: (loc) => dispatch(UserActions.userLogin(loc)),
   userSuccess: (obj) => dispatch(UserActions.userSuccess(obj)),
   findNearbyDrivers: (user, loc) => dispatch(NearbyActions.findNearbyDrivers(user, loc)),
 })

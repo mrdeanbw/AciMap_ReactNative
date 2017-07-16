@@ -9,6 +9,7 @@ import { Fonts, Metrics, Colors } from '../Themes/'
 import LoginButton from '../Components/LoginButton'
 import RoundedButton from '../Components/RoundedButton'
 import DriverCallout from '../Components/DriverCallout'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const ASPECT_RATIO = Metrics.screenWidth / Metrics.screenHeight;
 const LATITUDE_DELTA = 0.0922;
@@ -70,12 +71,15 @@ class HomeScreen extends Component {
         }
         </View>
         <View style={{position: 'absolute', bottom: 0, alignItems: 'center', width: Metrics.screenWidth}}>
+
         { !this.props.user ? 
           <View style={{alignItems: 'center', backgroundColor: Colors.darktrans, marginBottom: 100, paddingHorizontal: 50, paddingVertical: 30, borderRadius: 15}}>
             <Text style={{paddingBottom: 25, color: 'white', fontFamily: 'Avenir-Book', fontSize: 24}}>Log in to see drivers near you.</Text>
             <LoginButton />
-          </View>
-          : 
+          </View>          
+          : <View /> }
+
+        { this.props.user && !this.props.driver ? 
           <View style={{alignItems: 'center', backgroundColor: Colors.darktrans, marginBottom: 20, paddingHorizontal: 50, paddingVertical: 30, borderRadius: 15}}>
             <Text style={{paddingBottom: 25, color: 'white', fontFamily: 'Avenir-Book', fontSize: 24}}>Drivers nearby: {this.props.nearbyDrivers.length}</Text>
             <Text 
@@ -83,8 +87,18 @@ class HomeScreen extends Component {
               onPress={() => navigate('DriverSignupScreen')}>
               Sign up to drive
             </Text>
-          </View>
-        }
+          </View>        
+          : <View /> }
+
+        { this.props.user && this.props.driver ? 
+          <View style={{alignItems: 'center', backgroundColor: Colors.darktrans, marginBottom: 100, paddingHorizontal: 50, paddingVertical: 30, borderRadius: 15}}>
+            <Text style={{paddingBottom: 25, color: 'white', fontFamily: 'Avenir-Book', fontSize: 24}}>Set Driver Beacon</Text>
+            <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={() => alert('driverbeacon')} style={styles.button}>
+              <Text style={styles.buttonText}>&nbsp;Set Driver Beacon</Text>
+            </Icon.Button>
+          </View>          
+          : <View /> }
+
         </View>
       </View>
     );
@@ -103,7 +117,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({   
-  user: state.user.uid ? state.user : null,
+  user: state.user.obj || null,
+  driver: state.driver.formData || null,
   loc: state.user.loc,
   nearbyDrivers: state.nearby.drivers || []
 })

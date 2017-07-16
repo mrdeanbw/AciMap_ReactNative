@@ -7,7 +7,8 @@ export default () => {
   const rootReducer = combineReducers({
     nav: require('./NavigationRedux').reducer,
     user: require('./UserRedux').reducer,
-    nearby: require('./NearbyRedux').reducer
+    nearby: require('./NearbyRedux').reducer,
+    driver: require('./DriverRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)

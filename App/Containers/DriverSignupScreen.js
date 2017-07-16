@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight, ScrollView } from 'react-native';
 import { connect } from 'react-redux'
 import firebase from '../Lib/firebase'
-import UserActions from '../Redux/UserRedux'
+import DriverActions from '../Redux/DriverRedux'
 import RoundedButton from '../Components/RoundedButton'
 import { NavigationActions } from 'react-navigation'
 import { Fonts, Colors, Metrics } from '../Themes/'
@@ -126,8 +126,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  driverSignupSubmit: (formData, user) => dispatch(UserActions.driverSignupSubmit(formData, user)),
-  driverSignupSuccess: (formData, user) => dispatch(UserActions.driverSignupSuccess(formData, user))
+  driverSignupSubmit: (formData, user) => dispatch(DriverActions.driverSignupSubmit(formData, user)),
+  driverSignupSuccess: (formData, user) => dispatch(DriverActions.driverSignupSuccess(formData, user))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DriverSignupScreen)

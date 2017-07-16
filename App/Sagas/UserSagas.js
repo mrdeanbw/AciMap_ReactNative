@@ -1,29 +1,38 @@
 import { call, put } from 'redux-saga/effects'
 import UserActions from '../Redux/UserRedux'
+import NearbyActions from '../Redux/NearbyRedux'
 import firebase from '../Lib/firebase'
+import { AccessToken, LoginManager } from 'react-native-fbsdk';
+import { store } from '../Containers/App'
 
-export function * driverSignupSubmit (api, action) {
-	const { formData, user } = action // add user and loc
-	console.tron.log("In driverSignupSubmit saga but not doing anything")
-
-	// firebase.database().ref('users/' + user.uid).update({
- //    obj: {...user, timestamp: Date.now()},
- //    driverSignup: formData
-	// })
-	// .then(value => {
-	// 	console.tron.log("User object updated with driver signup form info")
-	// 	console.tron.log(formData)
-	// 	console.tron.log(user)
-	// 	console.tron.log(UserActions.driverSignupSuccess)
-	// 	console.tron.log(UserActions.driverSignupSuccess())
-	// 	// yield put(UserActions.driverSignupSuccess(formData, user))
-	// 	// Fire action that unlocks their ability to create a beacon.
-	// })
+export function * userLogin (api, action) {
+	const { loc } = action
+  LoginManager
+    .logInWithReadPermissions(['public_profile', 'email'])
+    .then((result) => {
+      if (result.isCancelled) {
+        return Promise.resolve('cancelled');
+      }
+      return AccessToken.getCurrentAccessToken();
+    })
+    .then(data => {
+      const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
+      return firebase.auth().signInWithCredential(credential);
+    })
+    .then((currentUser) => {
+      if (currentUser === 'cancelled') {
+        console.log('Login cancelled');
+      } else {
+        store.dispatch(UserActions.userSuccess(currentUser.toJSON(), loc))
+      }
+    })
+    .catch((error) => {
+      console.log(`Login fail with error: ${error}`);
+    });
 }
 
-export function * driverSignupSuccess (api, action) {
-	const { formData, user } = action
-	console.tron.log("In driverSignupSuccess saga with")
-	console.tron.log(formData)
-	console.tron.log(user)
+export function * userSuccess (api, action) {
+	const { obj, loc } = action
+	store.dispatch(NearbyActions.findNearbyDrivers(obj, loc))
 }
+
