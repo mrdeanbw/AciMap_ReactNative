@@ -46,6 +46,7 @@ class DriverSignupScreen extends Component {
         <Text style={styles.headline}>Drive for Arcade City</Text>
         <Text style={styles.explainer}>Want to drive for Arcade City?</Text>
         <Text style={styles.explainer}>You will gain instant access as Driver. Ability to put down beacons. TRIAL driver. Noob. Level 1 Driver</Text>
+        <Text style={styles.explainer}>You will be emailed additional information.</Text>
         <View style={styles.formContainer}>        
           <Form
             ref="form"

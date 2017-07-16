@@ -5,6 +5,7 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   userSuccess: ['obj'],
+  updateUserLoc: ['loc'],
   driverSignupSubmit: ['formData', 'user']
 })
 
@@ -14,10 +15,13 @@ export default Creators
 /* ------------- Initial State ------------- */
 
 export const INITIAL_STATE = Immutable({
-  error: null
+  error: null  
 })
 
 /* ------------- Reducers ------------- */
+
+export const updateUserLoc = (state, { loc }) =>
+  state.merge({ loc })
 
 // request the avatar for a user
 export const request = (state, { username }) =>
@@ -37,6 +41,7 @@ export const failure = (state) =>
 /* ------------- Hookup Reducers To Types ------------- */
 
 export const reducer = createReducer(INITIAL_STATE, {
+  'UPDATE_USER_LOC': updateUserLoc,
   [Types.USER_REQUEST]: request,
   [Types.USER_SUCCESS]: success,
   [Types.USER_FAILURE]: failure

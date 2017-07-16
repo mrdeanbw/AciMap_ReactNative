@@ -27,6 +27,3 @@ const create = (baseURL = 'https://us-central1-aci1-87e53.cloudfunctions.net/') 
 export default {
   create
 }
-
-
-// old: https://us-central1-v2rn-3a663.cloudfunctions.net/

@@ -13,10 +13,7 @@ export const INITIAL_STATE = Immutable({
   drivers: null
 })
 
-// successful driver lookup
 export const success = (state, { drivers }) => {
-	console.tron.log("In success reducer with drivers")
-	console.tron.log(drivers)
   return state.merge({ drivers })
 }
 
