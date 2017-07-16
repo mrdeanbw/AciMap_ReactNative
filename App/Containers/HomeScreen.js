@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import NearbyActions from '../Redux/NearbyRedux'
 import UserActions from '../Redux/UserRedux'
+import DriverActions from '../Redux/DriverRedux'
 import mapStyle from './mapStyle';
 import { Fonts, Metrics, Colors } from '../Themes/'
 import LoginButton from '../Components/LoginButton'
@@ -93,7 +94,7 @@ class HomeScreen extends Component {
         { this.props.user && this.props.driver ? 
           <View style={{alignItems: 'center', backgroundColor: Colors.darktrans, marginBottom: 100, paddingHorizontal: 50, paddingVertical: 30, borderRadius: 15}}>
             <Text style={{paddingBottom: 25, color: 'white', fontFamily: 'Avenir-Book', fontSize: 24}}>Set Driver Beacon</Text>
-            <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={() => alert('driverbeacon')} style={styles.button}>
+            <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={() => this.props.addDriverBeacon(this.props.user, this.props.loc, this.props.driver)} style={styles.button}>
               <Text style={styles.buttonText}>&nbsp;Set Driver Beacon</Text>
             </Icon.Button>
           </View>          
@@ -125,7 +126,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({  
   userSuccess: (obj) => dispatch(UserActions.userSuccess(obj)),
-  updateUserLoc: (loc) => dispatch(UserActions.updateUserLoc(loc))
+  updateUserLoc: (loc) => dispatch(UserActions.updateUserLoc(loc)),
+  addDriverBeacon: (user, loc, driver) => dispatch(DriverActions.addDriverBeacon(user, loc, driver))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)
