@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight, ScrollView } from 'react-native';
 import { connect } from 'react-redux'
+import firebase from '../Lib/firebase'
 import UserActions from '../Redux/UserRedux'
 import RoundedButton from '../Components/RoundedButton'
 import { NavigationActions } from 'react-navigation'
@@ -37,7 +38,22 @@ class DriverSignupScreen extends Component {
     var value = this.refs.form.getValue();
     if (value) { // if validation fails, value will be null
       console.tron.log(value); // value here is an instance of Person
-      this.props.driverSignupSubmit(value, this.props.user)
+      // this.props.driverSignupSubmit(value, this.props.user)
+      var user = this.props.user
+      firebase.database().ref('users/' + user.uid).update({
+        obj: {...user, timestamp: Date.now()},
+        driverSignup: value
+      })
+      .then(response => {
+        console.tron.log("User object updated IN COMPONENT with driver signup form info")
+        console.tron.log(value)
+        console.tron.log(user)
+        if (response.status == "success") {
+          this.props.driverSignupSuccess(value, user)
+        } else {
+          alert('Error, try again')
+        }        
+      })
     }    
   }
   render() {
@@ -111,6 +127,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   driverSignupSubmit: (formData, user) => dispatch(UserActions.driverSignupSubmit(formData, user)),
+  driverSignupSuccess: (formData, user) => dispatch(UserActions.driverSignupSuccess(formData, user))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DriverSignupScreen)
