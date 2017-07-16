@@ -10,8 +10,7 @@ import LoginButton from '../Components/LoginButton'
 import RoundedButton from '../Components/RoundedButton'
 import DriverCallout from '../Components/DriverCallout'
 
-const { width, height } = Dimensions.get('window');
-const ASPECT_RATIO = width / height;
+const ASPECT_RATIO = Metrics.screenWidth / Metrics.screenHeight;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
@@ -70,15 +69,21 @@ class HomeScreen extends Component {
         : <Text>Waiting for location...</Text>
         }
         </View>
-        <View style={{position: 'absolute', bottom: 0, height: 120, alignItems: 'center', width: width}}>
+        <View style={{position: 'absolute', bottom: 0, alignItems: 'center', width: Metrics.screenWidth}}>
         { !this.props.user ? 
-          <LoginButton />
+          <View style={{alignItems: 'center', backgroundColor: Colors.darktrans, marginBottom: 100, paddingHorizontal: 50, paddingVertical: 30, borderRadius: 15}}>
+            <Text style={{paddingBottom: 25, color: 'white', fontFamily: 'Avenir-Book', fontSize: 24}}>Log in to see drivers near you.</Text>
+            <LoginButton />
+          </View>
           : 
-          <RoundedButton
-            text='Sign up to Drive'
-            onPress={() => navigate('DriverSignupScreen')}
-            style={{alignSelf: 'center'}}
-          /> 
+          <View style={{alignItems: 'center', backgroundColor: Colors.darktrans, marginBottom: 20, paddingHorizontal: 50, paddingVertical: 30, borderRadius: 15}}>
+            <Text style={{paddingBottom: 25, color: 'white', fontFamily: 'Avenir-Book', fontSize: 24}}>Drivers nearby: {this.props.nearbyDrivers.length}</Text>
+            <Text 
+              style={{paddingBottom: 25, color: 'white', fontFamily: 'Avenir-Book', fontSize: 16}}
+              onPress={() => navigate('DriverSignupScreen')}>
+              Sign up to drive
+            </Text>
+          </View>
         }
         </View>
       </View>

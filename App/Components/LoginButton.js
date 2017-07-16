@@ -41,7 +41,7 @@ class LoginButton extends Component {
   render () {
     return (
       <Icon.Button name="facebook" backgroundColor="#3b5998" onPress={this._tryLogin.bind(this)} style={styles.button}>
-        <Text style={styles.buttonText}>&nbsp;Login</Text>
+        <Text style={styles.buttonText}>&nbsp;Log in</Text>
       </Icon.Button>
     )
   }
