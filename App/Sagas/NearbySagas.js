@@ -29,11 +29,15 @@ export function * findNearbyDrivers (api, action) {
 
 	var onKeyExitedRegistration = geoQuery.on("key_exited", function(key, loc, distance) {
 	  console.tron.log(key + " exited query to " + loc + " (" + distance + " km from center)");
-	  store.dispatch(NearbyActions.updateDriverLoc(key, loc, dis))
+	  store.dispatch(NearbyActions.updateDriverLoc(key, loc, distance))
 	});
 
 	var onKeyMovedRegistration = geoQuery.on("key_moved", function(key, loc, distance) {
 	  console.tron.log(key + " moved within query to " + loc + " (" + distance + " km from center)");
-	  store.dispatch(NearbyActions.updateDriverLoc(key, loc, dis))
+	  store.dispatch(NearbyActions.updateDriverLoc(key, loc, distance))
 	});
+
+	geofireRef.set("tester2", [37.728433, -122.102])
+	geofireRef.set("tester3", [37.721433, -122.102])
+	geofireRef.set("tester4", [37.724433, -122.102])
 }

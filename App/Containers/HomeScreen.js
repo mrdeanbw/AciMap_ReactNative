@@ -66,7 +66,7 @@ class HomeScreen extends Component {
               return (
                 <MapView.Marker
                   key={driver.key}
-                  coordinate={{latitude: driver.location[0], longitude: driver.location[1]}}
+                  coordinate={{latitude: driver.loc[0], longitude: driver.loc[1]}}
                   title={"Test Name"}
                   description={"Test Description"}
                   onCalloutPress={ () => alert('touch') }

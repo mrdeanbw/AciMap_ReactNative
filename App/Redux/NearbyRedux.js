@@ -11,7 +11,13 @@ export const StartupTypes = Types
 export default Creators
 
 export const INITIAL_STATE = Immutable({
-  drivers: null
+  drivers: [
+  	{
+  		key: 'tester',
+  		wat: 'asdfasdf',
+  		loc: [35, 49]
+  	}
+  ]
 })
 
 export const success = (state, { drivers }) => {
@@ -19,13 +25,31 @@ export const success = (state, { drivers }) => {
 }
 
 export const updateDriverLoc = (state, { key, loc, distance }) => {
-	console.tron.log("In updateDriverLoc reducer!")
-	console.tron.log(key)
-	console.tron.log(loc)
-	console.tron.log(distance)
-	console.tron.log(state)
-  return state.merge({nearby:   	
-  	{key: key, loc: loc}})
+
+	var updated = false
+  const updatedItems = state.drivers.map(item => {
+    if(item.key === key){
+    	console.tron.log('MATCH')
+    	updated = true
+      return { ...item, loc: loc }      
+    }
+    return item
+  })
+
+  if (updated) {
+	  return state.merge({ drivers: updatedItems })
+  } else {
+  	var objAdd = { key, loc, distance }
+		console.tron.log('Adding...')  	
+		console.tron.log(objAdd)
+  // 	return state.merge(
+  // 		...state.drivers, [objAdd]
+		// )
+		return state.merge({
+			drivers: [...state.drivers, objAdd]
+		})
+  }
+
 }
 
 export const reducer = createReducer(INITIAL_STATE, {
