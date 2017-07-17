@@ -7,8 +7,9 @@ import sagaPlugin from 'reactotron-redux-saga'
 if (Config.useReactotron) {
   // https://github.com/infinitered/reactotron for more options!
   Reactotron
-    // .configure({ name: 'Arcade City', host: '192.168.0.6' })
-    .configure({ name: 'Arcade City', host: '10.24.105.91' })    
+    // .configure({ name: 'Arcade City', host: '192.168.0.6' }) // Home iPad
+    // .configure({ name: 'Arcade City', host: '10.24.105.91' })   // WeWork iPad
+    .configure({ name: 'Arcade City', host: '127.0.0.1' })   // WeWork iPad
     .useReactNative()
     .use(reduxPlugin({ onRestore: Immutable }))
     .use(sagaPlugin())

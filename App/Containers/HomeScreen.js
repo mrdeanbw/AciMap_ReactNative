@@ -11,9 +11,7 @@ import LoginButton from '../Components/LoginButton'
 import RoundedButton from '../Components/RoundedButton'
 import DriverCallout from '../Components/DriverCallout'
 import Icon from 'react-native-vector-icons/FontAwesome';
-import firebase from '../Lib/firebase'
 
-const geofire = require('geofire');
 const ASPECT_RATIO = Metrics.screenWidth / Metrics.screenHeight;
 const LATITUDE_DELTA = 0.0922;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
@@ -26,10 +24,14 @@ class HomeScreen extends Component {
 
   componentDidMount() {
     this._getLocation()
+  }
 
-    const geofireRef = new geofire(firebase.database().ref('geofire'))
-    console.tron.log('We now have geofire ref ')
-    console.tron.log(geofireRef)
+  updateGeofire(loc) {
+
+
+
+    // geofireRef.set('tester2', gloc)
+
   }
 
   _getLocation() {
@@ -42,6 +44,7 @@ class HomeScreen extends Component {
           longitudeDelta: LONGITUDE_DELTA
         }
         this.props.updateUserLoc(loc)
+        // this.updateGeofire(loc)
       },
       (error) => alert(error.message),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
