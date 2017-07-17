@@ -1,14 +1,17 @@
 import { StackNavigator } from 'react-navigation'
-import LaunchScreen from '../Containers/LaunchScreen'
 import HomeScreen from '../Containers/HomeScreen'
 import DriverSignupScreen from '../Containers/DriverSignupScreen'
+import { StyleSheet } from 'react-native'
+import { Colors } from '../Themes/'
 
-
-import styles from './Styles/NavigationStyles'
+const styles = StyleSheet.create({
+  header: {
+    backgroundColor: Colors.acnavy
+  }
+})
 
 // Manifest of possible screens
 const PrimaryNav = StackNavigator({
-  LaunchScreen: { screen: LaunchScreen },
   HomeScreen: { screen: HomeScreen },
   DriverSignupScreen: { screen: DriverSignupScreen }
 }, {
@@ -20,7 +23,7 @@ const PrimaryNav = StackNavigator({
     headerTintColor: 'white',
     headerTitleStyle: { fontFamily: 'Avenir-Black' },
     headerBackTitleStyle: { fontFamily: 'Avenir-Book' }
-  },
+  }
 })
 
 export default PrimaryNav

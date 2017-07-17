@@ -19,8 +19,8 @@ const create = (baseURL = 'https://us-central1-aci1-87e53.cloudfunctions.net/') 
   const driverSignupSubmit = (formData) => api.get('driverSignupSubmit', formData)
 
   const addDriverBeacon = (user, loc, driver) => api.get('addDriverBeacon', {
-    user: user, 
-    loc: loc, 
+    user: user,
+    loc: loc,
     driver: driver
   })
 
