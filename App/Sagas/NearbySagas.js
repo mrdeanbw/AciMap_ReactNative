@@ -1,20 +1,15 @@
 import { call, put } from 'redux-saga/effects'
 import NearbyActions from '../Redux/NearbyRedux'
 import firebase from '../Lib/firebase'
+import { store } from '../Containers/App'
 const geofire = require('geofire');
 
 export function * findNearbyDrivers (api, action) {
 	const { user, loc } = action
 
-
   var gloc = [loc.latitude, loc.longitude]
 
   const geofireRef = new geofire(firebase.database().ref('geofire'))
-  console.tron.log('In findNearbyDrivers saga. We have geofire ref ')
-  console.tron.log(geofireRef)
-
-  console.tron.log('Adding Geofire query with loc')
-  console.tron.log(gloc)
 
   // Create a GeoQuery centered at userLoc
   var geoQuery = geofireRef.query({
@@ -22,12 +17,23 @@ export function * findNearbyDrivers (api, action) {
     radius: 100
   });
 
-  // Attach event callbacks to the GeoQuery
-  // Tell us when a driver/beacon is within the GeoQuery
-  var onKeyEnteredRegistration = geoQuery.on("key_entered", function(key, location, distance) {
-    console.tron.log(key + " entered the geoquery - " + distance.toFixed(2) + " km from center");
-  });
+  // Attach event callbacks to the GeoQuery. 
+	var onReadyRegistration = geoQuery.on("ready", function() {
+	  console.tron.log("GeoQuery has loaded and fired all other events for initial data");
+	});
 
-  // const response = yield call(api.findNearbyDrivers, user, loc)
-  // yield put(NearbyActions.foundNearbyDrivers(response.data))
+	var onKeyEnteredRegistration = geoQuery.on("key_entered", function(key, loc, distance) {
+	  console.tron.log(key + " entered query at " + loc + " (" + distance + " km from center)");
+	  store.dispatch(NearbyActions.updateDriverLoc(key, loc, distance))
+	});
+
+	var onKeyExitedRegistration = geoQuery.on("key_exited", function(key, loc, distance) {
+	  console.tron.log(key + " exited query to " + loc + " (" + distance + " km from center)");
+	  store.dispatch(NearbyActions.updateDriverLoc(key, loc, dis))
+	});
+
+	var onKeyMovedRegistration = geoQuery.on("key_moved", function(key, loc, distance) {
+	  console.tron.log(key + " moved within query to " + loc + " (" + distance + " km from center)");
+	  store.dispatch(NearbyActions.updateDriverLoc(key, loc, dis))
+	});
 }
