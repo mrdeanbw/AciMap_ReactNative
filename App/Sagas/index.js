@@ -6,6 +6,9 @@ import { addDriverBeacon } from './DriverSagas'
 
 const api = API.create()
 
+console.tron.log('checking userLoginSuccess')
+console.tron.log(userLoginSuccess)
+
 export default function * root () {
   yield [
     takeLatest('USER_LOGIN', userLogin, api),
