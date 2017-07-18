@@ -8,7 +8,8 @@ export default () => {
     nav: require('./NavigationRedux').reducer,
     user: require('./UserRedux').reducer,
     nearby: require('./NearbyRedux').reducer,
-    driver: require('./DriverRedux').reducer
+    driver: require('./DriverRedux').reducer,
+    chat: require('./ChatRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)

@@ -8,7 +8,7 @@ const { Types, Creators } = createActions({
   updateDriverInfo: ['key', 'info']
 })
 
-export const StartupTypes = Types
+export const NearbyTypes = Types
 export default Creators
 
 export const INITIAL_STATE = Immutable({

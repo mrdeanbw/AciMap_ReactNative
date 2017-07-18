@@ -1,0 +1,29 @@
+{
+  "geofire" : {
+    "Fmu6D27WD8ZYecsxt2cu6KuvPH93" : {
+      ".priority" : "9q8yywdq7v",
+      "g" : "9q8yywdq7v",
+      "l" : [ 37.785834, -122.406417 ]
+    }
+  },
+  "users" : {
+    "Fmu6D27WD8ZYecsxt2cu6KuvPH93" : {
+      "name" : "Christopher David",
+      "email" : "chris@arcade.city",
+      "emailVerified" : false,
+      "fbid" : "582175661939399",
+      "photo" : "https://scontent.xx.fbcdn.net/v/t1.0-1/p100x100/19149077_872744746215821_3570726456667346281_n.jpg?oh=dc6afd902fca70438d479b66d1e6e917&oe=5A020094",
+      "loc" : {
+        "lat" : 30.2702207562107,
+        "lng" : -97.75175676815573,
+        "time" : 1500208923402
+      },
+      "driver" : {
+        "vehicle" : "Black 2013 Kia Optima Hybrid",
+        "self" : "Former top-rated Uber driver, now enjoying independence.",
+        "acceptTerms" : true
+      },
+      "createdAt" : 1500208923402    
+    }
+  }
+}

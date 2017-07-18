@@ -7,7 +7,7 @@ const { Types, Creators } = createActions({
   addDriverBeacon: ['user', 'loc', 'driver']
 })
 
-export const UserTypes = Types
+export const DriverTypes = Types
 export default Creators
 
 export const INITIAL_STATE = Immutable({
