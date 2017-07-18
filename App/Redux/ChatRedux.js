@@ -19,7 +19,7 @@ export const INITIAL_STATE = Immutable({
 })
 
 export const fetchRoomSuccess = (state, { roomKey }) => {
-  return state.merge({ 
+  return state.merge({
     loading: false,
     roomKey: roomKey
   })
@@ -34,7 +34,7 @@ export const registerRoom = (state, { roomKey }) => {
 }
 
 export const fetchMessageSuccess = (state, { messages }) => {
-  return state.merge({ 
+  return state.merge({
     loading: false,
     messages: messages
   })
