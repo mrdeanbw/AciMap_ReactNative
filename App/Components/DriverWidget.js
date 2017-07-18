@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { Metrics, Colors, Fonts } from '../Themes/'
+import DriverActions from '../Redux/DriverRedux'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 class DriverWidget extends Component {
@@ -55,8 +56,11 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   user: state.user.obj || null,
   driver: state.driver.formData || null,
-  loc: state.user.loc,
-  nearbyDrivers: state.nearby.drivers || []
+  loc: state.user.loc
 })
 
-export default connect(mapStateToProps, null)(DriverWidget)
+const mapDispatchToProps = (dispatch) => ({
+  addDriverBeacon: (user, loc, driver) => dispatch(DriverActions.addDriverBeacon(user, loc, driver))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(DriverWidget)
