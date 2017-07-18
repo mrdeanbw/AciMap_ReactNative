@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 // Marker is yellow for noobs, light green for new official drivers, darker is better/cooler
@@ -11,7 +10,7 @@ export default class DriverMarker extends Component {
   }
   render () {
     return (
-      <Icon name="car" size={30} color={this.iconColor} />
+      <Icon name='car' size={30} color={this.iconColor} />
     )
   }
 }

@@ -8,16 +8,22 @@ export function * findNearbyDrivers (api, action) {
   const gloc = [loc.latitude, loc.longitude]
   const geofireRef = new Geofire(firebase.database().ref('geofire'))
 
-  // Create a GeoQuery centered at userLoc
   var geoQuery = geofireRef.query({
     center: gloc,
     radius: 100
   })
 
-  // Attach event callbacks to the GeoQuery.
   geoQuery.on('ready', function () {
-    // All driver beacons have been rendered. Was there something I wanted to do...
-    // Look up the driver info of each driver and add to marker
+    // Loop through keys of nearby drivers, grab driver profile info from Firebase
+    var drivers = store.getState().nearby.drivers
+    drivers.forEach(function (driver) {
+      firebase.database()
+        .ref('users/' + driver.key)
+        .on('value', (snapshot) => {
+          const value = snapshot.val()
+          store.dispatch(NearbyActions.updateDriverInfo(driver.key, value))
+        })
+    })
   })
 
   geoQuery.on('key_entered', function (key, loc, distance) {

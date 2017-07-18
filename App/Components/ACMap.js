@@ -18,7 +18,7 @@ class ACMap extends Component {
             initialRegion={this.props.loc}>
             {this.props.nearbyDrivers.map(driver => {
               return (
-                <MapView.Marker                  
+                <MapView.Marker
                   key={driver.key}
                   coordinate={{latitude: driver.loc[0], longitude: driver.loc[1]}}
                   title={driver.key}
