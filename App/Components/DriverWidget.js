@@ -7,9 +7,11 @@ import Icon from 'react-native-vector-icons/FontAwesome'
 class DriverWidget extends Component {
   render () {
     return (
-      <View style={{alignItems: 'center', backgroundColor: Colors.darktrans, marginBottom: 100, paddingHorizontal: 50, paddingVertical: 30, borderRadius: 15}}>
-        <Text style={{paddingBottom: 25, color: 'white', fontFamily: 'Avenir-Book', fontSize: 24}}>Set Driver Beacon</Text>
-        <Icon.Button name='facebook' backgroundColor='#3b5998' onPress={() => this.props.addDriverBeacon(this.props.user, this.props.loc, this.props.driver)} style={styles.button}>
+      <View style={styles.container}>
+        <Text style={styles.beaconText}>Set Driver Beacon</Text>
+        <Icon.Button name='facebook'
+          onPress={() => this.props.addDriverBeacon(this.props.user, this.props.loc, this.props.driver)}
+          style={styles.button}>
           <Text style={styles.buttonText}>&nbsp;Set Driver Beacon</Text>
         </Icon.Button>
       </View>
@@ -18,6 +20,20 @@ class DriverWidget extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    backgroundColor: Colors.darktrans,
+    marginBottom: 100,
+    paddingHorizontal: 50,
+    paddingVertical: 30,
+    borderRadius: 15
+  },
+  beaconText: {
+    paddingBottom: 25,
+    color: 'white',
+    fontFamily: 'Avenir-Book',
+    fontSize: 24
+  },
   button: {
     height: 55,
     borderRadius: 5,

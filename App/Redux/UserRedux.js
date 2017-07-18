@@ -22,9 +22,6 @@ export const userLogin = (state) => {
 }
 
 export const userLoginSuccess = (state, { obj, loc }) => {
-  console.tron.log('in userLoginSuccess reducer with')
-  console.tron.log(obj)
-  console.tron.log(loc)
   return state.merge({ obj: obj }) //, { initialFetch: 'done'}
 }
 

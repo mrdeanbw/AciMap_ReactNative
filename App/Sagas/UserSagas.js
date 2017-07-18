@@ -22,16 +22,7 @@ export function * userLogin (api, action) {
       if (currentUser === 'cancelled') {
         console.log('Login cancelled')
       } else {
-        console.tron.log('We logged in...')
-        console.tron.log(currentUser.toJSON())
-        console.tron.log(loc)
-        console.tron.log(store)
-        console.tron.log(UserActions)
-        console.tron.log(UserActions.userLoginSuccess)
-        console.tron.log(UserActions.userLoginSuccess())
-        console.tron.log(UserActions.userLoginSuccess(currentUser.toJSON(), loc))
         store.dispatch(UserActions.userLoginSuccess(currentUser.toJSON(), loc))
-        console.tron.log('Did that work')
       }
     })
     .catch((error) => {
@@ -40,7 +31,6 @@ export function * userLogin (api, action) {
 }
 
 export function * userLoginSuccess (api, action) {
-  console.tron.log('userLoginSuccess saga...')
   const { obj, loc } = action
   store.dispatch(NearbyActions.findNearbyDrivers(obj, loc))
 }
