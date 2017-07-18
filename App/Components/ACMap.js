@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import mapStyle from '../Themes/MapStyle'
+import DriverMarker from '../Components/DriverMarker'
 import DriverCallout from '../Components/DriverCallout'
 
 class ACMap extends Component {
@@ -23,8 +24,9 @@ class ACMap extends Component {
                   title={driver.key}
                   description={'Test Description'}
                   >
+                  <DriverMarker {...driver} />
                   <MapView.Callout tooltip onPress={() => window.alert(driver.key)}>
-                    <DriverCallout />
+                    <DriverCallout {...driver} />
                   </MapView.Callout>
                 </MapView.Marker>
               )

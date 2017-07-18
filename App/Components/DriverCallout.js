@@ -5,7 +5,7 @@ import RoundedButton from './RoundedButton'
 export default class DriverCallout extends Component {
   render () {
     return (
-      <View style={{width: 300}}>
+      <View style={{width: 200}}>
         <RoundedButton
           text='See Profile'
           style={{alignSelf: 'center'}}
