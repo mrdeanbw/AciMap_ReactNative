@@ -9,7 +9,8 @@ export default () => {
     user: require('./UserRedux').reducer,
     nearby: require('./NearbyRedux').reducer,
     driver: require('./DriverRedux').reducer,
-    chat: require('./ChatRedux').reducer
+    chat: require('./ChatRedux').reducer,
+    ui: require('./UiRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)

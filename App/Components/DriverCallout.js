@@ -4,7 +4,7 @@ import RoundedButton from './RoundedButton'
 
 export default class DriverCallout extends Component {
   componentDidUpdate () {
-    console.tron.log(this.props)
+    // console.tron.log(this.props)
   }
   render () {
     return (

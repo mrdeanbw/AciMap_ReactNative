@@ -3,13 +3,15 @@ import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import mapStyle from '../Themes/MapStyle'
-import UserActions from '../Redux/UserRedux'
+import UiActions from '../Redux/UiRedux'
+import NearbyActions from '../Redux/NearbyRedux'
 import DriverMarker from '../Components/DriverMarker'
 import DriverCallout from '../Components/DriverCallout'
 import DriverProfile from '../Components/DriverProfile'
 
 class ACMap extends Component {
   clickProfile (key) {
+    this.props.setActiveDriver(key)
     this.props.toggleDriverProfile()
   }
   render () {
@@ -62,7 +64,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleDriverProfile: () => dispatch(UserActions.toggleDriverProfile())
+  setActiveDriver: (key) => dispatch(NearbyActions.setActiveDriver(key)),
+  toggleDriverProfile: () => dispatch(UiActions.toggleDriverProfile())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ACMap)

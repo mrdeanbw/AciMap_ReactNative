@@ -5,14 +5,27 @@ const { Types, Creators } = createActions({
   findNearbyDrivers: ['user', 'loc'],
   foundNearbyDrivers: ['drivers'],
   updateDriverLoc: ['key', 'loc', 'distance'],
-  updateDriverInfo: ['key', 'info']
+  updateDriverInfo: ['key', 'info'],
+  setActiveDriver: ['key']
 })
 
 export const NearbyTypes = Types
 export default Creators
 
 export const INITIAL_STATE = Immutable({
-  drivers: []
+  drivers: [],
+  activeDriver: {
+    profile: {
+      name: null,
+      fbid: null,
+      createdAt: null,
+      photo: null,
+      driver: {
+        vehicle: null,
+        self: null
+      }
+    }
+  }
 })
 
 export const success = (state, { drivers }) => {
@@ -51,8 +64,19 @@ export const updateDriverInfo = (state, { key, info }) => {
   return state.merge({ drivers: updatedItems })
 }
 
+export const setActiveDriver = (state, { key }) => {
+  var activeDriver = null
+  state.drivers.forEach(driver => {
+    if (driver.key === key) {
+      activeDriver = driver
+    }
+  })
+  return state.merge({ activeDriver: activeDriver })
+}
+
 export const reducer = createReducer(INITIAL_STATE, {
   'FOUND_NEARBY_DRIVERS': success,
   'UPDATE_DRIVER_LOC': updateDriverLoc,
-  'UPDATE_DRIVER_INFO': updateDriverInfo
+  'UPDATE_DRIVER_INFO': updateDriverInfo,
+  'SET_ACTIVE_DRIVER': setActiveDriver
 })
