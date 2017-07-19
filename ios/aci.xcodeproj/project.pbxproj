@@ -32,6 +32,7 @@
 		2C2DE8581F18EADB00BD7318 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2DE8511F18EADB00BD7318 /* nanopb.framework */; };
 		2C2DE85A1F18EAFC00BD7318 /* FirebaseDatabase.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2DE8591F18EAFC00BD7318 /* FirebaseDatabase.framework */; };
 		2C3D92F41F18F7DF00B4F3C8 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C3D92F21F18F79900B4F3C8 /* libRNFirebase.a */; };
+		2C8F462F1F1FE495001CFEDF /* FirebaseMessaging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8F462E1F1FE495001CFEDF /* FirebaseMessaging.framework */; };
 		2CA17C6E1F19859200209528 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA17C6A1F19859200209528 /* Bolts.framework */; };
 		2CA17C6F1F19859200209528 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA17C6B1F19859200209528 /* FBSDKCoreKit.framework */; };
 		2CA17C701F19859200209528 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA17C6C1F19859200209528 /* FBSDKLoginKit.framework */; };
@@ -362,6 +363,7 @@
 		2C2DE8591F18EAFC00BD7318 /* FirebaseDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseDatabase.framework; sourceTree = "<group>"; };
 		2C2DE85B1F18EB7800BD7318 /* Firebase.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Firebase.h; sourceTree = "<group>"; };
 		2C3D92D11F18F79900B4F3C8 /* RNFirebase.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFirebase.xcodeproj; path = "../node_modules/react-native-firebase/ios/RNFirebase.xcodeproj"; sourceTree = "<group>"; };
+		2C8F462E1F1FE495001CFEDF /* FirebaseMessaging.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FirebaseMessaging.framework; sourceTree = "<group>"; };
 		2CA17C6A1F19859200209528 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../../AC/DevFrameworks/FacebookSDK/Bolts.framework; sourceTree = "<group>"; };
 		2CA17C6B1F19859200209528 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../AC/DevFrameworks/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		2CA17C6C1F19859200209528 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../AC/DevFrameworks/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
@@ -452,6 +454,7 @@
 				00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */,
 				2CA17C711F19859200209528 /* FBSDKShareKit.framework in Frameworks */,
 				00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */,
+				2C8F462F1F1FE495001CFEDF /* FirebaseMessaging.framework in Frameworks */,
 				00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */,
 				133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */,
 				2CA17C701F19859200209528 /* FBSDKLoginKit.framework in Frameworks */,
@@ -812,6 +815,7 @@
 				2C2DE84F1F18EADB00BD7318 /* FirebaseNanoPB.framework */,
 				2C2DE8511F18EADB00BD7318 /* nanopb.framework */,
 				98FA192557EE391C5105747C /* libPods-aci.a */,
+				2C8F462E1F1FE495001CFEDF /* FirebaseMessaging.framework */,
 				2CA17C6A1F19859200209528 /* Bolts.framework */,
 				2CA17C6B1F19859200209528 /* FBSDKCoreKit.framework */,
 				2CA17C6C1F19859200209528 /* FBSDKLoginKit.framework */,
@@ -1521,6 +1525,7 @@
 					"$(PROJECT_DIR)/**",
 					"$(PROJECT_DIR)/Frameworks/",
 					/Users/christopherdavid/Desktop/AC/DevFrameworks/FacebookSDK,
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1528,6 +1533,7 @@
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/**",
+					"$(SRCROOT)/../node_modules/react-native-firebase/**",
 				);
 				INFOPLIST_FILE = aci/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -1557,6 +1563,7 @@
 					"$(PROJECT_DIR)/**",
 					"$(PROJECT_DIR)/Frameworks/",
 					/Users/christopherdavid/Desktop/AC/DevFrameworks/FacebookSDK,
+					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1564,6 +1571,7 @@
 					"$(SRCROOT)/../node_modules/react-native-maps/lib/ios/**",
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/**",
+					"$(SRCROOT)/../node_modules/react-native-firebase/**",
 				);
 				INFOPLIST_FILE = aci/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

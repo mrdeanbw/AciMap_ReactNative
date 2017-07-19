@@ -7,6 +7,20 @@ import ChatActions from '../Redux/ChatRedux'
 class ACChat extends Component {
   componentDidMount () {
     this.props.initializeChat()
+
+    // firebase.messaging().subscribeToTopic('foobar');
+
+    firebase.messaging().requestPermissions();
+
+    firebase.messaging().getToken()
+      .then((token) => {
+        console.tron.log('Device FCM Token: ');
+        console.tron.log(token)
+      });
+
+    firebase.messaging().onMessage((message) => {
+      console.tron.log(message)
+    });
   }
 
   sendMessage () {
