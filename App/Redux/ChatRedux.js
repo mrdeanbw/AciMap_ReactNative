@@ -2,10 +2,11 @@ import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
+  initializeChat: null,
   fetchRoomSuccess: ['roomKey'],
   fetchRoomError: null,
   registerRoom: null,
-  fetchMessageSuccess: null,
+  fetchMessageSuccess: ['messages'],
   fetchMessageError: null
 })
 
@@ -48,6 +49,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   'FETCH_ROOM_SUCCESS': fetchRoomSuccess,
   'FETCH_ROOM_ERROR': fetchRoomError,
   'REGISTER_ROOM': registerRoom,
-  'FETCH_MESSSAGE_SUCCESS': fetchMessageSuccess,
-  'FETCH_MESSSAGE_ERROR': fetchMessageError
+  'FETCH_MESSAGE_SUCCESS': fetchMessageSuccess,
+  'FETCH_MESSAGE_ERROR': fetchMessageError
 })
