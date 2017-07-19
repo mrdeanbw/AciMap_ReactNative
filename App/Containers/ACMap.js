@@ -3,10 +3,15 @@ import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import mapStyle from '../Themes/MapStyle'
+import UserActions from '../Redux/UserRedux'
 import DriverMarker from '../Components/DriverMarker'
 import DriverCallout from '../Components/DriverCallout'
+import DriverProfile from '../Components/DriverProfile'
 
 class ACMap extends Component {
+  clickProfile (key) {
+    this.props.toggleDriverProfile()
+  }
   render () {
     return (
       <View style={styles.container}>
@@ -25,7 +30,7 @@ class ACMap extends Component {
                   description={'Test Description'}
                   >
                   <DriverMarker {...driver} color={'green'} />
-                  <MapView.Callout tooltip onPress={() => window.alert(driver.key)}>
+                  <MapView.Callout tooltip onPress={() => this.clickProfile(driver.key)}>
                     <DriverCallout {...driver} />
                   </MapView.Callout>
                 </MapView.Marker>
@@ -34,6 +39,7 @@ class ACMap extends Component {
           </MapView>
           : <Text>Waiting for location...</Text>
         }
+        <DriverProfile />
       </View>
     )
   }
@@ -55,4 +61,8 @@ const mapStateToProps = (state) => ({
   nearbyDrivers: state.nearby.drivers || []
 })
 
-export default connect(mapStateToProps, null)(ACMap)
+const mapDispatchToProps = (dispatch) => ({
+  toggleDriverProfile: () => dispatch(UserActions.toggleDriverProfile())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ACMap)
