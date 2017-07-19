@@ -10,7 +10,7 @@ export function * findNearbyDrivers (api, action) {
 
   var geoQuery = geofireRef.query({
     center: gloc,
-    radius: 100
+    radius: 10000
   })
 
   geoQuery.on('ready', function () {

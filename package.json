@@ -40,6 +40,7 @@
     "react-native-drawer": "^2.3.0",
     "react-native-fbsdk": "^0.6.1",
     "react-native-firebase": "^2.0.3",
+    "react-native-gifted-chat": "^0.2.2",
     "react-native-maps": "^0.15.3",
     "react-native-vector-icons": "4.1.1",
     "react-navigation": "^1.0.0-beta.7",
