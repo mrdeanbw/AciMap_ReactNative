@@ -7,11 +7,22 @@ import ACChat from '../Containers/ACChat'
 import LoginWidget from '../Components/LoginWidget'
 import RiderWidget from '../Components/RiderWidget'
 import DriverWidget from '../Components/DriverWidget'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 class HomeScreen extends Component {
   static navigationOptions = {
     title: 'Arcade City',
-    headerTintColor: 'white'
+    headerTintColor: 'white',
+    drawerLabel: 'Home',
+    drawerIcon: () => (
+      <Icon name='car' size={30} color={Colors.snow} />
+    ),
+    headerStyle: {
+      backgroundColor: Colors.acnavy,
+    },
+    headerTintColor: 'white',
+    headerTitleStyle: { fontFamily: 'Avenir-Black' },
+    headerBackTitleStyle: { fontFamily: 'Avenir-Book' }
   }
 
   render () {
