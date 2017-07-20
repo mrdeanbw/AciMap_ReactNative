@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 // Marker is yellow for noobs, light green for new official drivers, darker is better/cooler

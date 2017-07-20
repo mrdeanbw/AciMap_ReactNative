@@ -14,6 +14,7 @@ export default Creators
 
 export const INITIAL_STATE = Immutable({
   drivers: [],
+  driversInfoLoaded: false,
   activeDriver: {
     profile: {
       name: null,
@@ -61,7 +62,7 @@ export const updateDriverInfo = (state, { key, info }) => {
     return item
   })
 
-  return state.merge({ drivers: updatedItems })
+  return state.merge({ drivers: updatedItems, driversInfoLoaded: true })
 }
 
 export const setActiveDriver = (state, { key }) => {

@@ -11,7 +11,6 @@ import DriverProfile from '../Components/DriverProfile'
 
 class ACMap extends Component {
   clickProfile (key) {
-    this.props.setActiveDriver(key)
     this.props.toggleDriverProfile()
   }
   render () {
@@ -22,22 +21,24 @@ class ACMap extends Component {
             provider={PROVIDER_GOOGLE}
             style={styles.map}
             customMapStyle={mapStyle}
-            initialRegion={this.props.loc}>
-            {this.props.nearbyDrivers.map(driver => {
+            initialRegion={this.props.loc}
+            onMarkerPress={e => this.props.setActiveDriver(e.nativeEvent.id)}>
+            {this.props.driverInfoLoaded ? this.props.nearbyDrivers.map(driver => {
               return (
                 <MapView.Marker
                   key={driver.key}
+                  identifier={driver.key}
                   coordinate={{latitude: driver.loc[0], longitude: driver.loc[1]}}
                   title={driver.key}
                   description={'Test Description'}
                   >
-                  <DriverMarker {...driver} color={'green'} />
+                  <DriverMarker color={'green'} />
                   <MapView.Callout tooltip onPress={() => this.clickProfile(driver.key)}>
-                    <DriverCallout {...driver} />
+                    <DriverCallout driver={driver} />
                   </MapView.Callout>
                 </MapView.Marker>
               )
-            })}
+            }) : <View />}
           </MapView>
           : <Text>Waiting for location...</Text>
         }
@@ -60,7 +61,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   loc: state.user.loc,
-  nearbyDrivers: state.nearby.drivers || []
+  nearbyDrivers: state.nearby.drivers || [],
+  driverInfoLoaded: state.nearby.driversInfoLoaded
 })
 
 const mapDispatchToProps = (dispatch) => ({

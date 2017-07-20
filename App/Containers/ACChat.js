@@ -8,13 +8,12 @@ class ACChat extends Component {
   state = {
     messages: []
   }
-  componentDidMount () {
-    
+  componentDidUpdate () {
+    // console.tron.log(this.state.messages)
   }
   onSend (messages = []) {
-    console.tron.log('in onSend with messages:')
-    console.tron.log(messages)
-    this.props.messageSent('-KpMSK6RN0G33Tf5JDae', 'KfeoOKzIe9eqVXEL2JwAiMtnwvs2', messages[0].text) // Fmu6D27WD8ZYecsxt2cu6KuvPH93
+    // console.tron.log(activeDriver)
+    this.props.messageSent('-KpMSK6RN0G33Tf5JDae', this.props.activeDriver.key, messages[0].text) // Fmu6D27WD8ZYecsxt2cu6KuvPH93
     this.setState((previousState) => ({
       messages: GiftedChat.append(previousState.messages, messages)
     }))
@@ -33,8 +32,13 @@ class ACChat extends Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+  user: state.user,
+  activeDriver: state.nearby.activeDriver
+})
+
 const mapDispatchToProps = (dispatch) => ({
   messageSent: (roomKey, rid, text) => dispatch(ChatActions.messageSent(roomKey, rid, text))
 })
 
-export default connect(null, mapDispatchToProps)(ACChat)
+export default connect(mapStateToProps, mapDispatchToProps)(ACChat)
