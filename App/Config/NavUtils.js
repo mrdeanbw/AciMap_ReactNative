@@ -1,3 +1,6 @@
+import React from 'react'
+import DrawerContent from '../Components/DrawerContent'
+
 export const getNavigationOptions = (title, backgroundColor, color) => ({
   title,
   headerTitle: title,
@@ -39,8 +42,12 @@ export const getDrawerNavigationOptions = (title, backgroundColor, titleColor, d
   drawerIcon,
 });
 
-export const getDrawerConfig = (drawerWidth, drawerPosition, initialRouteName) => ({
+export const getDrawerConfig = (drawerWidth, drawerPosition, initialRouteName, drawerRoutes) => ({
   drawerWidth,
   drawerPosition,
   initialRouteName,
+  contentComponent:({navigation}) => <DrawerContent navigation={navigation} routes={drawerRoutes} />
 });
+
+
+// contentComponent:({navigation}) => <DrawerContent navigation={navigation} routes={drawerRoutes} />

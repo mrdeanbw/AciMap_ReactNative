@@ -30,12 +30,14 @@ const homeNavOptions = getDrawerNavigationOptions('City Home', Colors.acnavy, 'w
 const userNavOptions = getDrawerNavigationOptions('Drive for Arcade City', Colors.acnavy, 'white', userDrawerIcon)
 const feedbackNavOptions = getDrawerNavigationOptions('Feedback', Colors.acnavy, 'white', feedbackDrawerIcon)
 
-const Drawer = DrawerNavigator({
+const DrawerRoutes = {
   HomeScreen: { screen: HomeScreen, navigationOptions: homeNavOptions },
-  UserScreen: { screen: DriverSignupScreen, navigationOptions: userNavOptions },
+  DriverScreen: { screen: DriverSignupScreen, navigationOptions: userNavOptions },
   FeedbackScreen: { screen: DriverSignupScreen, navigationOptions: feedbackNavOptions },
-}, getDrawerConfig(300, 'left', 'HomeScreen'))
+}
 
-Drawer.navigationOptions = ({ navigation }) => getNavigationOptionsWithAction('Menu', Colors.acnavy, 'white', getDrawerItem(navigation))
+const Drawer = DrawerNavigator(DrawerRoutes, getDrawerConfig(300, 'left', 'HomeScreen', DrawerRoutes))
+
+Drawer.navigationOptions = ({ navigation }) => getNavigationOptionsWithAction('Arcade City', Colors.acnavy, 'white', getDrawerItem(navigation))
 
 export default Drawer
