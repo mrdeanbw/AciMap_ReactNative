@@ -1,71 +1,40 @@
 import React, { Component } from 'react'
-import { View } from 'react-native'
 import { connect } from 'react-redux'
-import firebase from '../Config/FirebaseConfig'
 import ChatActions from '../Redux/ChatRedux'
+import { Colors } from '../Themes/'
+import { GiftedChat } from 'react-native-gifted-chat'
 
 class ACChat extends Component {
+  state = {
+    messages: []
+  }
   componentDidMount () {
-    this.props.initializeChat()
+    
   }
-
-  sendMessage () {
-    console.tron.log('Lets send a message')
-
-    const db = firebase.database()
-    const roomKey = '-KpMSK6RN0G33Tf5JDae'
-    const now = firebase.database.ServerValue.TIMESTAMP
-
-    db.ref(`messages/${roomKey}`).push({
-      text: 'I disagree',
-      user: {
-        _id: 'KfeoOKzIe9eqVXEL2JwAiMtnwvs2',
-        name: 'Other Christopher David',
-        avatar: 'https://scontent.xx.fbcdn.net/v/t1.0-1/s100x100/10354686_10150004552801856_220367501106153455_n.jpg?oh=b607b68bceb725319743396142d0768d&oe=5A040E73'
-      },
-      createdAt: now
-    })
+  onSend (messages = []) {
+    console.tron.log('in onSend with messages:')
+    console.tron.log(messages)
+    this.props.messageSent('-KpMSK6RN0G33Tf5JDae', 'KfeoOKzIe9eqVXEL2JwAiMtnwvs2', messages[0].text) // Fmu6D27WD8ZYecsxt2cu6KuvPH93
+    this.setState((previousState) => ({
+      messages: GiftedChat.append(previousState.messages, messages)
+    }))
   }
-
-  registerRoom () {
-    console.tron.log('Lets play with chat.')
-    const db = firebase.database()
-    const roomKey = db.ref(`rooms`).push().key
-    const update = {}
-    console.tron.log(roomKey)
-
-    // Temporarily hardcode user ids
-    const myid = 'Fmu6D27WD8ZYecsxt2cu6KuvPH93'
-    const friendid = 'KfeoOKzIe9eqVXEL2JwAiMtnwvs2'
-
-    /**
-     * update room
-     */
-    update[`rooms/${roomKey}/${myid}`] = true  // me.uid
-    update[`rooms/${roomKey}/${friendid}`] = true // friend.uid
-
-    /**
-     * update user
-     */
-    update[`users/${myid}/rooms/${roomKey}`] = true
-    update[`users/${friendid}/rooms/${roomKey}`] = true
-
-    db.ref().update(update).catch(error => console.log('registerRoomError', error))
-  }
-
   render () {
     return (
-      <View />
+      <GiftedChat
+        messages={this.state.messages}
+        onSend={(messages) => this.onSend(messages)}
+        user={{
+          _id: 1
+        }}
+        style={{marginTop: 200, backgroundColor: Colors.silver}}
+      />
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-  user: state.user
-})
-
 const mapDispatchToProps = (dispatch) => ({
-  initializeChat: () => dispatch(ChatActions.initializeChat())
+  messageSent: (roomKey, rid, text) => dispatch(ChatActions.messageSent(roomKey, rid, text))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ACChat)
+export default connect(null, mapDispatchToProps)(ACChat)

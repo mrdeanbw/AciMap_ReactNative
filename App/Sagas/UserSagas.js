@@ -1,5 +1,6 @@
 import UserActions from '../Redux/UserRedux'
 import NearbyActions from '../Redux/NearbyRedux'
+import ChatActions from '../Redux/ChatRedux'
 import firebase from '../Config/FirebaseConfig'
 import { AccessToken, LoginManager } from 'react-native-fbsdk'
 import { store } from '../Containers/App'
@@ -33,4 +34,5 @@ export function * userLogin (api, action) {
 export function * userLoginSuccess (api, action) {
   const { obj, loc } = action
   store.dispatch(NearbyActions.findNearbyDrivers(obj, loc))
+  store.dispatch(ChatActions.initializeChat())
 }

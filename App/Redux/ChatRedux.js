@@ -7,7 +7,8 @@ const { Types, Creators } = createActions({
   fetchRoomError: null,
   registerRoom: null,
   fetchMessageSuccess: ['messages'],
-  fetchMessageError: null
+  fetchMessageError: null,
+  messageSent: ['roomKey', 'rid', 'text']
 })
 
 export const ChatTypes = Types

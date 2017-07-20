@@ -1,35 +1,11 @@
 import React, { Component } from 'react'
-import { Image, Modal, StyleSheet, Text, View } from 'react-native'
+import { Modal, StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import UiActions from '../Redux/UiRedux'
 import { Colors, Metrics } from '../Themes/'
-import { GiftedChat } from 'react-native-gifted-chat'
+import ACChat from '../Containers/ACChat'
 
 class DriverProfile extends Component {
-  state = {
-    messages: [],
-  }
-  componentWillMount() {
-    this.setState({
-      messages: [
-        {
-          _id: 1,
-          text: 'Hello developer',
-          createdAt: new Date(),
-          user: {
-            _id: 2,
-            name: 'React Native',
-            avatar: 'https://facebook.github.io/react/img/logo_og.png',
-          },
-        },
-      ],
-    })
-  }
-  onSend(messages = []) {
-    this.setState((previousState) => ({
-      messages: GiftedChat.append(previousState.messages, messages),
-    }));
-  }
   render () {
     const profile = this.props.activeDriver.profile
     return (
@@ -42,14 +18,7 @@ class DriverProfile extends Component {
           <Text style={styles.text} onPress={() => this.props.toggleDriverProfile()}>Close Modal!</Text>
         </View>
         <View style={{flex: 1, width: Metrics.screenWidth, height: Metrics.screenHeight, backgroundColor: Colors.ember}}>
-          <GiftedChat
-            messages={this.state.messages}
-            onSend={(messages) => this.onSend(messages)}
-            user={{
-              _id: 1,
-            }}
-            style={{marginTop: 200, backgroundColor: Colors.silver}}
-          />
+          <ACChat />
         </View>
       </Modal>
     )
