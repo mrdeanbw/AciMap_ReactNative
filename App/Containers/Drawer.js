@@ -9,7 +9,7 @@ import { Colors } from '../Themes/'
 
 const getDrawerItem = navigation => (
   <NavBarItem
-    iconName="bars"
+    iconName='bars'
     onPress={() => {
       if (navigation.state.index === 0) {
         navigation.navigate('DrawerOpen')
@@ -33,7 +33,7 @@ const feedbackNavOptions = getDrawerNavigationOptions('Feedback', Colors.acnavy,
 const DrawerRoutes = {
   HomeScreen: { screen: HomeScreen, navigationOptions: homeNavOptions },
   DriverScreen: { screen: DriverSignupScreen, navigationOptions: userNavOptions },
-  FeedbackScreen: { screen: DriverSignupScreen, navigationOptions: feedbackNavOptions },
+  FeedbackScreen: { screen: DriverSignupScreen, navigationOptions: feedbackNavOptions }
 }
 
 const Drawer = DrawerNavigator(DrawerRoutes, getDrawerConfig(300, 'left', 'HomeScreen', DrawerRoutes))

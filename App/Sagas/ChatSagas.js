@@ -2,6 +2,20 @@ import ChatActions from '../Redux/ChatRedux'
 import firebase from '../Config/FirebaseConfig'
 import { store } from '../Containers/App'
 
+export function * fetchRoomData (api, action) {
+  const { roomKey } = action
+  const thisUid = store.getState().user.obj.uid
+  firebase.database().ref(`rooms/${roomKey}`).once('value', userIds => {
+    userIds.forEach(userId => {
+      if (userId.key !== thisUid) {
+        firebase.database().ref(`users/${userId.key}`).once('value', user => {
+          store.dispatch(ChatActions.updateRoomUser(roomKey, user.val()))
+        })
+      }
+    })
+  })
+}
+
 export function * messageSent (api, action) {
   const { roomKey, rid, text } = action
   const user = store.getState().user
@@ -52,11 +66,14 @@ export function * initializeChat (api, action) {
     // ACTION: UPDATE TOKEN IN THE DB
   })
 
-  // Listen for list of rooms, then listen to each room's messages
+  // Listen for list of rooms
   const db = firebase.database()
   const uid = 'Fmu6D27WD8ZYecsxt2cu6KuvPH93'
   db.ref(`users/${uid}/rooms`).on('value', rooms => {
     rooms.forEach(room => {
+      // Add that room with user info to redux for DrawerChatWidget
+      store.dispatch(ChatActions.fetchRoomData(room.key))
+      // Listen to each room's messages
       db.ref(`messages/${room.key}`).orderByKey().limitToLast(25).on('value', snap => {
         const messages = []
         snap.forEach(message => {

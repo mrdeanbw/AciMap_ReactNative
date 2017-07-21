@@ -5,33 +5,33 @@ export const getNavigationOptions = (title, backgroundColor, color) => ({
   title,
   headerTitle: title,
   headerStyle: {
-    backgroundColor,
+    backgroundColor
   },
   headerTitleStyle: {
     color,
     fontFamily: 'Avenir-Black'
   },
-  headerTintColor: color,
-});
+  headerTintColor: color
+})
 
 export const getNavigationOptionsWithAction = (title, backgroundColor, color, headerLeft) => ({
   title,
   headerStyle: {
-    backgroundColor,
+    backgroundColor
   },
   headerTitleStyle: {
     color,
     fontFamily: 'Avenir-Black'
   },
   headerTintColor: color,
-  headerLeft,
-});
+  headerLeft
+})
 
 export const getDrawerNavigationOptions = (title, backgroundColor, titleColor, drawerIcon) => ({
   title,
   headerTitle: 'Arcade City',
   headerStyle: {
-    backgroundColor,
+    backgroundColor
   },
   headerTitleStyle: {
     color: titleColor,
@@ -39,15 +39,12 @@ export const getDrawerNavigationOptions = (title, backgroundColor, titleColor, d
   },
   headerTintColor: titleColor,
   drawerLabel: title,
-  drawerIcon,
-});
+  drawerIcon
+})
 
 export const getDrawerConfig = (drawerWidth, drawerPosition, initialRouteName, drawerRoutes) => ({
   drawerWidth,
   drawerPosition,
   initialRouteName,
-  contentComponent:({navigation}) => <DrawerContent navigation={navigation} routes={drawerRoutes} />
-});
-
-
-// contentComponent:({navigation}) => <DrawerContent navigation={navigation} routes={drawerRoutes} />
+  contentComponent: ({navigation}) => <DrawerContent navigation={navigation} routes={drawerRoutes} />
+})

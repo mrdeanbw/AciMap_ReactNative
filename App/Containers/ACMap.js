@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import mapStyle from '../Themes/MapStyle'
+import { Colors } from '../Themes/'
 import UiActions from '../Redux/UiRedux'
 import NearbyActions from '../Redux/NearbyRedux'
 import DriverMarker from '../Components/DriverMarker'
@@ -40,7 +41,7 @@ class ACMap extends Component {
               )
             }) : <View />}
           </MapView>
-          : <Text>Waiting for location...</Text>
+          : <Text style={{color: 'white'}}>Waiting for location...</Text>
         }
         <DriverProfile />
       </View>
@@ -52,7 +53,8 @@ const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
     justifyContent: 'flex-end',
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: Colors.acnavy
   },
   map: {
     ...StyleSheet.absoluteFillObject

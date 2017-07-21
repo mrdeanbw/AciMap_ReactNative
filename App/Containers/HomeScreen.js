@@ -18,9 +18,8 @@ class HomeScreen extends Component {
       <Icon name='car' size={30} color={Colors.snow} />
     ),
     headerStyle: {
-      backgroundColor: Colors.acnavy,
+      backgroundColor: Colors.acnavy
     },
-    headerTintColor: 'white',
     headerTitleStyle: { fontFamily: 'Avenir-Black' },
     headerBackTitleStyle: { fontFamily: 'Avenir-Book' }
   }
