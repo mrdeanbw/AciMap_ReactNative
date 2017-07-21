@@ -8,7 +8,6 @@ export function * setActiveChatRoom (api, { roomKey }) {
     const messages = []
     snap.forEach(message => {
       const msg = message.val()
-      console.log(msg)
       messages.push({
         _id: message.key,
         text: msg.text,
@@ -23,6 +22,7 @@ export function * setActiveChatRoom (api, { roomKey }) {
   })
 }
 
+// Given a room key, fetch user object of other participants and fire UPDATE_ROOM_USER with the data
 export function * fetchRoomData (api, action) {
   const { roomKey } = action
   const thisUid = store.getState().user.obj.uid
@@ -30,13 +30,16 @@ export function * fetchRoomData (api, action) {
     userIds.forEach(userId => {
       if (userId.key !== thisUid) {
         firebase.database().ref(`users/${userId.key}`).once('value', user => {
-          store.dispatch(ChatActions.updateRoomUser(roomKey, user.val()))
+          var newuser = user.val()
+          newuser.uid = user.key
+          store.dispatch(ChatActions.updateRoomUser(roomKey, newuser))
         })
       }
     })
   })
 }
 
+//  Given room id and recipient uid, store the message in firebase db
 export function * messageSent (api, action) {
   const { roomKey, rid, text } = action
   const user = store.getState().user
@@ -55,7 +58,8 @@ export function * messageSent (api, action) {
     })
 }
 
-// Wait til we log in...
+// Initialize cloud messaging, set up listeners for user room chats, listen for messages to those rooms,
+//    send to FETCH_MESSAGE_SUCCESS when one is received
 export function * initializeChat (api, action) {
   // Initialize cloud messages
   const user = store.getState().user

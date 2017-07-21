@@ -27,51 +27,24 @@ export const INITIAL_STATE = Immutable({
 })
 
 export const setChatRoomMessages = (state, { roomKey, messages }) => {
-
-  console.tron.log('in setChatRoomMessages action with roomKey and messages:')
-  console.tron.log(roomKey)
-  console.tron.log(messages)
-  console.tron.log(state)  
   var newRoom
-  _.forOwn(state.rooms, function(value, key) {
-    console.tron.log('Oh and we do have key and value:')
-    console.tron.log(value)
-    console.tron.log(key)
+  _.forOwn(state.rooms, function (value, key) {
     var room = value
     if (room.roomKey === roomKey) {
-      console.tron.log('Found a match. Now lets try..')
       room.messages = messages
       newRoom = {
         user: room.user,
         messages: messages,
         roomKey: room.roomKey
       }
-      // console.tron.log('do we even have messages here')
-      // console.tron.log(messages)
-      // console.tron.log('Did we just add messages to that object:')
-      // console.tron.log(room)
-      console.tron.log('Did we set that fine....')
-      console.tron.log(newRoom)
-      // return newRoom
-    }
-  })
-  // console.tron.log(modifiedRoom)
-  console.tron.log('And do we have it hre...')
-  console.tron.log(newRoom)
-  console.tron.log('-----------')
-  return state.merge({ 
-    rooms: {
-      [roomKey]: newRoom 
     }
   })
 
-  // const updatedRooms = state.rooms.map(item => {
-  //   if (item.roomKey === roomKey) {
-  //     return { ...item, messages }
-  //   }
-  //   return item
-  // })
-  // return state.merge({ rooms: updatedRooms })
+  return state.merge({
+    rooms: {
+      [roomKey]: newRoom
+    }
+  })
 }
 
 export const setActiveChatRoom = (state, { roomKey }) => {
@@ -91,17 +64,6 @@ export const updateRoomUser = (state, { roomKey, user }) => {
   if (updated) {
     return state.merge({ rooms: updatedItems })
   } else {
-    // return state.merge({ rooms: [...state.rooms, { user, roomKey }] }).    {[roomKey]: user}
-    // return state.merge(
-    //   ...state.rooms,
-    //   {rooms: ['test': {test1: 'hi'}]}
-    // )
-    // return state.merge({
-    //   rooms: [
-    //     ...state.rooms,
-    //     { roomKey }
-    //   ]
-    // })
     return state.merge(
       ...state.rooms,
       {rooms: {[roomKey]: {user: user, roomKey}}}

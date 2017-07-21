@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import { connect } from 'react-redux'
-import { Metrics, Colors } from '../Themes/'
+import { Colors } from '../Themes/'
+import ChatActions from '../Redux/ChatRedux'
+import { GiftedChat } from 'react-native-gifted-chat'
 
 class ChatScreen extends Component {
   static navigationOptions = {
@@ -18,31 +20,20 @@ class ChatScreen extends Component {
     headerBackTitleStyle: { fontFamily: 'Avenir-Book' }
   }
 
-  componentDidUpdate () {
-    console.tron.log('-------CHATSCREEN UPDATE -------')
-    console.tron.log(this.props.room)
-    console.tron.log('-------CHATSCREEN UPDATE -------')
-  }
-
-  componentDidMount () {
-    console.tron.log('-------CHATSCREEN MOUNT -------')
-    console.tron.log(this.props.room)
-    console.tron.log('-------CHATSCREEN MOUNT -------')
+  onSend (messages = []) {
+    this.props.messageSent('-KpMSK6RN0G33Tf5JDae', this.props.room.user.uid, messages[0].text) // Fmu6D27WD8ZYecsxt2cu6KuvPH93
   }
 
   render () {
-    const { navigate } = this.props.navigation
-    console.tron.log('here dat room:')
-    console.tron.log(this.props.room)
     return (
-      <View style={{ flex: 1, paddingBottom: '10%', backgroundColor: Colors.acnavy }}>
-      	<Text style={{ color: 'white' }}>Chatting with {this.props.room.user.name}</Text>
-        {this.props.room.messages ? this.props.room.messages.map(message => {
-          return (
-            <Text style={{ color: 'white' }} key={message._id}>{message.text}</Text>
-          )
-        }) : <View />}
-      </View>
+      <GiftedChat
+        messages={this.props.room.messages}
+        onSend={(messages) => this.onSend(messages)}
+        user={{
+          _id: 1
+        }}
+        style={{marginTop: 200, backgroundColor: Colors.silver}}
+      />
     )
   }
 }
@@ -52,4 +43,8 @@ const mapStateToProps = (state) => ({
   room: state.chat.rooms[state.chat.roomKey]
 })
 
-export default connect(mapStateToProps)(ChatScreen)
+const mapDispatchToProps = (dispatch) => ({
+  messageSent: (roomKey, rid, text) => dispatch(ChatActions.messageSent(roomKey, rid, text))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatScreen)
