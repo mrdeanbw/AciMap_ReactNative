@@ -1,5 +1,6 @@
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
+import _ from 'lodash'
 
 const { Types, Creators } = createActions({
   updateRoomUser: ['roomKey', 'user'],
@@ -27,10 +28,42 @@ export const INITIAL_STATE = Immutable({
 
 export const setChatRoomMessages = (state, { roomKey, messages }) => {
 
-  console.tron.log('in setChatRoomMessages with roomKey and messages:')
+  console.tron.log('in setChatRoomMessages action with roomKey and messages:')
   console.tron.log(roomKey)
   console.tron.log(messages)
-  return state
+  console.tron.log(state)  
+  var newRoom
+  _.forOwn(state.rooms, function(value, key) {
+    console.tron.log('Oh and we do have key and value:')
+    console.tron.log(value)
+    console.tron.log(key)
+    var room = value
+    if (room.roomKey === roomKey) {
+      console.tron.log('Found a match. Now lets try..')
+      room.messages = messages
+      newRoom = {
+        user: room.user,
+        messages: messages,
+        roomKey: room.roomKey
+      }
+      // console.tron.log('do we even have messages here')
+      // console.tron.log(messages)
+      // console.tron.log('Did we just add messages to that object:')
+      // console.tron.log(room)
+      console.tron.log('Did we set that fine....')
+      console.tron.log(newRoom)
+      // return newRoom
+    }
+  })
+  // console.tron.log(modifiedRoom)
+  console.tron.log('And do we have it hre...')
+  console.tron.log(newRoom)
+  console.tron.log('-----------')
+  return state.merge({ 
+    rooms: {
+      [roomKey]: newRoom 
+    }
+  })
 
   // const updatedRooms = state.rooms.map(item => {
   //   if (item.roomKey === roomKey) {
