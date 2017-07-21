@@ -10,7 +10,9 @@ const { Types, Creators } = createActions({
   fetchMessageSuccess: ['messages'],
   fetchMessageError: null,
   messageSent: ['roomKey', 'rid', 'text'],
-  fetchRoomData: ['roomKey']
+  fetchRoomData: ['roomKey'],
+  setActiveChatRoom: ['roomKey'],
+  setChatRoomMessages: ['roomKey', 'messages']
 })
 
 export const ChatTypes = Types
@@ -22,6 +24,26 @@ export const INITIAL_STATE = Immutable({
   roomKey: null,
   rooms: []
 })
+
+export const setChatRoomMessages = (state, { roomKey, messages }) => {
+
+  console.tron.log('in setChatRoomMessages with roomKey and messages:')
+  console.tron.log(roomKey)
+  console.tron.log(messages)
+  return state
+
+  // const updatedRooms = state.rooms.map(item => {
+  //   if (item.roomKey === roomKey) {
+  //     return { ...item, messages }
+  //   }
+  //   return item
+  // })
+  // return state.merge({ rooms: updatedRooms })
+}
+
+export const setActiveChatRoom = (state, { roomKey }) => {
+  return state.merge({ roomKey })
+}
 
 export const updateRoomUser = (state, { roomKey, user }) => {
   var updated = false
@@ -36,7 +58,21 @@ export const updateRoomUser = (state, { roomKey, user }) => {
   if (updated) {
     return state.merge({ rooms: updatedItems })
   } else {
-    return state.merge({ rooms: [...state.rooms, { user, roomKey }] })
+    // return state.merge({ rooms: [...state.rooms, { user, roomKey }] }).    {[roomKey]: user}
+    // return state.merge(
+    //   ...state.rooms,
+    //   {rooms: ['test': {test1: 'hi'}]}
+    // )
+    // return state.merge({
+    //   rooms: [
+    //     ...state.rooms,
+    //     { roomKey }
+    //   ]
+    // })
+    return state.merge(
+      ...state.rooms,
+      {rooms: {[roomKey]: {user: user, roomKey}}}
+    )
   }
 }
 
@@ -72,5 +108,7 @@ export const reducer = createReducer(INITIAL_STATE, {
   'REGISTER_ROOM': registerRoom,
   'FETCH_MESSAGE_SUCCESS': fetchMessageSuccess,
   'FETCH_MESSAGE_ERROR': fetchMessageError,
-  'UPDATE_ROOM_USER': updateRoomUser
+  'UPDATE_ROOM_USER': updateRoomUser,
+  'SET_ACTIVE_CHAT_ROOM': setActiveChatRoom,
+  'SET_CHAT_ROOM_MESSAGES': setChatRoomMessages
 })

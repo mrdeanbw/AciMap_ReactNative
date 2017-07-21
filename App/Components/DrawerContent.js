@@ -24,7 +24,7 @@ class DrawerContent extends Component {
           <Text style={styles.text}>Drive for Arcade City</Text>
         </TouchableOpacity>
 
-        <DrawerChatWidget />
+        <DrawerChatWidget navigation={navigation} />
       </View>
     )
   }

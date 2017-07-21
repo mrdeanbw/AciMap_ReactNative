@@ -2,6 +2,27 @@ import ChatActions from '../Redux/ChatRedux'
 import firebase from '../Config/FirebaseConfig'
 import { store } from '../Containers/App'
 
+// User selected a chat. Let's grab the messages.
+export function * setActiveChatRoom (api, { roomKey }) {
+  firebase.database().ref(`messages/${roomKey}`).orderByKey().limitToLast(50).once('value', snap => {
+    const messages = []
+    snap.forEach(message => {
+      const msg = message.val()
+      console.log(msg)
+      messages.push({
+        _id: message.key,
+        text: msg.text,
+        user: msg.user,
+        createdAt: msg.createdAt
+      })
+    })
+    messages.sort((a, b) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    })
+    store.dispatch(ChatActions.setChatRoomMessages(roomKey, messages))
+  })
+}
+
 export function * fetchRoomData (api, action) {
   const { roomKey } = action
   const thisUid = store.getState().user.obj.uid

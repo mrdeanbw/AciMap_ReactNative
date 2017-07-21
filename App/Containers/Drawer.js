@@ -4,6 +4,7 @@ import React from 'react'
 import { getNavigationOptionsWithAction, getDrawerNavigationOptions, getDrawerConfig } from '../Config/NavUtils'
 import NavBarItem from '../Components/NavBarItem'
 import HomeScreen from '../Containers/HomeScreen'
+import ChatScreen from '../Containers/ChatScreen'
 import DriverSignupScreen from '../Containers/DriverSignupScreen'
 import { Colors } from '../Themes/'
 
@@ -33,6 +34,7 @@ const feedbackNavOptions = getDrawerNavigationOptions('Feedback', Colors.acnavy,
 const DrawerRoutes = {
   HomeScreen: { screen: HomeScreen, navigationOptions: homeNavOptions },
   DriverScreen: { screen: DriverSignupScreen, navigationOptions: userNavOptions },
+  ChatScreen: { screen: ChatScreen, navigationOptions: userNavOptions },
   FeedbackScreen: { screen: DriverSignupScreen, navigationOptions: feedbackNavOptions }
 }
 
