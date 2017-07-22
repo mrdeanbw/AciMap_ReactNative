@@ -26,7 +26,7 @@ class DrawerChatWidget extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Chats:</Text>
+        <Text style={styles.text}>Active Chats:</Text>
         {this.state.arr.map(room => {
           return (
             <TouchableOpacity
@@ -38,6 +38,7 @@ class DrawerChatWidget extends Component {
             </TouchableOpacity>
           )
         })}
+        {this.state.arr.length === 0 ? <Text style={styles.text}>None</Text> : <View />}
       </View>
     )
   }
@@ -45,11 +46,13 @@ class DrawerChatWidget extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 40
+    marginTop: 40,
+    paddingHorizontal: 50
   },
   text: {
     fontFamily: Fonts.type.base,
-    color: Colors.snow
+    color: Colors.snow,
+    fontSize: Fonts.size.regular
   }
 })
 
