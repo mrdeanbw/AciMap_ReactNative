@@ -8,6 +8,7 @@ const { Types, Creators } = createActions({
   fetchRoomSuccess: ['roomKey'],
   fetchRoomError: null,
   registerRoom: null,
+  // fetchMessageSuccess: ['roomKey', 'messages'],
   fetchMessageSuccess: ['messages'],
   fetchMessageError: null,
   messageSent: ['roomKey', 'rid', 'text'],
@@ -27,22 +28,12 @@ export const INITIAL_STATE = Immutable({
 })
 
 export const setChatRoomMessages = (state, { roomKey, messages }) => {
-  var newRoom
-  _.forOwn(state.rooms, function (value, key) {
-    var room = value
-    if (room.roomKey === roomKey) {
-      room.messages = messages
-      newRoom = {
-        user: room.user,
-        messages: messages,
-        roomKey: room.roomKey
-      }
-    }
-  })
-
   return state.merge({
     rooms: {
-      [roomKey]: newRoom
+      [roomKey]: {
+        ...state.rooms[roomKey],
+        messages: messages
+      }
     }
   })
 }
@@ -53,7 +44,8 @@ export const setActiveChatRoom = (state, { roomKey }) => {
 
 export const updateRoomUser = (state, { roomKey, user }) => {
   var updated = false
-  const updatedItems = state.rooms.map(item => {
+  const roomValues = _.values(state.rooms)
+  const updatedItems = roomValues.map(item => {
     if (item.key === roomKey) {
       updated = true
       return { ...item, user: user }
@@ -86,7 +78,8 @@ export const registerRoom = (state, { roomKey }) => {
   return state.merge({ roomKey })
 }
 
-export const fetchMessageSuccess = (state, { messages }) => {
+// Basically updateRoomMessages.. like updateRoomUser..   wait waitwait i already have setchatroomesages
+export const fetchMessageSuccess = (state, { roomKey, messages }) => {
   return state.merge({
     loading: false,
     messages: messages

@@ -14,18 +14,18 @@ class DrawerContent extends Component {
           style={{ paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}
           onPress={() => navigation.navigate('HomeScreen')}
         >
-          <View style={{width: 25, alignItems: 'center' }}>
-          <Icon name="map-o" size={20} color="#fff" />
+          <View style={{ width: 25, alignItems: 'center' }}>
+            <Icon name='map-o' size={20} color='#fff' />
           </View>
-          <Text style={styles.text}>City Map</Text>          
+          <Text style={styles.text}>City Map</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={{ paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}
           onPress={() => navigation.navigate('DriverScreen')}
         >
-          <View style={{width: 25, alignItems: 'center' }}>
-          <Icon name="car" size={20} color="#fff"/>
+          <View style={{ width: 25, alignItems: 'center' }}>
+            <Icon name='car' size={20} color='#fff' />
           </View>
           <Text style={styles.text}>Drive for Arcade City</Text>
         </TouchableOpacity>
@@ -34,8 +34,8 @@ class DrawerContent extends Component {
           style={{ paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}
           onPress={() => navigation.navigate('DriverScreen')}
         >
-          <View style={{width: 25, alignItems: 'center' }}>
-          <Icon name="bullhorn" size={20} color="#fff" />
+          <View style={{ width: 25, alignItems: 'center' }}>
+            <Icon name='bullhorn' size={20} color='#fff' />
           </View>
           <Text style={styles.text}>Give Feedback</Text>
         </TouchableOpacity>
@@ -44,8 +44,8 @@ class DrawerContent extends Component {
           style={{ paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}
           onPress={() => navigation.navigate('DriverScreen')}
         >
-          <View style={{width: 25, alignItems: 'center' }}>
-          <Icon name="handshake-o" size={20} color="#fff"/>
+          <View style={{ width: 25, alignItems: 'center' }}>
+            <Icon name='handshake-o' size={20} color='#fff' />
           </View>
           <Text style={styles.text}>Connect</Text>
         </TouchableOpacity>
