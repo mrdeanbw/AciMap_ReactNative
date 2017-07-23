@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import ReduxNavigation from '../Navigation/ReduxNavigation'
 import { Metrics } from '../Themes/'
 import UserActions from '../Redux/UserRedux'
+import Toast from '../Components/Toast'
 
 const ASPECT_RATIO = Metrics.screenWidth / Metrics.screenHeight
 const LATITUDE_DELTA = 0.0922
@@ -30,6 +31,7 @@ class RootContainer extends Component {
       <View style={{flex: 1}}>
         <StatusBar barStyle='light-content' />
         <ReduxNavigation />
+        <Toast />
       </View>
     )
   }

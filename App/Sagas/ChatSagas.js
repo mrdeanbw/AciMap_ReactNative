@@ -1,4 +1,5 @@
 import ChatActions from '../Redux/ChatRedux'
+import UiActions from '../Redux/UiRedux'
 import firebase from '../Config/FirebaseConfig'
 import { store } from '../Containers/App'
 
@@ -17,10 +18,11 @@ export function * initializeChat (api, action) {
     })
 
   firebase.messaging().onMessage((message) => {
-    console.tron.log(message)
+    // console.tron.log(message)
     const not = message.notification
     if (message.notification.roomKey !== store.getState().chat.roomKey) {
-      alert(not.title + ": " + not.body)
+      // window.alert(not.title + ': ' + not.body)
+      store.dispatch(UiActions.sendToast(not.title, not.body, not.icon, 'chat'))
     }
   })
 

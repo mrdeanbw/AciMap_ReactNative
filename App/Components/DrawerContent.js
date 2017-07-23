@@ -7,7 +7,7 @@ import ChatActions from '../Redux/ChatRedux'
 import DrawerChatWidget from './DrawerChatWidget'
 
 class DrawerContent extends Component {
-  clickDrawerNav(route, navigation) {
+  clickDrawerNav (route, navigation) {
     if (this.props.roomKey) {
       this.props.clearRoomKey()
     }

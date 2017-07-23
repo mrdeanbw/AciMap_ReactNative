@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { View, Text, StyleSheet } from 'react-native'
 import { Fonts, Colors, Metrics } from '../Themes/'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import UserActions from '../Redux/UserRedux'
 import NearbyActions from '../Redux/NearbyRedux'
-import { connect } from 'react-redux'
 
 class LoginWidget extends Component {
   render () {
