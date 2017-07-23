@@ -18,7 +18,10 @@ export function * initializeChat (api, action) {
 
   firebase.messaging().onMessage((message) => {
     console.tron.log(message)
-    window.alert(JSON.stringify(message))
+    const not = message.notification
+    if (message.notification.roomKey !== store.getState().chat.roomKey) {
+      alert(not.title + ": " + not.body)
+    }
   })
 
   firebase.messaging().getInitialNotification()

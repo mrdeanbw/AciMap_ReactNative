@@ -14,7 +14,8 @@ const { Types, Creators } = createActions({
   messageSent: ['roomKey', 'rid', 'text'],
   fetchRoomData: ['roomKey'],
   setActiveChatRoom: ['roomKey'],
-  setChatRoomMessages: ['roomKey', 'messages']
+  setChatRoomMessages: ['roomKey', 'messages'],
+  clearRoomKey: null
 })
 
 export const ChatTypes = Types
@@ -36,6 +37,10 @@ export const setChatRoomMessages = (state, { roomKey, messages }) => {
       }
     }
   })
+}
+
+export const clearRoomKey = (state) => {
+  return state.merge({ roomKey: null })
 }
 
 export const setActiveChatRoom = (state, { roomKey }) => {
@@ -98,5 +103,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   'FETCH_MESSAGE_ERROR': fetchMessageError,
   'UPDATE_ROOM_USER': updateRoomUser,
   'SET_ACTIVE_CHAT_ROOM': setActiveChatRoom,
-  'SET_CHAT_ROOM_MESSAGES': setChatRoomMessages
+  'SET_CHAT_ROOM_MESSAGES': setChatRoomMessages,
+  'CLEAR_ROOM_KEY': clearRoomKey
 })

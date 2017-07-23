@@ -22,3 +22,7 @@ if (Config.useReactotron) {
   // on every file.  This is just DEV mode, so no big deal.
   console.tron = Reactotron
 }
+
+if (!__DEV__) {
+  console.tron = console
+}
