@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Fonts, Colors } from '../Themes/'
+import UserActions from '../Redux/UserRedux'
 import ChatActions from '../Redux/ChatRedux'
 import DrawerChatWidget from './DrawerChatWidget'
 
@@ -12,6 +13,11 @@ class DrawerContent extends Component {
       this.props.clearRoomKey()
     }
     navigation.navigate(route)
+  }
+
+  logout (navigation) {
+    navigation.navigate('HomeScreen')
+    this.props.userLogout()
   }
 
   render () {
@@ -58,6 +64,16 @@ class DrawerContent extends Component {
           <Text style={styles.text}>Connect</Text>
         </TouchableOpacity>
 
+        <TouchableOpacity
+          style={{ paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}
+          onPress={() => this.logout(navigation)}
+        >
+          <View style={{ width: 25, alignItems: 'center' }}>
+            <Icon name='sign-out' size={20} color='#fff' />
+          </View>
+          <Text style={styles.text}>Logout</Text>
+        </TouchableOpacity>
+
         <DrawerChatWidget navigation={navigation} />
       </View>
     )
@@ -84,7 +100,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  clearRoomKey: () => dispatch(ChatActions.clearRoomKey())
+  clearRoomKey: () => dispatch(ChatActions.clearRoomKey()),
+  userLogout: () => dispatch(UserActions.userLogout())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DrawerContent)

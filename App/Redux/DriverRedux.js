@@ -17,6 +17,11 @@ export const INITIAL_STATE = Immutable({
 export const driverSignupSuccess = (state, { formData, user }) =>
   state.merge({ formData })
 
+export const userLogout = (state) => {
+  return INITIAL_STATE
+}
+
 export const reducer = createReducer(INITIAL_STATE, {
-  'DRIVER_SIGNUP_SUCCESS': driverSignupSuccess
+  'DRIVER_SIGNUP_SUCCESS': driverSignupSuccess,
+  'USER_LOGOUT': userLogout
 })

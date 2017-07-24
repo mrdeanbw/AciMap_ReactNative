@@ -75,9 +75,14 @@ export const setActiveDriver = (state, { key }) => {
   return state.merge({ activeDriver: activeDriver })
 }
 
+export const userLogout = (state) => {
+  return INITIAL_STATE
+}
+
 export const reducer = createReducer(INITIAL_STATE, {
   'FOUND_NEARBY_DRIVERS': success,
   'UPDATE_DRIVER_LOC': updateDriverLoc,
   'UPDATE_DRIVER_INFO': updateDriverInfo,
-  'SET_ACTIVE_DRIVER': setActiveDriver
+  'SET_ACTIVE_DRIVER': setActiveDriver,
+  'USER_LOGOUT': userLogout
 })

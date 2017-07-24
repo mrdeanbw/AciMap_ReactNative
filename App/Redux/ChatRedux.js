@@ -95,6 +95,10 @@ export const fetchMessageError = (state) => {
   return state.merge({ loading: false })
 }
 
+export const userLogout = (state) => {
+  return INITIAL_STATE
+}
+
 export const reducer = createReducer(INITIAL_STATE, {
   'FETCH_ROOM_SUCCESS': fetchRoomSuccess,
   'FETCH_ROOM_ERROR': fetchRoomError,
@@ -104,5 +108,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   'UPDATE_ROOM_USER': updateRoomUser,
   'SET_ACTIVE_CHAT_ROOM': setActiveChatRoom,
   'SET_CHAT_ROOM_MESSAGES': setChatRoomMessages,
-  'CLEAR_ROOM_KEY': clearRoomKey
+  'CLEAR_ROOM_KEY': clearRoomKey,
+  'USER_LOGOUT': userLogout
 })

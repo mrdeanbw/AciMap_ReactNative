@@ -36,3 +36,7 @@ export function * userLoginSuccess (api, action) {
   store.dispatch(NearbyActions.findNearbyDrivers(obj, loc))
   store.dispatch(ChatActions.initializeChat())
 }
+
+export function * userLogout (api, action) {
+  LoginManager.logOut()
+}

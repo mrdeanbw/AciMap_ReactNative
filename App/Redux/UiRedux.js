@@ -24,7 +24,12 @@ export const sendToast = (state, { title, message, image, toasttype }) => {
   })
 }
 
+export const userLogout = (state) => {
+  return INITIAL_STATE
+}
+
 export const reducer = createReducer(INITIAL_STATE, {
   'TOGGLE_DRIVER_PROFILE': toggleDriverProfile,
-  'SEND_TOAST': sendToast
+  'SEND_TOAST': sendToast,
+  'USER_LOGOUT': userLogout
 })

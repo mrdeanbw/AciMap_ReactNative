@@ -4,7 +4,8 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   userLogin: ['loc'],
   userLoginSuccess: ['obj', 'loc'],
-  updateUserLoc: ['loc']
+  updateUserLoc: ['loc'],
+  userLogout: null
 })
 
 export const UserTypes = Types
@@ -30,8 +31,13 @@ export const updateUserLoc = (state, { loc }) => {
   return state.merge({ loc })
 }
 
+export const userLogout = (state) => {
+  return state.merge({ obj: null })
+}
+
 export const reducer = createReducer(INITIAL_STATE, {
   'USER_LOGIN': userLogin,
   'USER_LOGIN_SUCCESS': userLoginSuccess,
-  'UPDATE_USER_LOC': updateUserLoc
+  'UPDATE_USER_LOC': updateUserLoc,
+  'USER_LOGOUT': userLogout
 })
