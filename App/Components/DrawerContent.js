@@ -40,7 +40,7 @@ class DrawerContent extends Component {
 
         <TouchableOpacity
           style={{ paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}
-          onPress={() => this.clickDrawerNav('DriverScreen', navigation)}
+          onPress={() => this.clickDrawerNav('FeedbackScreen', navigation)}
         >
           <View style={{ width: 25, alignItems: 'center' }}>
             <Icon name='bullhorn' size={20} color='#fff' />

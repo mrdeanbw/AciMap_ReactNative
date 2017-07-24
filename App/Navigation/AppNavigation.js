@@ -2,6 +2,7 @@ import { StackNavigator } from 'react-navigation'
 import HomeScreen from '../Containers/HomeScreen'
 import DriverSignupScreen from '../Containers/DriverSignupScreen'
 import ChatScreen from '../Containers/ChatScreen'
+import FeedbackScreen from '../Containers/FeedbackScreen'
 import Drawer from '../Containers/Drawer'
 import { StyleSheet } from 'react-native'
 import { Colors } from '../Themes/'
@@ -16,6 +17,7 @@ const PrimaryNav = StackNavigator({
   HomeScreen: { screen: HomeScreen },
   DriverSignupScreen: { screen: DriverSignupScreen },
   ChatScreen: { screen: ChatScreen },
+  FeedbackScreen: { screen: FeedbackScreen },
   Drawer: { screen: Drawer }
 }, {
   initialRouteName: 'Drawer',

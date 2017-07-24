@@ -6,6 +6,7 @@ import NavBarItem from '../Components/NavBarItem'
 import HomeScreen from '../Containers/HomeScreen'
 import ChatScreen from '../Containers/ChatScreen'
 import DriverSignupScreen from '../Containers/DriverSignupScreen'
+import FeedbackScreen from '../Containers/FeedbackScreen'
 import { Colors } from '../Themes/'
 
 const getDrawerItem = navigation => (
@@ -35,7 +36,7 @@ const DrawerRoutes = {
   HomeScreen: { screen: HomeScreen, navigationOptions: homeNavOptions },
   DriverScreen: { screen: DriverSignupScreen, navigationOptions: userNavOptions },
   ChatScreen: { screen: ChatScreen, navigationOptions: userNavOptions },
-  FeedbackScreen: { screen: DriverSignupScreen, navigationOptions: feedbackNavOptions }
+  FeedbackScreen: { screen: FeedbackScreen, navigationOptions: feedbackNavOptions }
 }
 
 const Drawer = DrawerNavigator(DrawerRoutes, getDrawerConfig(300, 'left', 'HomeScreen', DrawerRoutes))
