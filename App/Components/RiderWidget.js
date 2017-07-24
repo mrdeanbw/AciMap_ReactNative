@@ -10,10 +10,6 @@ class RiderWidget extends Component {
         <Text style={styles.nearbyText}>
           Drivers nearby: {this.props.nearbyDrivers.length}
         </Text>
-        <Text style={styles.signupText}
-          onPress={() => this.props.navigate('DriverSignupScreen')}>
-          Sign up to drive
-        </Text>
       </View>
     )
   }
@@ -29,7 +25,6 @@ const styles = StyleSheet.create({
     borderRadius: 15
   },
   nearbyText: {
-    paddingBottom: 25,
     color: 'white',
     fontFamily: 'Avenir-Book',
     fontSize: 24

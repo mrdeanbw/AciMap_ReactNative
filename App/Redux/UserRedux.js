@@ -5,7 +5,8 @@ const { Types, Creators } = createActions({
   userLogin: ['loc'],
   userLoginSuccess: ['obj', 'loc'],
   updateUserLoc: ['loc'],
-  userLogout: null
+  userLogout: null,
+  trackEvent: ['name', 'payload']
 })
 
 export const UserTypes = Types

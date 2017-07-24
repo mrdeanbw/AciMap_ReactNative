@@ -25,14 +25,14 @@ class HomeScreen extends Component {
   }
 
   render () {
-    const { navigate } = this.props.navigation
+    const { navigation } = this.props.navigation
     return (
       <View style={{ flex: 1, paddingBottom: '10%', backgroundColor: Colors.acnavy }}>
         <ACChat />
-        <ACMap />
+        <ACMap navigation={navigation} />
         <View style={{position: 'absolute', bottom: 0, alignItems: 'center', width: Metrics.screenWidth}}>
           { !this.props.user ? <LoginWidget /> : <View /> }
-          { this.props.user && !this.props.driver ? <RiderWidget navigate={navigate} /> : <View /> }
+          { this.props.user && !this.props.driver ? <RiderWidget /> : <View /> }
           { this.props.user && this.props.driver ? <DriverWidget /> : <View /> }
         </View>
       </View>

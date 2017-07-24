@@ -8,7 +8,6 @@ const { Types, Creators } = createActions({
   fetchRoomSuccess: ['roomKey'],
   fetchRoomError: null,
   registerRoom: null,
-  // fetchMessageSuccess: ['roomKey', 'messages'],
   fetchMessageSuccess: ['messages'],
   fetchMessageError: null,
   messageSent: ['roomKey', 'rid', 'text'],

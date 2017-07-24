@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, TouchableHighlight, TouchableOpacity, ScrollView, Linking } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Linking } from 'react-native'
 import { connect } from 'react-redux'
-import { Colors, Fonts, Metrics } from '../Themes/'
+import { Colors, Metrics } from '../Themes/'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 class ConnectScreen extends Component {
@@ -9,19 +9,19 @@ class ConnectScreen extends Component {
     return (
       <ScrollView style={styles.container}>
         <Text style={styles.explainer}>Community makes Arcade City strong. Connect with us!</Text>
-        <Text style={styles.explainer}>Arcade City Square is our community Facebook group. You can share tips and ideas with fellow Arcade citizens.</Text>
-        <View style={{marginVertical: 15}}>
+        <Text style={styles.explainer}>Arcade City Square is our community Facebook group. You can share tips and ideas with fellow Arcade citizens. Feel free to introduce yourself!</Text>
+        <View style={{ marginVertical: 15 }}>
           <Icon.Button name='facebook' backgroundColor='#3b5998' onPress={() => Linking.openURL('https://www.facebook.com/groups/ArcadeCitySquare')} style={styles.button}>
             <Text style={styles.buttonText}>&nbsp;Arcade City Square</Text>
           </Icon.Button>
         </View>
         <Text style={styles.explainer}>For news and updates, Like our Arcade City page on Facebook and follow @ArcadeCityHall on Twitter.</Text>
-        <View style={{marginVertical: 15}}>
+        <View style={{ marginVertical: 15 }}>
           <Icon.Button name='facebook' backgroundColor='#3b5998' onPress={() => Linking.openURL('https://www.facebook.com/ArcadeCityHall')} style={styles.button}>
             <Text style={styles.buttonText}>&nbsp;AC Facebook Page</Text>
           </Icon.Button>
         </View>
-        <View style={{marginTop: 15, marginBottom: 50 }}>
+        <View style={{ marginTop: 15, marginBottom: 50 }}>
           <Icon.Button name='twitter' backgroundColor='#0084b4' onPress={() => Linking.openURL('https://www.twitter.com/ArcadeCityHall')} style={styles.button}>
             <Text style={styles.buttonText}>&nbsp;@ArcadeCityHall</Text>
           </Icon.Button>

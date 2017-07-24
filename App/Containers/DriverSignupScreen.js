@@ -52,9 +52,14 @@ class DriverSignupScreen extends Component {
     return (
       <ScrollView style={styles.container}>
         <Text style={styles.headline}>Drive for Arcade City</Text>
-        <Text style={styles.explainer}>Want to drive for Arcade City?</Text>
-        <Text style={styles.explainer}>You will gain instant access as Driver. Ability to put down beacons. TRIAL driver. Noob. Level 1 Driver</Text>
-        <Text style={styles.explainer}>You will be emailed additional information.</Text>
+        <Text style={styles.explainer}>Calling all drivers!</Text>
+        <Text style={styles.explainer}>Sign up now to join our ridesharing revolution. As an Arcade City driver, you'll get to:</Text>
+        <View style={{paddingHorizontal: 10}}>
+          <Text style={styles.explainer}>-- Set your own rates and hours</Text>
+          <Text style={styles.explainer}>-- Build your own recurring customer base no one can take away from you</Text>
+          <Text style={styles.explainer}>-- Run your own transportation business like a true entrepreneur: no strings, no bosses, no corporate overlords</Text>
+        </View>
+        <Text style={styles.explainer}>You will be emailed additional information within 24 hours. .</Text>
         <View style={styles.formContainer}>
           <Form
             ref='form'
@@ -76,14 +81,14 @@ const styles = StyleSheet.create({
     color: Colors.snow,
     alignSelf: 'center',
     fontFamily: 'Avenir-Black',
-    marginVertical: 24
+    marginVertical: 24,
+    marginHorizontal: 15
   },
   explainer: {
-    fontSize: 18,
+    fontSize: 16,
     color: Colors.snow,
     fontFamily: 'Avenir-Book',
-    marginVertical: 5,
-    paddingHorizontal: Metrics.screenWidth * 0.1
+    marginVertical: 7
   },
   formContainer: {
     marginVertical: 30,
@@ -92,7 +97,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.acnavy,
-    paddingHorizontal: 10
+    paddingHorizontal: Metrics.screenWidth * 0.1
   },
   submitBtn: {
     height: 56,

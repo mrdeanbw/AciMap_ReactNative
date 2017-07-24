@@ -1,6 +1,6 @@
 import { takeLatest } from 'redux-saga/effects'
 import API from '../Services/Api'
-import { userLogin, userLoginSuccess, userLogout } from './UserSagas'
+import { userLogin, userLoginSuccess, userLogout, trackEvent } from './UserSagas'
 import { findNearbyDrivers } from './NearbySagas'
 import { addDriverBeacon } from './DriverSagas'
 import { initializeChat, messageSent, fetchRoomData, setActiveChatRoom } from './ChatSagas'
@@ -17,6 +17,7 @@ export default function * root () {
     takeLatest('MESSAGE_SENT', messageSent, api),
     takeLatest('FETCH_ROOM_DATA', fetchRoomData, api),
     takeLatest('SET_ACTIVE_CHAT_ROOM', setActiveChatRoom, api),
-    takeLatest('USER_LOGOUT', userLogout, api)
+    takeLatest('USER_LOGOUT', userLogout, api),
+    takeLatest('TRACK_EVENT', trackEvent, api)
   ]
 }

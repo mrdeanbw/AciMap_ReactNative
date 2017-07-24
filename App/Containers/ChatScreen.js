@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
-import Icon from 'react-native-vector-icons/FontAwesome'
 import { connect } from 'react-redux'
 import { Colors } from '../Themes/'
 import ChatActions from '../Redux/ChatRedux'
 import { GiftedChat } from 'react-native-gifted-chat'
 
 class ChatScreen extends Component {
-
   onSend (messages = []) {
     this.props.messageSent('-KpMSK6RN0G33Tf5JDae', this.props.room.user.uid, messages[0].text) // Fmu6D27WD8ZYecsxt2cu6KuvPH93
   }

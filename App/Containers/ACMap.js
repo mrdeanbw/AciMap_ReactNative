@@ -12,9 +12,11 @@ import DriverProfile from '../Components/DriverProfile'
 
 class ACMap extends Component {
   clickProfile (key) {
-    this.props.toggleDriverProfile()
+    // this.props.toggleDriverProfile()
+    this.props.navigation.navigate('ChatScreen')
   }
   render () {
+    // const { navigate } = this.props.navigation
     return (
       <View style={styles.container}>
         { this.props.loc

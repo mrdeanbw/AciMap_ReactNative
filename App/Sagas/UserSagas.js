@@ -24,6 +24,8 @@ export function * userLogin (api, action) {
         console.log('Login cancelled')
       } else {
         store.dispatch(UserActions.userLoginSuccess(currentUser.toJSON(), loc))
+        firebase.analytics().setAnalyticsCollectionEnabled(true)
+        store.dispatch(UserActions.trackEvent('userLogin'))
       }
     })
     .catch((error) => {
@@ -39,4 +41,12 @@ export function * userLoginSuccess (api, action) {
 
 export function * userLogout (api, action) {
   LoginManager.logOut()
+}
+
+export function * trackEvent (api, { name, payload }) {
+  const user = store.getState().user
+  firebase.database().ref('tracking/' + user.obj.uid).push().set({
+    name, payload, timestamp: Date.now()
+  })
+  firebase.analytics().logEvent(name, payload)
 }
