@@ -94,7 +94,8 @@ const styles = StyleSheet.create({
     color: Colors.snow,
     alignSelf: 'center',
     fontFamily: 'Avenir-Black',
-    marginVertical: 24
+    marginVertical: 24,
+    paddingHorizontal: 9
   },
   explainer: {
     fontSize: 18,

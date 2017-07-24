@@ -72,14 +72,14 @@ class DriverSignupScreen extends Component {
 
 const styles = StyleSheet.create({
   headline: {
-    fontSize: 46,
+    fontSize: 36,
     color: Colors.snow,
     alignSelf: 'center',
     fontFamily: 'Avenir-Black',
-    marginVertical: 34
+    marginVertical: 24
   },
   explainer: {
-    fontSize: 20,
+    fontSize: 18,
     color: Colors.snow,
     fontFamily: 'Avenir-Book',
     marginVertical: 5,
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.acnavy,
-    paddingHorizontal: 50
+    paddingHorizontal: 10
   },
   submitBtn: {
     height: 56,
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignSelf: 'center',
     justifyContent: 'center',
-    width: 300
+    width: 250
   },
   buttonText: {
     fontFamily: 'Avenir-Black',

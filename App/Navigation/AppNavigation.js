@@ -3,6 +3,7 @@ import HomeScreen from '../Containers/HomeScreen'
 import DriverSignupScreen from '../Containers/DriverSignupScreen'
 import ChatScreen from '../Containers/ChatScreen'
 import FeedbackScreen from '../Containers/FeedbackScreen'
+import ConnectScreen from '../Containers/ConnectScreen'
 import Drawer from '../Containers/Drawer'
 import { StyleSheet } from 'react-native'
 import { Colors } from '../Themes/'
@@ -18,6 +19,7 @@ const PrimaryNav = StackNavigator({
   DriverSignupScreen: { screen: DriverSignupScreen },
   ChatScreen: { screen: ChatScreen },
   FeedbackScreen: { screen: FeedbackScreen },
+  ConnectScreen: { screen: ConnectScreen },
   Drawer: { screen: Drawer }
 }, {
   initialRouteName: 'Drawer',

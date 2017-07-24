@@ -29,7 +29,7 @@ export const getNavigationOptionsWithAction = (title, backgroundColor, color, he
 
 export const getDrawerNavigationOptions = (title, backgroundColor, titleColor, drawerIcon) => ({
   title,
-  headerTitle: 'Arcade City',
+  headerTitle: title,
   headerStyle: {
     backgroundColor
   },

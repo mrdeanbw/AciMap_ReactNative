@@ -6,19 +6,6 @@ import ChatActions from '../Redux/ChatRedux'
 import { GiftedChat } from 'react-native-gifted-chat'
 
 class ChatScreen extends Component {
-  static navigationOptions = {
-    title: 'Chat with person',
-    headerTintColor: 'white',
-    drawerLabel: 'Home',
-    drawerIcon: () => (
-      <Icon name='car' size={30} color={Colors.snow} />
-    ),
-    headerStyle: {
-      backgroundColor: Colors.acnavy
-    },
-    headerTitleStyle: { fontFamily: 'Avenir-Black' },
-    headerBackTitleStyle: { fontFamily: 'Avenir-Book' }
-  }
 
   onSend (messages = []) {
     this.props.messageSent('-KpMSK6RN0G33Tf5JDae', this.props.room.user.uid, messages[0].text) // Fmu6D27WD8ZYecsxt2cu6KuvPH93

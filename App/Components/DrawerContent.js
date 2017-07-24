@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, StyleSheet, Text, TouchableOpacity } from 'react-native'
+import { ScrollView, View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Fonts, Colors } from '../Themes/'
 import UserActions from '../Redux/UserRedux'
@@ -23,7 +23,7 @@ class DrawerContent extends Component {
   render () {
     const { navigation } = this.props
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <TouchableOpacity
           style={{ paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}
           onPress={() => this.clickDrawerNav('HomeScreen', navigation)}
@@ -56,7 +56,7 @@ class DrawerContent extends Component {
 
         <TouchableOpacity
           style={{ paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}
-          onPress={() => this.clickDrawerNav('DriverScreen', navigation)}
+          onPress={() => this.clickDrawerNav('ConnectScreen', navigation)}
         >
           <View style={{ width: 25, alignItems: 'center' }}>
             <Icon name='handshake-o' size={20} color='#fff' />
@@ -75,7 +75,7 @@ class DrawerContent extends Component {
         </TouchableOpacity>
 
         <DrawerChatWidget navigation={navigation} />
-      </View>
+      </ScrollView>
     )
   }
 }

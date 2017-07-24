@@ -7,6 +7,7 @@ import HomeScreen from '../Containers/HomeScreen'
 import ChatScreen from '../Containers/ChatScreen'
 import DriverSignupScreen from '../Containers/DriverSignupScreen'
 import FeedbackScreen from '../Containers/FeedbackScreen'
+import ConnectScreen from '../Containers/ConnectScreen'
 import { Colors } from '../Themes/'
 
 const getDrawerItem = navigation => (
@@ -28,15 +29,18 @@ const homeDrawerIcon = ({ tintColor }) => getDrawerIcon('map-o', tintColor)
 const userDrawerIcon = ({ tintColor }) => getDrawerIcon('car', tintColor)
 const feedbackDrawerIcon = ({ tintColor }) => getDrawerIcon('bullhorn', tintColor)
 
-const homeNavOptions = getDrawerNavigationOptions('City Home', Colors.acnavy, 'white', homeDrawerIcon)
-const userNavOptions = getDrawerNavigationOptions('Drive for Arcade City', Colors.acnavy, 'white', userDrawerIcon)
+const homeNavOptions = getDrawerNavigationOptions('Arcade City', Colors.acnavy, 'white', homeDrawerIcon)
+const userNavOptions = getDrawerNavigationOptions('Driver Signup', Colors.acnavy, 'white', userDrawerIcon)
 const feedbackNavOptions = getDrawerNavigationOptions('Feedback', Colors.acnavy, 'white', feedbackDrawerIcon)
+const chatNavOptions = getDrawerNavigationOptions('Chat', Colors.acnavy, 'white', feedbackDrawerIcon)
+const connectNavOptions = getDrawerNavigationOptions('Connect', Colors.acnavy, 'white', feedbackDrawerIcon)
 
 const DrawerRoutes = {
   HomeScreen: { screen: HomeScreen, navigationOptions: homeNavOptions },
   DriverScreen: { screen: DriverSignupScreen, navigationOptions: userNavOptions },
-  ChatScreen: { screen: ChatScreen, navigationOptions: userNavOptions },
-  FeedbackScreen: { screen: FeedbackScreen, navigationOptions: feedbackNavOptions }
+  ChatScreen: { screen: ChatScreen, navigationOptions: chatNavOptions },
+  FeedbackScreen: { screen: FeedbackScreen, navigationOptions: feedbackNavOptions },
+  ConnectScreen: { screen: ConnectScreen, navigationOptions: connectNavOptions }
 }
 
 const Drawer = DrawerNavigator(DrawerRoutes, getDrawerConfig(300, 'left', 'HomeScreen', DrawerRoutes))
