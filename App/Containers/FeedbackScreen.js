@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableHighlight, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import firebase from '../Config/FirebaseConfig'
-import DriverActions from '../Redux/DriverRedux'
 import { Colors, Metrics } from '../Themes/'
 import t from 'tcomb-form-native'
 
@@ -23,17 +22,17 @@ var options = {
   fields: {
     feedback: {
       multiline: true,
-        stylesheet: {
-          ...Form.stylesheet,
-          textbox: {
-            ...Form.stylesheet.textbox,
-            normal: {
-              ...Form.stylesheet.textbox.normal,
-              height: 100
-            },
-            error: {
-              ...Form.stylesheet.textbox.error,
-              height: 100
+      stylesheet: {
+        ...Form.stylesheet,
+        textbox: {
+          ...Form.stylesheet.textbox,
+          normal: {
+            ...Form.stylesheet.textbox.normal,
+            height: 100
+          },
+          error: {
+            ...Form.stylesheet.textbox.error,
+            height: 100
           }
         }
       }
@@ -66,26 +65,26 @@ class FeedbackScreen extends Component {
     }
   }
   render () {
-    return this.state.submitted == false ? 
-      (<ScrollView style={styles.container}>
-        <Text style={styles.headline}>Give Feedback</Text>
-        <Text style={styles.explainer}>Bug? Feature request? Comment? Idea? Insult?</Text>
-        <Text style={styles.explainer}>We would love to hear from you.</Text>
-        <View style={styles.formContainer}>
-          <Form
-            ref='form'
-            type={FeedbackForm}
-            options={options}
-          />
-        </View>
-        <TouchableHighlight style={styles.submitBtn} onPress={this.onPress.bind(this)} underlayColor='#99d9f4'>
-          <Text style={styles.buttonText}>SUBMIT</Text>
-        </TouchableHighlight>
-      </ScrollView>)
-      : (<View style={styles.container}>
-          <Text style={styles.headline}>Thank you!</Text>
-          <Text style={styles.explainer}>Didn't that feel good?</Text>
-        </View>)
+    return this.state.submitted === false
+    ? (<ScrollView style={styles.container}>
+      <Text style={styles.headline}>Give Feedback</Text>
+      <Text style={styles.explainer}>Bug? Feature request? Comment? Idea? Insult?</Text>
+      <Text style={styles.explainer}>We would love to hear from you.</Text>
+      <View style={styles.formContainer}>
+        <Form
+          ref='form'
+          type={FeedbackForm}
+          options={options}
+        />
+      </View>
+      <TouchableHighlight style={styles.submitBtn} onPress={this.onPress.bind(this)} underlayColor='#99d9f4'>
+        <Text style={styles.buttonText}>SUBMIT</Text>
+      </TouchableHighlight>
+    </ScrollView>)
+    : (<View style={styles.container}>
+      <Text style={styles.headline}>Thank you!</Text>
+      <Text style={styles.explainer}>Didn't that feel good?</Text>
+    </View>)
   }
 }
 
