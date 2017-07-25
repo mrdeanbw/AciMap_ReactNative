@@ -13,6 +13,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.microsoft.codepush.react.CodePush;
 
 import io.invertase.firebase.RNFirebasePackage;
 // Optional packages - add as appropriate
@@ -37,6 +38,11 @@ public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
+    protected String getJSBundleFile() {
+        return CodePush.getJSBundleFile();
+    }
+
+    @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
     }
@@ -54,7 +60,8 @@ public class MainApplication extends Application implements ReactApplication {
           new RNFirebaseCrashPackage(),
           new RNFirebaseDatabasePackage(),
           new RNFirebaseMessagingPackage(),
-          new RNFirebasePerformancePackage()        
+          new RNFirebasePerformancePackage(),
+          new CodePush("9OzByqXhQJjZFUV3PLJiA5rGpz6nb52abc48-c340-4e09-a373-da761616bb1a", MainApplication.this, BuildConfig.DEBUG)
       );
     }
   };

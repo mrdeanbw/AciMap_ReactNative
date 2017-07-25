@@ -23,7 +23,7 @@ class RootContainer extends Component {
         this.props.updateUserLoc(loc)
       },
       (error) => window.alert(error.message),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 180000 }
+      { enableHighAccuracy: false, timeout: 10000, maximumAge: 180000 }
      )
   }
   render () {
