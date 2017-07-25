@@ -6,7 +6,7 @@ const configurationOptions = {
 
 const firebase = RNFirebase.initializeApp(configurationOptions)
 
-console.log('did we initialize firebase?')
+console.log('Firebase initialized.')
 console.log(firebase)
 
 export default firebase

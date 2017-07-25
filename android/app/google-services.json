@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "897878125305",
+    "firebase_url": "https://aci1-87e53.firebaseio.com",
+    "project_id": "aci1-87e53",
+    "storage_bucket": "aci1-87e53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:897878125305:android:4e22d0201beeb05c",
+        "android_client_info": {
+          "package_name": "arcade.city.mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "897878125305-4crblt8orq52374cpnh35b8m1j59l73a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXBsJlcJFuBFm8-PJ7akSveeFMpMglvr0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
