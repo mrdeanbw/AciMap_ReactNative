@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">aci</string>
+    <string name="app_name">Arcade City</string>
+    <string name="facebook_app_id">167607843598672</string>
 </resources>
