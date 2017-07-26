@@ -31,7 +31,7 @@ export const updateUserLoc = (state, { loc }) => {
 }
 
 export const userLogout = (state) => {
-  return state.merge({ obj: null })
+  return state.merge({ obj: null, initialFetch: false })
 }
 
 export const reducer = createReducer(INITIAL_STATE, {

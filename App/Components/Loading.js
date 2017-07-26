@@ -9,13 +9,17 @@ export default class Loading extends Component {
   }
 
   componentDidMount () {
-    Animated.timing(
-      this.state.spinValue, {
-        toValue: this.props.toValue || 1,
-        duration: this.props.duration || 2000,
-        easing: Easing.linear,
-        useNativeDriver: true
-      }).start(this.props.onFinishedAnimating)
+    Animated.loop(
+      Animated.timing(
+        this.state.spinValue, {
+          toValue: this.props.toValue || 1,
+          duration: this.props.duration || 2000,
+          easing: Easing.linear,
+          useNativeDriver: true
+        }
+      ),
+      {iterations: 80}
+    ).start()
   }
 
   render () {

@@ -59,6 +59,7 @@ export function * userLoginSuccess (action) {
 
 export function * userLogout (action) {
   LoginManager.logOut()
+  store.dispatch(NavigationActions.navigate({ routeName: 'LoginScreen' }))
 }
 
 export function * trackEvent ({ name, payload }) {
