@@ -11,9 +11,9 @@ var Form = t.form.Form
 // Avoid error on hot-reload
 if (t.form.Form.stylesheet.controlLabel.normal.color !== '#ffffff') {
   t.form.Form.stylesheet.textbox.normal.color = '#ffffff'
-  t.form.Form.stylesheet.textbox.normal.fontFamily = 'Avenir-Book'
+  t.form.Form.stylesheet.textbox.normal.fontFamily = 'Montserrat-Regular'
   t.form.Form.stylesheet.controlLabel.normal.color = '#ffffff'
-  t.form.Form.stylesheet.controlLabel.normal.fontFamily = 'Avenir-Book'
+  t.form.Form.stylesheet.controlLabel.normal.fontFamily = 'Montserrat-Regular'
 }
 
 // here we are: define your domain model
@@ -80,14 +80,14 @@ const styles = StyleSheet.create({
     fontSize: 36,
     color: Colors.snow,
     alignSelf: 'center',
-    fontFamily: 'Avenir-Black',
+    fontFamily: 'Montserrat-Bold',
     marginVertical: 24,
     marginHorizontal: 15
   },
   explainer: {
     fontSize: 16,
     color: Colors.snow,
-    fontFamily: 'Avenir-Book',
+    fontFamily: 'Montserrat-Regular',
     marginVertical: 7
   },
   formContainer: {
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     width: 250
   },
   buttonText: {
-    fontFamily: 'Avenir-Black',
+    fontFamily: 'Montserrat-Bold',
     alignSelf: 'center',
     color: 'white',
     fontSize: 20

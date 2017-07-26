@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   beaconText: {
     paddingBottom: 25,
     color: 'white',
-    fontFamily: 'Avenir-Book',
+    fontFamily: 'Montserrat-Regular',
     fontSize: 24
   },
   button: {
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: Colors.snow,
-    fontFamily: 'Avenir-Book',
+    fontFamily: 'Montserrat-Regular',
     textAlign: 'center',
     fontSize: Fonts.size.h3,
     marginVertical: Metrics.baseMargin

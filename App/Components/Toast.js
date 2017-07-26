@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   nameText: {
     padding: 5,
     color: 'white',
-    fontFamily: 'Avenir-Black',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 14,
     paddingBottom: 0
   },
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     padding: 5,
     paddingTop: 2,
     color: 'white',
-    fontFamily: 'Avenir-Book',
+    fontFamily: 'Montserrat-Regular',
     fontSize: 14
   }
 })

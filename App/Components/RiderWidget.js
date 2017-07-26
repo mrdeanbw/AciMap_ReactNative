@@ -26,13 +26,13 @@ const styles = StyleSheet.create({
   },
   nearbyText: {
     color: 'white',
-    fontFamily: 'Avenir-Book',
+    fontFamily: 'Montserrat-Regular',
     fontSize: 24
   },
   signupText: {
     paddingBottom: 25,
     color: 'white',
-    fontFamily: 'Avenir-Book',
+    fontFamily: 'Montserrat-Regular',
     fontSize: 16
   }
 })

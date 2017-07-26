@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   explainer: {
     fontSize: 16,
     color: Colors.snow,
-    fontFamily: 'Avenir-Book',
+    fontFamily: 'Montserrat-Regular',
     marginVertical: 9,
     paddingHorizontal: Metrics.screenWidth * 0.08
   },
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: Colors.snow,
-    fontFamily: 'Avenir-Book',
+    fontFamily: 'Montserrat-Regular',
     textAlign: 'center',
     fontSize: 20,
     marginVertical: Metrics.baseMargin

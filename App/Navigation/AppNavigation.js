@@ -26,8 +26,8 @@ const PrimaryNav = StackNavigator({
   navigationOptions: {
     headerStyle: styles.header,
     headerTintColor: 'white',
-    headerTitleStyle: { fontFamily: 'Avenir-Black' },
-    headerBackTitleStyle: { fontFamily: 'Avenir-Book' }
+    headerTitleStyle: { fontFamily: 'Montserrat-Bold' },
+    headerBackTitleStyle: { fontFamily: 'Montserrat-Regular' }
   }
 })
 

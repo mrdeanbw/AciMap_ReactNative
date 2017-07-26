@@ -9,9 +9,9 @@ var Form = t.form.Form
 
 if (t.form.Form.stylesheet.controlLabel.normal.color !== '#ffffff') {
   t.form.Form.stylesheet.textbox.normal.color = '#ffffff'
-  t.form.Form.stylesheet.textbox.normal.fontFamily = 'Avenir-Book'
+  t.form.Form.stylesheet.textbox.normal.fontFamily = 'Montserrat-Regular'
   t.form.Form.stylesheet.controlLabel.normal.color = '#ffffff'
-  t.form.Form.stylesheet.controlLabel.normal.fontFamily = 'Avenir-Book'
+  t.form.Form.stylesheet.controlLabel.normal.fontFamily = 'Montserrat-Regular'
 }
 
 var FeedbackForm = t.struct({
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
   explainer: {
     fontSize: 18,
     color: Colors.snow,
-    fontFamily: 'Avenir-Book',
+    fontFamily: 'Montserrat-Regular',
     marginVertical: 5,
     paddingHorizontal: Metrics.screenWidth * 0.1
   },
@@ -125,7 +125,7 @@ const styles = StyleSheet.create({
     width: 250
   },
   buttonText: {
-    fontFamily: 'Avenir-Black',
+    fontFamily: 'Montserrat-Bold',
     alignSelf: 'center',
     color: 'white',
     fontSize: 20

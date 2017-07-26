@@ -1,6 +1,6 @@
 const type = {
-  base: 'Avenir-Book',
-  bold: 'Avenir-Black',
+  base: 'Montserrat-Regular',
+  bold: 'Montserrat-Bold',
   emphasis: 'HelveticaNeue-Italic'
 }
 
