@@ -3,7 +3,7 @@ import { store } from '../Containers/App'
 import UserActions from '../Redux/UserRedux'
 const Geofire = require('geofire')
 
-export function * addDriverBeacon (api, { user, loc, driver }) {
+export function * addDriverBeacon ({ user, loc, driver }) {
   const geofireRef = new Geofire(firebase.database().ref('geofire'))
 
   var lat = loc.latitude

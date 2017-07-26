@@ -7,7 +7,7 @@ import _ from 'lodash'
 
 // Initialize cloud messaging, set up listeners for user room chats, listen for messages to those rooms,
 //    send to SET_CHAT_ROOM_MESSAGES when one is received
-export function * initializeChat (api, action) {
+export function * initializeChat (action) {
   // Initialize cloud messages
   const user = store.getState().user
   firebase.messaging().requestPermissions()
@@ -72,7 +72,7 @@ export function * initializeChat (api, action) {
 }
 
 // Given a user key, fetch roomKey of chat with that user, or register new one and save that one. updateRoomuser w dat?!
-export function * fetchOrRegisterRoom (api, { uid }) {
+export function * fetchOrRegisterRoom ({ uid }) {
   console.tron.log('In fetchOrRegisterRoom saga with uid ' + uid)
   // First we see if we share any rooms with this person
   let roomKey = null
@@ -120,7 +120,7 @@ export function * fetchOrRegisterRoom (api, { uid }) {
 }
 
 // Given a room key, fetch user object of other participants and fire UPDATE_ROOM_USER with the data
-export function * fetchRoomData (api, action) {
+export function * fetchRoomData (action) {
   const { roomKey } = action
   const thisUid = store.getState().user.obj.uid
   firebase.database().ref(`rooms/${roomKey}`).once('value', userIds => {
@@ -137,7 +137,7 @@ export function * fetchRoomData (api, action) {
 }
 
 //  Given room id and recipient uid, store the message in firebase db
-export function * messageSent (api, action) {
+export function * messageSent (action) {
   const { roomKey, rid, text } = action
   const user = store.getState().user
   firebase.database()
@@ -156,7 +156,7 @@ export function * messageSent (api, action) {
 }
 
 // User selected a chat. Let's grab the messages.
-export function * setActiveChatRoom (api, { roomKey }) {
+export function * setActiveChatRoom ({ roomKey }) {
   firebase.database().ref(`messages/${roomKey}`).orderByKey().limitToLast(50).once('value', snap => {
     const messages = []
     snap.forEach(message => {

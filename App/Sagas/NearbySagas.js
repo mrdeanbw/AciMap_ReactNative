@@ -3,7 +3,7 @@ import firebase from '../Config/FirebaseConfig'
 import { store } from '../Containers/App'
 const Geofire = require('geofire')
 
-export function * findNearbyDrivers (api, action) {
+export function * findNearbyDrivers (action) {
   const { loc } = action
   const gloc = [loc.latitude, loc.longitude]
   const geofireRef = new Geofire(firebase.database().ref('geofire'))

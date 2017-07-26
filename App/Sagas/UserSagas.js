@@ -6,7 +6,7 @@ import firebase from '../Config/FirebaseConfig'
 import { AccessToken, LoginManager } from 'react-native-fbsdk'
 import { store } from '../Containers/App'
 
-export function * userLogin (api, action) {
+export function * userLogin (action) {
   LoginManager
     .logInWithReadPermissions(['public_profile', 'email'])
     .then((result) => {
@@ -34,7 +34,7 @@ export function * userLogin (api, action) {
 }
 
 // User auth'd with Facebook and Firebase. Now we look up user object in our db to see status (welcomed / driver)
-export function * userLoginSuccess (api, action) {
+export function * userLoginSuccess (action) {
   const { obj } = action
   store.dispatch(ChatActions.initializeChat())
   firebase.database().ref(`users/${obj.uid}`).once('value', snap => {
@@ -57,11 +57,11 @@ export function * userLoginSuccess (api, action) {
   })
 }
 
-export function * userLogout (api, action) {
+export function * userLogout (action) {
   LoginManager.logOut()
 }
 
-export function * trackEvent (api, { name, payload }) {
+export function * trackEvent ({ name, payload }) {
   const user = store.getState().user
   firebase.database().ref('tracking/' + user.obj.uid).push().set({
     name, payload, timestamp: Date.now()
