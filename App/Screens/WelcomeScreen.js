@@ -12,8 +12,8 @@ class WelcomeScreen extends Component {
       <ScrollView style={styles.container} contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}>
         <Animatable.Image animation='fadeInDown' source={Images.welcome} style={styles.welcomeText} />
         <Animatable.Image animation='fadeInDown' delay={500} source={Images.arcadecityis} style={styles.textImage} />
-        <Animatable.Image animation='fadeInDown' delay={3500} source={Images.acmission} style={styles.textImage} />
-        <Animatable.Image animation='fadeIn' delay={6500} source={Images.howcanyouhelp} style={styles.helpText} />
+        <Animatable.Image animation='fadeInDown' delay={3000} source={Images.acmission} style={styles.textImage} />
+        <Animatable.Image animation='fadeIn' delay={5500} source={Images.howcanyouhelp} style={styles.helpText} />
         <TouchableOpacity onPress={() => this.props.navigateTo('HomeScreen')}>
           <Animatable.View style={styles.button} animation='fadeIn' delay={6500}>
             <Text style={styles.buttonText}>I am a RIDER</Text>
