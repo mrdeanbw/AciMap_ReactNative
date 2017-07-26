@@ -93,7 +93,7 @@ export function * fetchOrRegisterRoom (api, { uid }) {
     })
     if (!roomKey) {
       console.tron.log('Room NOT found. Registering...')
-      roomKey = db.ref(`rooms`).push().key
+      roomKey = firebase.database().ref(`rooms`).push().key
       const update = {}
       console.tron.log('Using roomKey ' + roomKey)
 
@@ -117,7 +117,6 @@ export function * fetchOrRegisterRoom (api, { uid }) {
       store.dispatch(NavigationActions.navigate({ routeName: 'ChatScreen' })) // ??? -- should this go in callback above
     }
   })
-
 }
 
 // Given a room key, fetch user object of other participants and fire UPDATE_ROOM_USER with the data

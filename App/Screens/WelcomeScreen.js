@@ -18,7 +18,7 @@ class WelcomeScreen extends Component {
             <Text style={styles.buttonText}>I am a RIDER</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.navigateTo('HomeScreen')}>
+        <TouchableOpacity onPress={() => this.props.navigateTo('DriverSignupScreen')}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>I am a DRIVER</Text>
           </View>

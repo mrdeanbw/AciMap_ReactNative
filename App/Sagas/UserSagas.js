@@ -36,7 +36,7 @@ export function * userLogin (api, action) {
 // User auth'd with Facebook and Firebase. Now we look up user object in our db to see status (welcomed / driver)
 export function * userLoginSuccess (api, action) {
   const { obj } = action
-  store.dispatch(ChatActions.initializeChat())  
+  store.dispatch(ChatActions.initializeChat())
   firebase.database().ref(`users/${obj.uid}`).once('value', snap => {
     const user = snap.val()
     if (!user.welcomed) {
