@@ -3,7 +3,7 @@ import API from '../Services/Api'
 import { userLogin, userLoginSuccess, userLogout, trackEvent } from './UserSagas'
 import { findNearbyDrivers } from './NearbySagas'
 import { addDriverBeacon } from './DriverSagas'
-import { initializeChat, messageSent, fetchRoomData, setActiveChatRoom } from './ChatSagas'
+import { initializeChat, messageSent, fetchRoomData, setActiveChatRoom, fetchOrRegisterRoom } from './ChatSagas'
 
 const api = API.create()
 
@@ -18,6 +18,7 @@ export default function * root () {
     takeLatest('FETCH_ROOM_DATA', fetchRoomData, api),
     takeLatest('SET_ACTIVE_CHAT_ROOM', setActiveChatRoom, api),
     takeLatest('USER_LOGOUT', userLogout, api),
-    takeLatest('TRACK_EVENT', trackEvent, api)
+    takeLatest('TRACK_EVENT', trackEvent, api),
+    takeLatest('FETCH_OR_REGISTER_ROOM', fetchOrRegisterRoom, api)
   ]
 }

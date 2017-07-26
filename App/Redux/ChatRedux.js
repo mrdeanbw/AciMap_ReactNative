@@ -3,17 +3,14 @@ import Immutable from 'seamless-immutable'
 import _ from 'lodash'
 
 const { Types, Creators } = createActions({
-  updateRoomUser: ['roomKey', 'user'],
+  clearRoomKey: null,
   initializeChat: null,
-  fetchRoomSuccess: ['roomKey'],
-  fetchRoomError: null,
-  registerRoom: null,
-  fetchMessageSuccess: ['messages'],
-  messageSent: ['roomKey', 'rid', 'text'],
+  fetchOrRegisterRoom: ['uid'],
   fetchRoomData: ['roomKey'],
+  messageSent: ['roomKey', 'rid', 'text'],
   setActiveChatRoom: ['roomKey'],
   setChatRoomMessages: ['roomKey', 'messages'],
-  clearRoomKey: null
+  updateRoomUser: ['roomKey', 'user']
 })
 
 export const ChatTypes = Types
@@ -21,12 +18,19 @@ export default Creators
 
 export const INITIAL_STATE = Immutable({
   loading: true,
-  messages: [],
   roomKey: null,
   rooms: []
 })
 
-export const setChatRoomMessages = (state, { roomKey, messages }) => {
+export const clearRoomKey = (state) => {
+  return state.merge({ roomKey: null })
+}
+
+export const setActiveChatRoom = (state, { roomKey }) => {
+  return state.merge({ roomKey })
+}
+
+export const setChatRoomMessages = (state, { roomKey, messages }) => { // = []. ??
   return state.merge({
     rooms: {
       [roomKey]: {
@@ -35,14 +39,6 @@ export const setChatRoomMessages = (state, { roomKey, messages }) => {
       }
     }
   })
-}
-
-export const clearRoomKey = (state) => {
-  return state.merge({ roomKey: null })
-}
-
-export const setActiveChatRoom = (state, { roomKey }) => {
-  return state.merge({ roomKey })
 }
 
 export const updateRoomUser = (state, { roomKey, user }) => {
@@ -61,32 +57,15 @@ export const updateRoomUser = (state, { roomKey, user }) => {
   } else {
     return state.merge(
       ...state.rooms,
-      {rooms: {[roomKey]: {user: user, roomKey}}}
+      {
+        rooms: {
+          [roomKey]: {
+            user: user, roomKey
+          }
+        }
+      }
     )
   }
-}
-
-export const fetchRoomSuccess = (state, { roomKey }) => {
-  return state.merge({
-    loading: false,
-    roomKey: roomKey
-  })
-}
-
-export const fetchRoomError = (state) => {
-  return state.merge({ loading: false })
-}
-
-export const registerRoom = (state, { roomKey }) => {
-  return state.merge({ roomKey })
-}
-
-// Basically updateRoomMessages.. like updateRoomUser..   wait waitwait i already have setchatroomesages
-export const fetchMessageSuccess = (state, { roomKey, messages }) => {
-  return state.merge({
-    loading: false,
-    messages: messages
-  })
 }
 
 export const userLogout = (state) => {
@@ -94,13 +73,9 @@ export const userLogout = (state) => {
 }
 
 export const reducer = createReducer(INITIAL_STATE, {
-  'FETCH_ROOM_SUCCESS': fetchRoomSuccess,
-  'FETCH_ROOM_ERROR': fetchRoomError,
-  'REGISTER_ROOM': registerRoom,
-  'FETCH_MESSAGE_SUCCESS': fetchMessageSuccess,
-  'UPDATE_ROOM_USER': updateRoomUser,
+  'CLEAR_ROOM_KEY': clearRoomKey,
   'SET_ACTIVE_CHAT_ROOM': setActiveChatRoom,
   'SET_CHAT_ROOM_MESSAGES': setChatRoomMessages,
-  'CLEAR_ROOM_KEY': clearRoomKey,
+  'UPDATE_ROOM_USER': updateRoomUser,
   'USER_LOGOUT': userLogout
 })

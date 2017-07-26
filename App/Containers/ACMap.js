@@ -4,15 +4,16 @@ import { connect } from 'react-redux'
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'
 import mapStyle from '../Themes/MapStyle'
 import { Colors } from '../Themes/'
-import UiActions from '../Redux/UiRedux'
+import { NavigationActions } from 'react-navigation'
+import ChatActions from '../Redux/ChatRedux'
 import NearbyActions from '../Redux/NearbyRedux'
+import UiActions from '../Redux/UiRedux'
 import DriverMarker from '../Components/DriverMarker'
 import DriverCallout from '../Components/DriverCallout'
 
 class ACMap extends Component {
-  clickProfile (key) {
-    // this.props.toggleDriverProfile()
-    this.props.navigation.navigate('ChatScreen')
+  clickProfile (uid) {
+    this.props.fetchOrRegisterRoom(uid)
   }
   render () {
     return (
@@ -68,7 +69,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setActiveDriver: (key) => dispatch(NearbyActions.setActiveDriver(key)),
-  toggleDriverProfile: () => dispatch(UiActions.toggleDriverProfile())
+  toggleDriverProfile: () => dispatch(UiActions.toggleDriverProfile()),
+  navigateTo: (route) => dispatch(NavigationActions.navigate({ routeName: route })),
+  fetchOrRegisterRoom: (uid) => dispatch(ChatActions.fetchOrRegisterRoom(uid))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ACMap)

@@ -1,7 +1,9 @@
+import { NavigationActions } from 'react-navigation'
 import ChatActions from '../Redux/ChatRedux'
 import UiActions from '../Redux/UiRedux'
 import firebase from '../Config/FirebaseConfig'
 import { store } from '../Containers/App'
+import _ from 'lodash'
 
 // Initialize cloud messaging, set up listeners for user room chats, listen for messages to those rooms,
 //    send to SET_CHAT_ROOM_MESSAGES when one is received
@@ -29,8 +31,8 @@ export function * initializeChat (api, action) {
   firebase.messaging().getInitialNotification()
     .then((notification) => {
       if (notification) {
-        console.tron.log('Initial notification:')
-        console.tron.log(notification)
+        // console.tron.log('Initial notification:')
+        // console.tron.log(notification)
       }
     })
 
@@ -69,24 +71,53 @@ export function * initializeChat (api, action) {
   })
 }
 
-// User selected a chat. Let's grab the messages.
-export function * setActiveChatRoom (api, { roomKey }) {
-  firebase.database().ref(`messages/${roomKey}`).orderByKey().limitToLast(50).once('value', snap => {
-    const messages = []
-    snap.forEach(message => {
-      const msg = message.val()
-      messages.push({
-        _id: message.key,
-        text: msg.text,
-        user: msg.user,
-        createdAt: msg.createdAt
+// Given a user key, fetch roomKey of chat with that user, or register new one and save that one. updateRoomuser w dat?!
+export function * fetchOrRegisterRoom (api, { uid }) {
+  console.tron.log('In fetchOrRegisterRoom saga with uid ' + uid)
+  // First we see if we share any rooms with this person
+  let roomKey = null
+  firebase.database().ref(`rooms`).once('value', snap => {
+    const keys = _.keys(snap.val())
+    const thisRoomKey = keys[0]
+    snap.forEach(someid => {
+      const dese = _.keys(someid.val())
+      dese.forEach(key => {
+        console.tron.log('CHECKING ' + key + ' AGAINST ' + uid)
+        if (key === uid) {
+          console.tron.log('Looks like a match... so YAY ' + thisRoomKey)
+          roomKey = thisRoomKey
+          store.dispatch(ChatActions.setActiveChatRoom(roomKey))
+          store.dispatch(NavigationActions.navigate({ routeName: 'ChatScreen' }))
+        }
       })
     })
-    messages.sort((a, b) => {
-      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    })
-    store.dispatch(ChatActions.setChatRoomMessages(roomKey, messages))
+    if (!roomKey) {
+      console.tron.log('Room NOT found. Registering...')
+      roomKey = db.ref(`rooms`).push().key
+      const update = {}
+      console.tron.log('Using roomKey ' + roomKey)
+
+      // Temporarily hardcode user ids
+      const myid = store.getState().user.obj.uid
+      const friendid = uid
+
+      /**
+       * update room
+       */
+      update[`rooms/${roomKey}/${myid}`] = true  // me.uid
+      update[`rooms/${roomKey}/${friendid}`] = true // friend.uid
+
+      /**
+       * update user
+       */
+      update[`users/${myid}/rooms/${roomKey}`] = true
+      update[`users/${friendid}/rooms/${roomKey}`] = true
+
+      firebase.database().ref().update(update).catch(error => console.tron.log(error))
+      store.dispatch(NavigationActions.navigate({ routeName: 'ChatScreen' })) // ??? -- should this go in callback above
+    }
   })
+
 }
 
 // Given a room key, fetch user object of other participants and fire UPDATE_ROOM_USER with the data
@@ -123,4 +154,24 @@ export function * messageSent (api, action) {
       },
       rid: rid
     })
+}
+
+// User selected a chat. Let's grab the messages.
+export function * setActiveChatRoom (api, { roomKey }) {
+  firebase.database().ref(`messages/${roomKey}`).orderByKey().limitToLast(50).once('value', snap => {
+    const messages = []
+    snap.forEach(message => {
+      const msg = message.val()
+      messages.push({
+        _id: message.key,
+        text: msg.text,
+        user: msg.user,
+        createdAt: msg.createdAt
+      })
+    })
+    messages.sort((a, b) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    })
+    store.dispatch(ChatActions.setChatRoomMessages(roomKey, messages))
+  })
 }

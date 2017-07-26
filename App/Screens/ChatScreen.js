@@ -12,7 +12,7 @@ class ChatScreen extends Component {
   render () {
     return (
       <GiftedChat
-        messages={this.props.room.messages}
+        messages={this.props.messages}
         onSend={(messages) => this.onSend(messages)}
         user={{
           _id: 1
@@ -25,7 +25,8 @@ class ChatScreen extends Component {
 
 const mapStateToProps = (state) => ({
   roomKey: state.chat.roomKey,
-  room: state.chat.rooms[state.chat.roomKey]
+  room: state.chat.rooms[state.chat.roomKey],
+  messages: state.chat.rooms[state.chat.roomKey].messages || []
 })
 
 const mapDispatchToProps = (dispatch) => ({
