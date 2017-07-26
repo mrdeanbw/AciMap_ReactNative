@@ -1,10 +1,9 @@
 import React from 'react'
-import { Text } from 'react-native'
 import DrawerContent from '../Components/DrawerContent'
 
 export const getNavigationOptions = (title, backgroundColor, color) => ({
   title,
-  headerTitle: <Text style={{fontFamily: 'Montserrat-Bold', color: 'white', marginLeft: 15, fontSize: 18}}>{title}</Text>,
+  headerTitle: title,
   headerStyle: {
     backgroundColor
   },
@@ -17,7 +16,6 @@ export const getNavigationOptions = (title, backgroundColor, color) => ({
 
 export const getNavigationOptionsWithAction = (title, backgroundColor, color, headerLeft) => ({
   title,
-  headerTitle: <Text style={{fontFamily: 'Montserrat-Bold', color: 'white', marginLeft: 15, fontSize: 18}}>{title}</Text>,
   headerStyle: {
     backgroundColor
   },
@@ -31,7 +29,7 @@ export const getNavigationOptionsWithAction = (title, backgroundColor, color, he
 
 export const getDrawerNavigationOptions = (title, backgroundColor, titleColor, drawerIcon) => ({
   title,
-  headerTitle: <Text style={{fontFamily: 'Montserrat-Bold', color: 'white', marginLeft: 15, fontSize: 18}}>{title}</Text>,
+  headerTitle: title,
   headerStyle: {
     backgroundColor
   },
@@ -41,7 +39,7 @@ export const getDrawerNavigationOptions = (title, backgroundColor, titleColor, d
   },
   headerTintColor: titleColor,
   drawerLabel: title,
-  drawerIcon 
+  drawerIcon
 })
 
 export const getDrawerConfig = (drawerWidth, drawerPosition, initialRouteName, drawerRoutes) => ({
