@@ -1,4 +1,5 @@
 const images = {
+  city: require('../Images/cityvert1.jpg'),
   girl: require('../Images/girlcity2a.jpg'),
   loginButton: require('../Images/loginbutton.png'),
   arcadecityis: require('../Images/arcadecityis.png'),

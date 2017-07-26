@@ -1,27 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Image, View, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native'
 import { Colors, Metrics, Images } from '../Themes/'
 import UserActions from '../Redux/UserRedux'
 import { NavigationActions } from 'react-navigation'
+import * as Animatable from 'react-native-animatable'
 
 class WelcomeScreen extends Component {
   render () {
     return (
       <ScrollView style={styles.container} contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}>
-        <Image source={Images.welcome} style={styles.welcomeText} />
-        <Image source={Images.arcadecityis} style={styles.textImage} />
-        <Image source={Images.acmission} style={styles.textImage} />
-        <Image source={Images.howcanyouhelp} style={styles.helpText} />
+        <Animatable.Image animation='fadeInDown' source={Images.welcome} style={styles.welcomeText} />
+        <Animatable.Image animation='fadeInDown' delay={500} source={Images.arcadecityis} style={styles.textImage} />
+        <Animatable.Image animation='fadeInDown' delay={3500} source={Images.acmission} style={styles.textImage} />
+        <Animatable.Image animation='fadeIn' delay={6500} source={Images.howcanyouhelp} style={styles.helpText} />
         <TouchableOpacity onPress={() => this.props.navigateTo('HomeScreen')}>
-          <View style={styles.button}>
+          <Animatable.View style={styles.button} animation='fadeIn' delay={6500}>
             <Text style={styles.buttonText}>I am a RIDER</Text>
-          </View>
+          </Animatable.View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => this.props.navigateTo('DriverSignupScreen')}>
-          <View style={styles.button}>
+          <Animatable.View style={styles.button} animation='fadeIn' delay={6500}>
             <Text style={styles.buttonText}>I am a DRIVER</Text>
-          </View>
+          </Animatable.View>
         </TouchableOpacity>
       </ScrollView>
     )

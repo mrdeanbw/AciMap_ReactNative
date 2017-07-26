@@ -6,11 +6,13 @@ import { connect } from 'react-redux'
 import { Image, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Metrics, Images } from '../Themes/'
 import UserActions from '../Redux/UserRedux'
+import Loading from '../Components/Loading'
 
 class LoginScreen extends Component {
+  // If initialFetch is not false, show loadSpinner. That will last thru the first thing, until navaway.
   render () {
-    return (
-      <Image source={Images.girl} style={styles.imageContainer}>
+    return this.props.initialFetch === false ? (
+      <Image source={Images.city} style={styles.imageContainer}>
         <View style={styles.hoverContainer}>
           <View style={styles.loginBox}>
             <TouchableOpacity onPress={() => this.props.userLogin()}>
@@ -19,7 +21,7 @@ class LoginScreen extends Component {
           </View>
         </View>
       </Image>
-    )
+    ) : (<Loading />)
   }
 }
 
@@ -47,7 +49,8 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  user: state.user.obj || null
+  user: state.user.obj || null,
+  initialFetch: state.user.initialFetch
 })
 
 const mapDispatchToProps = (dispatch) => ({
