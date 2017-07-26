@@ -68,7 +68,7 @@ class FeedbackScreen extends Component {
     return this.state.submitted === false
     ? (<ScrollView style={styles.container}>
       <Text style={styles.headline}>Give Feedback</Text>
-      <Text style={styles.explainer}>Bug? Feature request? Comment? Idea? Insult?</Text>
+      <Text style={styles.explainer}>Bug? Feature request? Comment? Idea? Rant? Insult? Metaphysical speculation?</Text>
       <Text style={styles.explainer}>We would love to hear from you.</Text>
       <View style={styles.formContainer}>
         <Form
