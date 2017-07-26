@@ -5,6 +5,9 @@ import android.app.Application;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.react.ReactApplication;
+import com.airbnb.android.react.maps.MapsPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
 import com.facebook.appevents.AppEventsLogger;
 import com.airbnb.android.react.maps.MapsPackage;
@@ -51,6 +54,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+          new MapsPackage(),
+          new RNDeviceInfo(),
+          new ReactNativeConfigPackage(),
           new FBSDKPackage(mCallbackManager),
           new MapsPackage(),
           new VectorIconsPackage(),

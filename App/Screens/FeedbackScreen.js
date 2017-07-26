@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     fontSize: 36,
     color: Colors.snow,
     alignSelf: 'center',
-    fontFamily: 'Avenir-Black',
+    fontFamily: 'Montserrat-Light',
     marginVertical: 24,
     paddingHorizontal: 9
   },
