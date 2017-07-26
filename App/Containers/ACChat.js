@@ -8,9 +8,6 @@ class ACChat extends Component {
   state = {
     messages: []
   }
-  componentDidUpdate () {
-    // console.tron.log(this.state.messages)
-  }
   onSend (messages = []) {
     // console.tron.log(activeDriver)
     this.props.messageSent('-KpMSK6RN0G33Tf5JDae', this.props.activeDriver.key, messages[0].text) // Fmu6D27WD8ZYecsxt2cu6KuvPH93

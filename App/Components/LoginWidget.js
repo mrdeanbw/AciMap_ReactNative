@@ -4,7 +4,6 @@ import { View, Text, StyleSheet } from 'react-native'
 import { Fonts, Colors, Metrics } from '../Themes/'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import UserActions from '../Redux/UserRedux'
-import NearbyActions from '../Redux/NearbyRedux'
 
 class LoginWidget extends Component {
   render () {
@@ -44,9 +43,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  userLogin: (loc) => dispatch(UserActions.userLogin(loc)),
-  userLoginSuccess: (obj) => dispatch(UserActions.userLoginSuccess(obj)),
-  findNearbyDrivers: (user, loc) => dispatch(NearbyActions.findNearbyDrivers(user, loc))
+  userLogin: (loc) => dispatch(UserActions.userLogin(loc))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginWidget)

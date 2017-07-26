@@ -2,11 +2,11 @@ import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
-  userLogin: ['loc'],
-  userLoginSuccess: ['obj', 'loc'],
+  trackEvent: ['name', 'payload'],
   updateUserLoc: ['loc'],
-  userLogout: null,
-  trackEvent: ['name', 'payload']
+  userLogin: null,
+  userLoginSuccess: ['obj'],
+  userLogout: null
 })
 
 export const UserTypes = Types
@@ -15,17 +15,15 @@ export default Creators
 export const INITIAL_STATE = Immutable({
   error: null,
   initialFetch: false,
-  obj: null,
-  profileVisible: false
+  obj: null
 })
 
 export const userLogin = (state) => {
-  // return state.merge({ initialFetch: true })
-  return state
+  return state.merge({ initialFetch: true })
 }
 
-export const userLoginSuccess = (state, { obj, loc }) => {
-  return state.merge({ obj: obj }) //, { initialFetch: 'done'}
+export const userLoginSuccess = (state, { obj }) => {
+  return state.merge({ obj: obj, initialFetch: 'done' })
 }
 
 export const updateUserLoc = (state, { loc }) => {

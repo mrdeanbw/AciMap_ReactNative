@@ -3,14 +3,13 @@ import configureStore from './CreateStore'
 import rootSaga from '../Sagas/'
 
 export default () => {
-  /* ------------- Assemble The Reducers ------------- */
   const rootReducer = combineReducers({
-    nav: require('./NavigationRedux').reducer,
-    user: require('./UserRedux').reducer,
-    nearby: require('./NearbyRedux').reducer,
-    driver: require('./DriverRedux').reducer,
     chat: require('./ChatRedux').reducer,
-    ui: require('./UiRedux').reducer
+    driver: require('./DriverRedux').reducer,
+    nearby: require('./NearbyRedux').reducer,
+    nav: require('./NavigationRedux').reducer,
+    ui: require('./UiRedux').reducer,
+    user: require('./UserRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)

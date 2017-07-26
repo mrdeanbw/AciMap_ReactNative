@@ -1,12 +1,11 @@
+import { NavigationActions } from 'react-navigation'
 import UserActions from '../Redux/UserRedux'
-import NearbyActions from '../Redux/NearbyRedux'
 import ChatActions from '../Redux/ChatRedux'
 import firebase from '../Config/FirebaseConfig'
 import { AccessToken, LoginManager } from 'react-native-fbsdk'
 import { store } from '../Containers/App'
 
 export function * userLogin (api, action) {
-  const { loc } = action
   LoginManager
     .logInWithReadPermissions(['public_profile', 'email'])
     .then((result) => {
@@ -23,7 +22,7 @@ export function * userLogin (api, action) {
       if (currentUser === 'cancelled') {
         console.log('Login cancelled')
       } else {
-        store.dispatch(UserActions.userLoginSuccess(currentUser.toJSON(), loc))
+        store.dispatch(UserActions.userLoginSuccess(currentUser.toJSON()))
         firebase.analytics().setAnalyticsCollectionEnabled(true)
         store.dispatch(UserActions.trackEvent('userLogin'))
       }
@@ -33,10 +32,31 @@ export function * userLogin (api, action) {
     })
 }
 
+// todo: initialFetch should encompass userLoginSuccess?
 export function * userLoginSuccess (api, action) {
-  const { obj, loc } = action
-  store.dispatch(NearbyActions.findNearbyDrivers(obj, loc))
+  const { obj } = action
+  console.tron.log(obj)
   store.dispatch(ChatActions.initializeChat())
+  // Look up user in database to see whether they went through welcome sequence / are a driver
+  firebase.database().ref(`users/${obj.uid}`).once('value', snap => {
+    const user = snap.val()
+    console.tron.log(user)
+
+    if (!user.welcomed) {
+      console.tron.log('Not welcomed, now to welcome screen')
+      store.dispatch(NavigationActions.navigate({ routeName: 'WelcomeScreen' }))
+    }
+
+    else if (user.driver) {
+      console.tron.log('Driver, lets go to driverview')
+      store.dispatch(NavigationActions.navigate({ routeName: 'DriverScreen' }))
+    }
+
+    else {
+      console.tron.log('Welcomed and not driver, lets go to riderview')
+      store.dispatch(NavigationActions.navigate({ routeName: 'RiderScreen' }))
+    }    
+  })
 }
 
 export function * userLogout (api, action) {

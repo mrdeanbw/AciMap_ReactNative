@@ -12,6 +12,7 @@ class DriverProfile extends Component {
       <Modal
         visible={this.props.driverProfileVisible}
         animationType={'slide'}
+        onRequestClose={() => console.tron.log('hm')}
         >
         <View style={styles.header}>
           <Text style={styles.text}>{profile.name}</Text>
