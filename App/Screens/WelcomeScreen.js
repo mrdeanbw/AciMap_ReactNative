@@ -3,21 +3,22 @@ import { connect } from 'react-redux'
 import { Image, View, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native'
 import { Colors, Metrics, Images } from '../Themes/'
 import UserActions from '../Redux/UserRedux'
+import { NavigationActions } from 'react-navigation'
 
 class WelcomeScreen extends Component {
   render () {
     return (
-      <ScrollView style={styles.container} contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}>      
+      <ScrollView style={styles.container} contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}>
         <Image source={Images.welcome} style={styles.welcomeText} />
         <Image source={Images.arcadecityis} style={styles.textImage} />
         <Image source={Images.acmission} style={styles.textImage} />
         <Image source={Images.howcanyouhelp} style={styles.helpText} />
-        <TouchableOpacity onPress={() => this.props.userLogin()}>
+        <TouchableOpacity onPress={() => this.props.navigateTo('HomeScreen')}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>I am a RIDER</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.userLogin()}>
+        <TouchableOpacity onPress={() => this.props.navigateTo('HomeScreen')}>
           <View style={styles.button}>
             <Text style={styles.buttonText}>I am a DRIVER</Text>
           </View>
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     maxWidth: Metrics.screenWidth * 0.7,
     maxHeight: 125,
-    resizeMode: 'contain',
+    resizeMode: 'contain'
   },
   button: {
     backgroundColor: Colors.acturq,
@@ -76,7 +77,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  userLogin: (loc) => dispatch(UserActions.userLogin(loc))
+  userLogin: (loc) => dispatch(UserActions.userLogin(loc)),
+  navigateTo: (route) => dispatch(NavigationActions.navigate({ routeName: route }))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen)

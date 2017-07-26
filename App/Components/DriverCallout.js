@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { View, Text } from 'react-native'
-import RoundedButton from './RoundedButton'
+import { Button, Text, View } from 'react-native'
 
 export default class DriverCallout extends Component {
   render () {
@@ -10,7 +9,7 @@ export default class DriverCallout extends Component {
         <Text style={{color: 'white'}}>{this.props.driver.profile.driver.vehicle}</Text>
         <Text style={{color: 'white'}}>{this.props.driver.profile.driver.self}</Text>
         <Text style={{color: 'white'}}>Distance: {Math.round(this.props.driver.distance * 10) / 10} km</Text>
-        <RoundedButton
+        <Button
           text='Open Chat'
           style={{alignSelf: 'center'}}
         />

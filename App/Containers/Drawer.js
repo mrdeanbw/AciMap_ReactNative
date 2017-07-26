@@ -6,7 +6,7 @@ import NavBarItem from '../Components/NavBarItem'
 
 import LoginScreen from '../Screens/LoginScreen'
 import WelcomeScreen from '../Screens/WelcomeScreen'
-import HomeScreen from '../Screens/NewHomeScreen'
+import HomeScreen from '../Screens/HomeScreen'
 import ChatScreen from '../Screens/ChatScreen'
 import DriverSignupScreen from '../Screens/DriverSignupScreen'
 import FeedbackScreen from '../Screens/FeedbackScreen'
@@ -32,7 +32,6 @@ const homeDrawerIcon = ({ tintColor }) => getDrawerIcon('map-o', tintColor)
 const userDrawerIcon = ({ tintColor }) => getDrawerIcon('car', tintColor)
 const feedbackDrawerIcon = ({ tintColor }) => getDrawerIcon('bullhorn', tintColor)
 
-const welcomeNavOptions = getDrawerNavigationOptions('Welcome', Colors.acnavy, 'white', homeDrawerIcon)
 const homeNavOptions = getDrawerNavigationOptions('Arcade City', Colors.acnavy, 'white', homeDrawerIcon)
 const userNavOptions = getDrawerNavigationOptions('Driver Signup', Colors.acnavy, 'white', userDrawerIcon)
 const feedbackNavOptions = getDrawerNavigationOptions('Feedback', Colors.acnavy, 'white', feedbackDrawerIcon)
@@ -40,9 +39,9 @@ const chatNavOptions = getDrawerNavigationOptions('Chat', Colors.acnavy, 'white'
 const connectNavOptions = getDrawerNavigationOptions('Connect', Colors.acnavy, 'white', feedbackDrawerIcon)
 
 const DrawerRoutes = {
-  LoginScreen: { screen: LoginScreen, navigationOptions: { header: null }},
-  WelcomeScreen: { screen: WelcomeScreen, navigationOptions: { header: null }},
-  HomeScreen: { screen: HomeScreen, navigationOptions: { header: null }},
+  LoginScreen: { screen: LoginScreen, navigationOptions: { header: null } },
+  WelcomeScreen: { screen: WelcomeScreen, navigationOptions: { header: null } },
+  HomeScreen: { screen: HomeScreen, navigationOptions: homeNavOptions },
   DriverScreen: { screen: DriverSignupScreen, navigationOptions: userNavOptions },
   ChatScreen: { screen: ChatScreen, navigationOptions: chatNavOptions },
   FeedbackScreen: { screen: FeedbackScreen, navigationOptions: feedbackNavOptions },

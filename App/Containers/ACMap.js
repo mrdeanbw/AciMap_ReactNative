@@ -8,7 +8,6 @@ import UiActions from '../Redux/UiRedux'
 import NearbyActions from '../Redux/NearbyRedux'
 import DriverMarker from '../Components/DriverMarker'
 import DriverCallout from '../Components/DriverCallout'
-import DriverProfile from '../Components/DriverProfile'
 
 class ACMap extends Component {
   clickProfile (key) {
@@ -16,7 +15,6 @@ class ACMap extends Component {
     this.props.navigation.navigate('ChatScreen')
   }
   render () {
-    // const { navigate } = this.props.navigation
     return (
       <View style={styles.container}>
         { this.props.loc
@@ -45,7 +43,6 @@ class ACMap extends Component {
           </MapView>
           : <Text style={{color: 'white'}}>Waiting for location...</Text>
         }
-        <DriverProfile />
       </View>
     )
   }

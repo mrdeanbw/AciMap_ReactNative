@@ -5,7 +5,7 @@ import * as Animatable from 'react-native-animatable'
 
 class Toast extends Component {
   componentDidUpdate () {
-    console.tron.log('Updated...')
+    console.tron.log('Toast updated...')
     if (this.animatedTextRef && this.props.toast) {
       this.animatedTextRef.startAnimation(500, 0, () => {})
     }

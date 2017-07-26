@@ -9,7 +9,6 @@ const { Types, Creators } = createActions({
   fetchRoomError: null,
   registerRoom: null,
   fetchMessageSuccess: ['messages'],
-  fetchMessageError: null,
   messageSent: ['roomKey', 'rid', 'text'],
   fetchRoomData: ['roomKey'],
   setActiveChatRoom: ['roomKey'],
@@ -90,10 +89,6 @@ export const fetchMessageSuccess = (state, { roomKey, messages }) => {
   })
 }
 
-export const fetchMessageError = (state) => {
-  return state.merge({ loading: false })
-}
-
 export const userLogout = (state) => {
   return INITIAL_STATE
 }
@@ -103,7 +98,6 @@ export const reducer = createReducer(INITIAL_STATE, {
   'FETCH_ROOM_ERROR': fetchRoomError,
   'REGISTER_ROOM': registerRoom,
   'FETCH_MESSAGE_SUCCESS': fetchMessageSuccess,
-  'FETCH_MESSAGE_ERROR': fetchMessageError,
   'UPDATE_ROOM_USER': updateRoomUser,
   'SET_ACTIVE_CHAT_ROOM': setActiveChatRoom,
   'SET_CHAT_ROOM_MESSAGES': setChatRoomMessages,
