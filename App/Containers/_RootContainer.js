@@ -1,9 +1,14 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import { View, StatusBar } from 'react-native'
 import ReduxNavigation from '../Navigation/ReduxNavigation'
+import UserActions from '../Redux/UserRedux'
 import Toast from '../Components/Toast'
 
-export default class RootContainer extends Component {
+class RootContainer extends Component {
+  componentWillMount () {
+    this.props.fetchUserLoc()
+  }
   render () {
     return (
       <View style={{flex: 1}}>
@@ -14,3 +19,8 @@ export default class RootContainer extends Component {
     )
   }
 }
+const mapDispatchToProps = (dispatch) => ({
+  fetchUserLoc: () => dispatch(UserActions.fetchUserLoc())
+})
+
+export default connect(null, mapDispatchToProps)(RootContainer)

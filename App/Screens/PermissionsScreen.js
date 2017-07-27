@@ -27,20 +27,20 @@ class PermissionsScreen extends Component {
           latitudeDelta: LATITUDE_DELTA,
           longitudeDelta: LONGITUDE_DELTA
         }
-        this.props.updateUserLoc(loc)        
+        this.props.updateUserLoc(loc)
+        this.props.userWelcomed()
         if (this.props.className === 'rider') {
           this.props.findNearbyDrivers(loc) // do this for rider now. driver will wait til signup done +/? beacon down?
-          this.props.navigateTo('HomeScreen')          
-        } else if (this.props.className === 'driver') {
+          this.props.navigateTo('HomeScreen')
+        } else if (this.props.className === 'driverSigningUp') {
           this.props.navigateTo('DriverSignupScreen')
-        }        
+        }
       },
       (error) => window.alert(error.message),
       { enableHighAccuracy: false, timeout: 10000, maximumAge: 180000 }
      )
   }
   render () {
-    console.tron.log(this.state.loading)
     return this.state.loading === false ? (
       <ScrollView style={styles.container} contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}>
         <Text style={styles.buttonText}>Welcome {this.props.className}!</Text>
@@ -107,7 +107,8 @@ const mapDispatchToProps = (dispatch) => ({
   userLogin: (loc) => dispatch(UserActions.userLogin(loc)),
   navigateTo: (route) => dispatch(NavigationActions.navigate({ routeName: route })),
   updateUserLoc: (loc) => dispatch(UserActions.updateUserLoc(loc)),
-  findNearbyDrivers: (user, loc) => dispatch(NearbyActions.findNearbyDrivers(user, loc))
+  findNearbyDrivers: (user, loc) => dispatch(NearbyActions.findNearbyDrivers(user, loc)),
+  userWelcomed: () => dispatch(UserActions.userWelcomed())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PermissionsScreen)

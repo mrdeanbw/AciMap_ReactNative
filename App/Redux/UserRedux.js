@@ -2,11 +2,13 @@ import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
+  fetchUserLoc: null,
   trackEvent: ['name', 'payload'],
   updateUserLoc: ['loc'],
   userLogin: null,
   userLoginSuccess: ['obj'],
-  userLogout: null
+  userLogout: null,
+  userWelcomed: null
 })
 
 export const UserTypes = Types

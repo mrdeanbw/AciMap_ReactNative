@@ -1,4 +1,6 @@
 import { NavigationActions } from 'react-navigation'
+import UserActions from '../Redux/UserRedux'
+import { store } from '../Containers/App'
 
 // gets the current screen from navigation state
 const getCurrentRouteName = (navigationState) => {
@@ -26,8 +28,7 @@ const screenTracking = ({ getState }) => next => (action) => {
   const nextScreen = getCurrentRouteName(getState().nav)
   if (nextScreen !== currentScreen) {
     try {
-      console.tron.log(`NAVIGATING ${currentScreen} to ${nextScreen}`)
-      // Example: Analytics.trackEvent('user_navigation', {currentScreen, nextScreen})
+      store.dispatch(UserActions.trackEvent('screenNav', { current: currentScreen, next: nextScreen }))
     } catch (e) {
       console.tron.log(e)
     }

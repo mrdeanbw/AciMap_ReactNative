@@ -44,7 +44,7 @@ const DrawerRoutes = {
   WelcomeScreen: { screen: WelcomeScreen, navigationOptions: { header: null } },
   PermissionsScreen: { screen: PermissionsScreen, navigationOptions: { header: null } },
   HomeScreen: { screen: HomeScreen, navigationOptions: homeNavOptions },
-  DriverScreen: { screen: DriverSignupScreen, navigationOptions: userNavOptions },
+  DriverSignupScreen: { screen: DriverSignupScreen, navigationOptions: userNavOptions },
   ChatScreen: { screen: ChatScreen, navigationOptions: chatNavOptions },
   FeedbackScreen: { screen: FeedbackScreen, navigationOptions: feedbackNavOptions },
   ConnectScreen: { screen: ConnectScreen, navigationOptions: connectNavOptions }

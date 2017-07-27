@@ -4,8 +4,6 @@ import { store } from '../Containers/App'
 const Geofire = require('geofire')
 
 export function * findNearbyDrivers ({ loc }) {
-  console.tron.log('in findNearbyDrivers saga with loc')
-  console.tron.log(loc)
   const gloc = [loc.latitude, loc.longitude]
   const geofireRef = new Geofire(firebase.database().ref('geofire'))
 

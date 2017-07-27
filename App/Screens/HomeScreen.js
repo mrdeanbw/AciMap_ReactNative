@@ -13,8 +13,7 @@ class HomeScreen extends Component {
       <View style={{ flex: 1, paddingBottom: '10%', backgroundColor: Colors.acnavy }}>
         <ACMap navigation={navigation} />
         <View style={{position: 'absolute', bottom: 0, alignItems: 'center', width: Metrics.screenWidth}}>
-          { this.props.user && !this.props.driver ? <RiderWidget /> : <View /> }
-          { this.props.user && this.props.driver ? <DriverWidget /> : <View /> }
+          { this.props.className === 'driver' ? <DriverWidget /> : <RiderWidget /> }
         </View>
       </View>
     )
@@ -23,7 +22,7 @@ class HomeScreen extends Component {
 
 const mapStateToProps = (state) => ({
   user: state.user.obj || null,
-  driver: state.driver.formData || null
+  className: state.ui.className
 })
 
 export default connect(mapStateToProps, null)(HomeScreen)

@@ -3,7 +3,7 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   sendToast: ['title', 'message', 'image', 'toasttype'],
-  setClass: ['className']  
+  setClass: ['className']
 })
 
 export const UserTypes = Types
@@ -25,7 +25,7 @@ export const userLogout = (state) => {
 }
 
 export const setClass = (state, { className }) => {
-	return state.merge({ className })
+  return state.merge({ className })
 }
 
 export const reducer = createReducer(INITIAL_STATE, {

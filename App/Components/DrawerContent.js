@@ -34,15 +34,17 @@ class DrawerContent extends Component {
           <Text style={styles.text}>City Map</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={{ paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}
-          onPress={() => this.clickDrawerNav('DriverScreen', navigation)}
-        >
-          <View style={{ width: 25, alignItems: 'center' }}>
-            <Icon name='car' size={20} color='#fff' />
-          </View>
-          <Text style={styles.text}>Drive for Arcade City</Text>
-        </TouchableOpacity>
+        {this.props.className !== 'driver' ? (
+          <TouchableOpacity
+            style={{ paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}
+            onPress={() => this.clickDrawerNav('DriverSignupScreen', navigation)}
+          >
+            <View style={{ width: 25, alignItems: 'center' }}>
+              <Icon name='car' size={20} color='#fff' />
+            </View>
+            <Text style={styles.text}>Drive for Arcade City</Text>
+          </TouchableOpacity>
+        ) : <View />}
 
         <TouchableOpacity
           style={{ paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}
@@ -96,7 +98,8 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  roomKey: state.chat.roomKey
+  roomKey: state.chat.roomKey,
+  className: state.ui.className
 })
 
 const mapDispatchToProps = (dispatch) => ({

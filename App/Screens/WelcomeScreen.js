@@ -24,7 +24,7 @@ class WelcomeScreen extends Component {
             <Text style={styles.buttonText}>I am a RIDER</Text>
           </Animatable.View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.selectClass('driver')}>
+        <TouchableOpacity onPress={() => this.selectClass('driverSigningUp')}>
           <Animatable.View style={styles.button} animation='fadeIn' delay={6000}>
             <Text style={styles.buttonText}>I am a DRIVER</Text>
           </Animatable.View>

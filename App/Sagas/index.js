@@ -1,5 +1,5 @@
 import { takeLatest } from 'redux-saga/effects'
-import { userLogin, userLoginSuccess, userLogout, trackEvent } from './UserSagas'
+import { userLogin, userLoginSuccess, userLogout, trackEvent, userWelcomed, fetchUserLoc } from './UserSagas'
 import { findNearbyDrivers } from './NearbySagas'
 import { addDriverBeacon, driverSignupSuccess } from './DriverSagas'
 import { initializeChat, messageSent, fetchRoomData, setActiveChatRoom, fetchOrRegisterRoom } from './ChatSagas'
@@ -17,6 +17,8 @@ export default function * root () {
     takeLatest('USER_LOGOUT', userLogout),
     takeLatest('TRACK_EVENT', trackEvent),
     takeLatest('FETCH_OR_REGISTER_ROOM', fetchOrRegisterRoom),
-    takeLatest('DRIVER_SIGNUP_SUCCESS', driverSignupSuccess)
+    takeLatest('DRIVER_SIGNUP_SUCCESS', driverSignupSuccess),
+    takeLatest('USER_WELCOMED', userWelcomed),
+    takeLatest('FETCH_USER_LOC', fetchUserLoc)
   ]
 }
