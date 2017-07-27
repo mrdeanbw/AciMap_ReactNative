@@ -11,13 +11,6 @@ class DrawerChatWidget extends Component {
     this.props.navigation.navigate('ChatScreen')
   }
 
-  componentDidUpdate () {
-    // console.tron.display({
-    //   name: 'DrawerChatWidget componentDidUpdate with this.props.rooms:',
-    //   value: this.props.rooms
-    // })
-  }
-
   render () {
     return (
       <ScrollView style={styles.container}>

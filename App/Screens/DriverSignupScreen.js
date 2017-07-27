@@ -33,8 +33,10 @@ class DriverSignupScreen extends Component {
     if (value) { // if validation fails, value will be null
       var user = this.props.user
       firebase.database().ref('users/' + user.uid).update({
-        obj: {...user, timestamp: Date.now()},
-        driverSignup: value
+        driver: {
+          vehicle: value.describeYourVehicle,
+          self: value.describeYourself
+        }
       })
       .then(response => {
         if (response.status === 'success') {
@@ -62,11 +64,11 @@ class DriverSignupScreen extends Component {
 
         <Text style={styles.explainer}>Your beacon is a marker on the map, visible to nearby riders. You can have one beacon at a time.</Text>
 
-        <Text style={styles.explainer}>When you are approved as a full driver in good standing, you will be able to 'go online' and have your driver marker update on nearby riders' maps in realtime while you are online.</Text>
+        <Text style={styles.explainer}>When you are approved as a full driver in good standing, you will be able to 'go online' and have your driver marker update in realtime on nearby riders' maps while you are online. In the meantime, it will stay in one place until you update its location manually. Riders will see that you are a 'trial' driver.</Text>
 
         <Text style={styles.explainerBold}>After you sign up below, you will have 7 days to give your first ride and submit a 'selfie' picture of you with a happy rider. If you do not submit that picture within 7 days, your driver account will be deactivated.</Text>
 
-        <Text style={styles.explainer}>We will send you additional information and training to {this.props.user.obj.email}.</Text>
+        <Text style={styles.explainer}>We will send you additional information and training to {this.props.user.email}.</Text>
 
         <Text style={styles.explainer}>By hitting Submit, you affirm that you have read and agree to our <Text onPress={() => Linking.openURL('https://arcade.city/terms')} style={{color: Colors.acturq}}>Terms of Service</Text>. (You'll want to actually read that.)</Text>
 
@@ -152,7 +154,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  user: state.user.obj || null
 })
 
 const mapDispatchToProps = (dispatch) => ({

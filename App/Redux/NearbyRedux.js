@@ -2,7 +2,7 @@ import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
-  findNearbyDrivers: ['user', 'loc'],
+  findNearbyDrivers: ['loc'],
   foundNearbyDrivers: ['drivers'],
   updateDriverLoc: ['key', 'loc', 'distance'],
   updateDriverInfo: ['key', 'info'],

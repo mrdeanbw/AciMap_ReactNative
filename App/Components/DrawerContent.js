@@ -36,6 +36,16 @@ class DrawerContent extends Component {
 
         <TouchableOpacity
           style={{ paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}
+          onPress={() => this.clickDrawerNav('DriverScreen', navigation)}
+        >
+          <View style={{ width: 25, alignItems: 'center' }}>
+            <Icon name='car' size={20} color='#fff' />
+          </View>
+          <Text style={styles.text}>Drive for Arcade City</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={{ paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}
           onPress={() => this.clickDrawerNav('FeedbackScreen', navigation)}
         >
           <View style={{ width: 25, alignItems: 'center' }}>

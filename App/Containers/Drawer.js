@@ -11,6 +11,7 @@ import ChatScreen from '../Screens/ChatScreen'
 import DriverSignupScreen from '../Screens/DriverSignupScreen'
 import FeedbackScreen from '../Screens/FeedbackScreen'
 import ConnectScreen from '../Screens/ConnectScreen'
+import PermissionsScreen from '../Screens/PermissionsScreen'
 import { Colors } from '../Themes/'
 
 const getDrawerItem = navigation => (
@@ -41,6 +42,7 @@ const connectNavOptions = getDrawerNavigationOptions('Connect', Colors.acnavy, '
 const DrawerRoutes = {
   LoginScreen: { screen: LoginScreen, navigationOptions: { header: null } },
   WelcomeScreen: { screen: WelcomeScreen, navigationOptions: { header: null } },
+  PermissionsScreen: { screen: PermissionsScreen, navigationOptions: { header: null } },
   HomeScreen: { screen: HomeScreen, navigationOptions: homeNavOptions },
   DriverScreen: { screen: DriverSignupScreen, navigationOptions: userNavOptions },
   ChatScreen: { screen: ChatScreen, navigationOptions: chatNavOptions },

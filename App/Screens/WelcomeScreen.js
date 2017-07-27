@@ -3,10 +3,15 @@ import { connect } from 'react-redux'
 import { StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native'
 import { Colors, Metrics, Images } from '../Themes/'
 import UserActions from '../Redux/UserRedux'
+import UiActions from '../Redux/UiRedux'
 import { NavigationActions } from 'react-navigation'
 import * as Animatable from 'react-native-animatable'
 
 class WelcomeScreen extends Component {
+  selectClass (className) {
+    this.props.setClass(className)
+    this.props.navigateTo('PermissionsScreen')
+  }
   render () {
     return (
       <ScrollView style={styles.container} contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}>
@@ -14,13 +19,13 @@ class WelcomeScreen extends Component {
         <Animatable.Image animation='fadeInDown' delay={500} source={Images.arcadecityis} style={styles.textImage} />
         <Animatable.Image animation='fadeInDown' delay={3000} source={Images.acmission} style={styles.textImage} />
         <Animatable.Image animation='fadeIn' delay={5500} source={Images.howcanyouhelp} style={styles.helpText} />
-        <TouchableOpacity onPress={() => this.props.navigateTo('HomeScreen')}>
-          <Animatable.View style={styles.button} animation='fadeIn' delay={6500}>
+        <TouchableOpacity onPress={() => this.selectClass('rider')}>
+          <Animatable.View style={styles.button} animation='fadeIn' delay={6000}>
             <Text style={styles.buttonText}>I am a RIDER</Text>
           </Animatable.View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.navigateTo('DriverSignupScreen')}>
-          <Animatable.View style={styles.button} animation='fadeIn' delay={6500}>
+        <TouchableOpacity onPress={() => this.selectClass('driver')}>
+          <Animatable.View style={styles.button} animation='fadeIn' delay={6000}>
             <Text style={styles.buttonText}>I am a DRIVER</Text>
           </Animatable.View>
         </TouchableOpacity>
@@ -80,6 +85,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   userLogin: (loc) => dispatch(UserActions.userLogin(loc)),
+  setClass: (className) => dispatch(UiActions.setClass(className)),
   navigateTo: (route) => dispatch(NavigationActions.navigate({ routeName: route }))
 })
 

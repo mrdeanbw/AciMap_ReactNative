@@ -10,7 +10,6 @@ import _ from 'lodash'
 export function * initializeChat (action) {
   // Initialize cloud messages
   const user = store.getState().user
-  firebase.messaging().requestPermissions()
   firebase.messaging().subscribeToTopic(user.obj.uid) // Replace with current userid
   console.tron.log('Subscibed to topic ' + user.obj.uid)
   firebase.messaging().getToken()

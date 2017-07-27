@@ -39,12 +39,20 @@ export function * userLoginSuccess (action) {
   store.dispatch(ChatActions.initializeChat())
   firebase.database().ref(`users/${obj.uid}`).once('value', snap => {
     const user = snap.val()
-    if (!user.welcomed) {
+    if (!user) {
+      const userObj = {
+        createdAt: Date.now(),
+        email: obj.email,
+        emailVerified: false,
+        fbid: obj.providerData[0].uid,
+        name: obj.displayName,
+        photo: obj.photoURL
+      }
+      firebase.database().ref(`users/${obj.uid}`).set(userObj)
+      store.dispatch(NavigationActions.navigate({ routeName: 'WelcomeScreen' }))
+    } else if (!user.welcomed) {
       console.tron.log('Not welcomed, now to welcome screen')
       store.dispatch(NavigationActions.navigate({ routeName: 'WelcomeScreen' }))
-      console.tron.log('FOR NOW lets load drivers here')
-      const loc = store.getState().user.loc
-      store.dispatch(NearbyActions.findNearbyDrivers(obj, loc))
     } else if (user.driver) {
       console.tron.log('Driver, lets go to driverview')
       store.dispatch(NavigationActions.navigate({ routeName: 'DriverScreen' }))
