@@ -5,8 +5,13 @@ import ChatActions from '../Redux/ChatRedux'
 import { GiftedChat } from 'react-native-gifted-chat'
 
 class ChatScreen extends Component {
+
+  componentDidUpdate() {
+    console.tron.log(this.props)
+  }
+
   onSend (messages = []) {
-    this.props.messageSent('-KpMSK6RN0G33Tf5JDae', this.props.room.user.uid, messages[0].text) // Fmu6D27WD8ZYecsxt2cu6KuvPH93
+    this.props.messageSent(this.props.roomKey, this.props.room.user.uid, messages[0].text) // Fmu6D27WD8ZYecsxt2cu6KuvPH93
   }
 
   render () {
@@ -15,7 +20,7 @@ class ChatScreen extends Component {
         messages={this.props.messages}
         onSend={(messages) => this.onSend(messages)}
         user={{
-          _id: 1
+          _id: this.props.room.user.uid
         }}
         style={{marginTop: 200, backgroundColor: Colors.silver}}
       />

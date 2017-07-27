@@ -27,6 +27,12 @@ export function * findNearbyDrivers ({ loc }) {
 
   geoQuery.on('key_entered', function (key, loc, distance) {
     store.dispatch(NearbyActions.updateDriverLoc(key, loc, distance))
+    firebase.database()
+      .ref('users/' + key)
+      .on('value', (snapshot) => {
+        const value = snapshot.val()
+        store.dispatch(NearbyActions.updateDriverInfo(key, value))
+      })
   })
 
   geoQuery.on('key_exited', function (key, loc, distance) {

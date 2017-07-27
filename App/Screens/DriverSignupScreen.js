@@ -12,8 +12,11 @@ var Form = t.form.Form
 if (t.form.Form.stylesheet.controlLabel.normal.color !== '#ffffff') {
   t.form.Form.stylesheet.textbox.normal.color = '#ffffff'
   t.form.Form.stylesheet.textbox.normal.fontFamily = 'Montserrat-Regular'
+  t.form.Form.stylesheet.textbox.error.color = '#ffffff'
+  t.form.Form.stylesheet.textbox.error.fontFamily = 'Montserrat-Regular'
   t.form.Form.stylesheet.controlLabel.normal.color = '#ffffff'
   t.form.Form.stylesheet.controlLabel.normal.fontFamily = 'Montserrat-Regular'
+  t.form.Form.stylesheet.controlLabel.error.fontFamily = 'Montserrat-Regular'
 }
 
 // here we are: define your domain model
