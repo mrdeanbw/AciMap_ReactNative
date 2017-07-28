@@ -3,7 +3,7 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   fetchNearby: null
-}, {prefix: 'chatrooms: '})
+}, {prefix: 'chatrooms - '})
 
 export const UserTypes = Types
 export default Creators

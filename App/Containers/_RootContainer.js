@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { View, StatusBar } from 'react-native'
 import ReduxNavigation from '../Navigation/ReduxNavigation'
-import UserActions from '../Redux/UserRedux'
+import LocActions from '../_loc/redux'
 import Toast from '../Components/Toast'
 
 class RootContainer extends Component {
@@ -20,7 +20,7 @@ class RootContainer extends Component {
   }
 }
 const mapDispatchToProps = (dispatch) => ({
-  fetchUserLoc: () => dispatch(UserActions.fetchUserLoc())
+  fetchUserLoc: () => dispatch(LocActions.fetchUserLoc())
 })
 
 export default connect(null, mapDispatchToProps)(RootContainer)

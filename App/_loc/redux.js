@@ -2,27 +2,30 @@ import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
-  fetchNearby: null
-}, {prefix: 'loc: '})
+  fetchUserLoc: null,
+  fetchUserLocError: null,
+  updateUserLoc: ['loc']
+}, {prefix: 'loc - '})
 
-export const UserTypes = Types
+export const LocTypes = Types
 export default Creators
 
 export const INITIAL_STATE = Immutable({
-  lat: null,
-  lng: null,
-  when: null,
-  error: null
+  latitude: null,
+  longitude: null,
+  latitudeDelta: null,
+  longitudeDelta: null,
+  when: null
 })
 
-export const fetchNearby = (state) => {
-  return state
+export const updateUserLoc = (state, { loc }) => {
+  return state.merge({ 
+  	...loc,
+  	when: Date.now(),
+  	error: null
+  })
 }
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.FETCH_NEARBY]: fetchNearby
+  [Types.UPDATE_USER_LOC]: updateUserLoc
 })
-
-// Actions
-// fetchUserLoc
-// updateUserLoc

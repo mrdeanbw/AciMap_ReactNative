@@ -40,6 +40,44 @@ userLoginSuccess
 User logged in successfully. Look up user object in db to see status (welcomed/driver).
 [ Should this be separate from userLogin? ]
 */
+export function * userLoginSuccess (action) {
+  const { obj } = action
+  store.dispatch(ChatActions.initializeChat())
+  firebase.database().ref(`users/${obj.uid}`).once('value', snap => {
+    const user = snap.val()
+    if (!user) {
+      const userObj = {
+        createdAt: Date.now(),
+        email: obj.email,
+        emailVerified: false,
+        fbid: obj.providerData[0].uid,
+        name: obj.displayName,
+        photo: obj.photoURL
+      }
+      firebase.database().ref(`users/${obj.uid}`).set(userObj)
+      store.dispatch(NavigationActions.navigate({ routeName: 'WelcomeScreen' }))
+    } else if (!user.welcomed) {
+      console.tron.log('Not welcomed, now to welcome screen')
+      store.dispatch(NavigationActions.navigate({ routeName: 'WelcomeScreen' }))
+    } else if (user.driver) {
+      console.tron.log('Welcomed driver')
+      const loc = store.getState().user.loc
+      if (loc) {
+        store.dispatch(NearbyActions.findNearbyDrivers(loc))
+      }
+      store.dispatch(UiActions.setClass('driver'))
+      store.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }))
+    } else {
+      console.tron.log('Welcomed not driver')
+      const loc = store.getState().user.loc
+      if (loc) {
+        store.dispatch(NearbyActions.findNearbyDrivers(loc))
+      }
+      store.dispatch(UiActions.setClass('rider'))
+      store.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }))
+    }
+  })
+}
 
 /*
 userLogout
