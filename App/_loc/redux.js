@@ -19,10 +19,10 @@ export const INITIAL_STATE = Immutable({
 })
 
 export const updateUserLoc = (state, { loc }) => {
-  return state.merge({ 
-  	...loc,
-  	when: Date.now(),
-  	error: null
+  return state.merge({
+    ...loc,
+    when: Date.now(),
+    error: null
   })
 }
 

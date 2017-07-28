@@ -4,6 +4,7 @@ import { StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native'
 import { Colors, Metrics } from '../Themes/'
 import UserActions from '../Redux/UserRedux'
 import NearbyActions from '../Redux/NearbyRedux'
+import AuthActions from '../_auth/redux'
 import { NavigationActions } from 'react-navigation'
 import firebase from '../Config/FirebaseConfig'
 import Loading from '../Components/Loading'
@@ -108,7 +109,7 @@ const mapDispatchToProps = (dispatch) => ({
   navigateTo: (route) => dispatch(NavigationActions.navigate({ routeName: route })),
   updateUserLoc: (loc) => dispatch(UserActions.updateUserLoc(loc)),
   findNearbyDrivers: (user, loc) => dispatch(NearbyActions.findNearbyDrivers(user, loc)),
-  userWelcomed: () => dispatch(UserActions.userWelcomed())
+  userWelcomed: () => dispatch(AuthActions.userWelcomed())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PermissionsScreen)

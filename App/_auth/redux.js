@@ -2,17 +2,20 @@ import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
+  trackEvent: ['name', 'payload'],
   userLogin: null,
   userLoginSuccess: ['obj'],
   userLoginError: ['error'],
-  trackEvent: ['name', 'payload'],
+  userLogout: null,
+  userWelcomed: null,
+  initializeFirebase: null
 }, { prefix: 'auth - ' })
 
 export const AuthTypes = Types
 export default Creators
 
 export const INITIAL_STATE = Immutable({
-  fcmToken: null,  
+  fcmToken: null,
   error: null,
   obj: null,
   initialFetch: false
@@ -23,7 +26,7 @@ export const userLogin = (state, { obj }) => {
 }
 
 export const userLoginSuccess = (state, { obj }) => {
-  return state.merge({ obj: obj, initialFetch: 'done' })
+  return state.merge({ obj: obj, initialFetch: 'done', error: null })
 }
 
 export const userLoginError = (state, { error }) => {

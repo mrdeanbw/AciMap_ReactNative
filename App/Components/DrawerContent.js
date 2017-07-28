@@ -3,9 +3,9 @@ import { connect } from 'react-redux'
 import { ScrollView, View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import { Fonts, Colors } from '../Themes/'
-import UserActions from '../Redux/UserRedux'
 import ChatActions from '../Redux/ChatRedux'
 import DrawerChatWidget from './DrawerChatWidget'
+import AuthActions from '../_auth/redux'
 
 class DrawerContent extends Component {
   clickDrawerNav (route, navigation) {
@@ -104,7 +104,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   clearRoomKey: () => dispatch(ChatActions.clearRoomKey()),
-  userLogout: () => dispatch(UserActions.userLogout())
+  userLogout: () => dispatch(AuthActions.userLogout())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DrawerContent)
