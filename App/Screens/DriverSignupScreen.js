@@ -5,6 +5,7 @@ import firebase from '../Config/FirebaseConfig'
 import DriverActions from '../Redux/DriverRedux'
 import { Colors, Metrics } from '../Themes/'
 import t from 'tcomb-form-native'
+import * as AuthSelectors from '../_auth/selectors'
 
 var Form = t.form.Form
 
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  user: state.user.obj || null
+  user: AuthSelectors.getUser(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -10,6 +10,7 @@ import NearbyActions from '../Redux/NearbyRedux'
 import UiActions from '../Redux/UiRedux'
 import DriverMarker from '../Components/DriverMarker'
 import DriverCallout from '../Components/DriverCallout'
+import * as LocSelectors from '../_loc/selectors'
 
 class ACMap extends Component {
   clickProfile (uid) {
@@ -62,7 +63,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  loc: state.user.loc,
+  loc: LocSelectors.getUserLoc(state),
   nearbyDrivers: state.nearby.drivers || [],
   driverInfoLoaded: state.nearby.driversInfoLoaded
 })

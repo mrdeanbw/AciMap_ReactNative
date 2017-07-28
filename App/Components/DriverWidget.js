@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { Metrics, Colors, Fonts } from '../Themes/'
 import DriverActions from '../Redux/DriverRedux'
 import Icon from 'react-native-vector-icons/FontAwesome'
+import * as AuthSelectors from '../_auth/selectors'
+import * as LocSelectors from '../_loc/selectors'
 
 class DriverWidget extends Component {
   render () {
@@ -54,9 +56,9 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  user: state.user.obj || null,
-  driver: state.driver.formData || null,
-  loc: state.user.loc
+  user: AuthSelectors.getUser(state),
+  loc: LocSelectors.getUserLoc(state),
+  driver: state.driver.formData || null
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native'
 import { Colors, Metrics, Images } from '../Themes/'
-import UserActions from '../Redux/UserRedux'
 import UiActions from '../Redux/UiRedux'
 import { NavigationActions } from 'react-navigation'
 import * as Animatable from 'react-native-animatable'
+import * as AuthSelectors from '../_auth/selectors'
 
 class WelcomeScreen extends Component {
   selectClass (className) {
@@ -80,11 +80,10 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  user: state.user.obj || null
+  user: AuthSelectors.getUser(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  userLogin: (loc) => dispatch(UserActions.userLogin(loc)),
   setClass: (className) => dispatch(UiActions.setClass(className)),
   navigateTo: (route) => dispatch(NavigationActions.navigate({ routeName: route }))
 })

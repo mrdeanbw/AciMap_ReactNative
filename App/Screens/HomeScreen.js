@@ -5,6 +5,7 @@ import { Metrics, Colors } from '../Themes/'
 import ACMap from '../Containers/ACMap'
 import RiderWidget from '../Components/RiderWidget'
 import DriverWidget from '../Components/DriverWidget'
+import * as AuthSelectors from '../_auth/selectors'
 
 class HomeScreen extends Component {
   render () {
@@ -21,7 +22,7 @@ class HomeScreen extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: state.user.obj || null,
+  user: AuthSelectors.getUser(state),
   className: state.ui.className
 })
 

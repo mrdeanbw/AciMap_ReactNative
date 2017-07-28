@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import firebase from '../Config/FirebaseConfig'
 import { StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native'
 import { Colors, Metrics } from '../Themes/'
-import UserActions from '../Redux/UserRedux'
 import NearbyActions from '../Redux/NearbyRedux'
 import AuthActions from '../_auth/redux'
 import { NavigationActions } from 'react-navigation'
-import firebase from '../Config/FirebaseConfig'
+import * as AuthSelectors from '../_auth/selectors'
 import Loading from '../Components/Loading'
 
 const ASPECT_RATIO = Metrics.screenWidth / Metrics.screenHeight
@@ -28,7 +28,7 @@ class PermissionsScreen extends Component {
           latitudeDelta: LATITUDE_DELTA,
           longitudeDelta: LONGITUDE_DELTA
         }
-        this.props.updateUserLoc(loc)
+        // this.props.updateUserLoc(loc)
         this.props.userWelcomed()
         if (this.props.className === 'rider') {
           this.props.findNearbyDrivers(loc) // do this for rider now. driver will wait til signup done +/? beacon down?
@@ -100,14 +100,12 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  user: state.user.obj || null,
+  user: AuthSelectors.getUser(state),
   className: state.ui.className
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  userLogin: (loc) => dispatch(UserActions.userLogin(loc)),
   navigateTo: (route) => dispatch(NavigationActions.navigate({ routeName: route })),
-  updateUserLoc: (loc) => dispatch(UserActions.updateUserLoc(loc)),
   findNearbyDrivers: (user, loc) => dispatch(NearbyActions.findNearbyDrivers(user, loc)),
   userWelcomed: () => dispatch(AuthActions.userWelcomed())
 })

@@ -1,7 +1,7 @@
 import { NavigationActions } from 'react-navigation'
 import firebase from '../Config/FirebaseConfig'
 import { store } from '../Containers/App'
-import UserActions from '../Redux/UserRedux'
+import AuthActions from '../_auth/redux'
 import UiActions from '../Redux/UiRedux'
 import NearbyActions from '../Redux/NearbyRedux'
 const Geofire = require('geofire')
@@ -15,7 +15,7 @@ export function * addDriverBeacon ({ user, loc, driver }) {
 
   geofireRef.set(uid, [lat, lon]).then(function () {
     console.tron.log(uid + ': successfully set position to [' + lat + ',' + lon + ']')
-    store.dispatch(UserActions.trackEvent('addDriverBeacon', loc))
+    store.dispatch(AuthActions.trackEvent('addDriverBeacon', loc))
     store.dispatch(NearbyActions.findNearbyDrivers(loc)) // do this again -- uh here not signupsuccess or waht?
   })
 }

@@ -3,14 +3,14 @@
 
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { NavigationActions } from 'react-navigation'
 import { Image, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Metrics, Images } from '../Themes/'
-// import UserActions from '../Redux/UserRedux'
 import AuthActions from '../_auth/redux'
 import Loading from '../Components/Loading'
+import * as AuthSelectors from '../_auth/selectors'
 
 class LoginScreen extends Component {
-  // If initialFetch is not false, show loadSpinner. That will last thru the first thing, until navaway.
   render () {
     return this.props.initialFetch === false ? (
       <Image source={Images.city} style={styles.imageContainer}>
@@ -50,13 +50,14 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  user: state.user.obj || null,
-  initialFetch: state.user.initialFetch
+  user: AuthSelectors.getUser(state),
+  initialFetch: AuthSelectors.getInitialFetch(state),
+  welcomed: AuthSelectors.getUserWelcomed(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  // userLogin: (loc) => dispatch(UserActions.userLogin(loc))
-  userLogin: () => dispatch(AuthActions.userLogin())
+  userLogin: () => dispatch(AuthActions.userLogin()),
+  navigateTo: (route) => dispatch(NavigationActions.navigate({ routeName: route }))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)

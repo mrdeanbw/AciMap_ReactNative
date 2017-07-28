@@ -8,7 +8,6 @@ import * as AuthSelectors from './selectors'
 
 import ChatActions from '../Redux/ChatRedux'
 import NearbyActions from '../Redux/NearbyRedux'
-import UiActions from '../Redux/UiRedux'
 
 /*
 trackEvent
@@ -79,26 +78,30 @@ export function * userLoginSuccess ({ obj }) {
         photo: user.photoURL
       }
       firebase.database().ref(`users/${uid}`).set(newFirebaseUserObj)
+      store.dispatch(AuthActions.setWelcomed(false))
       store.dispatch(NavigationActions.navigate({ routeName: 'WelcomeScreen' }))
-    } else if (!user.welcomed) {
+    } else if (!userFromFirebase.welcomed) {
       console.tron.log('Not welcomed, now to welcome screen')
+      store.dispatch(AuthActions.setWelcomed(false))
       store.dispatch(NavigationActions.navigate({ routeName: 'WelcomeScreen' }))
-    } else if (user.driver) {
+    } else if (userFromFirebase.driver) {
       console.tron.log('Welcomed driver')
       const loc = store.getState().user.loc
       if (loc) {
         store.dispatch(NearbyActions.findNearbyDrivers(loc))
       }
-      store.dispatch(UiActions.setClass('driver'))
-      // store.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }))
+      store.dispatch(AuthActions.setUserClass('driver'))
+      store.dispatch(AuthActions.setWelcomed(true))
+      store.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }))
     } else {
       console.tron.log('Welcomed not driver')
-      const loc = store.getState().user.loc
-      if (loc) {
-        store.dispatch(NearbyActions.findNearbyDrivers(loc))
-      }
-      store.dispatch(UiActions.setClass('rider'))
-      // store.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }))
+      // const loc = store.getState().user.loc
+      // if (loc) {
+      //   store.dispatch(NearbyActions.findNearbyDrivers(loc))
+      // }
+      store.dispatch(AuthActions.setUserClass('rider'))
+      store.dispatch(AuthActions.setWelcomed(true))
+      store.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }))
     }
   })
 }
@@ -109,8 +112,12 @@ User clicked logout button. Log out from Facebook (and Firebase?) and redirect t
 [ Delete localStorage? ]
 */
 export function * userLogout () {
-  LoginManager.logOut()
-  store.dispatch(NavigationActions.navigate({ routeName: 'LoginScreen' }))
+  firebase.auth().signOut()
+    .then(() => {
+      LoginManager.logOut()
+      store.dispatch(NavigationActions.navigate({ routeName: 'LoginScreen' }))
+    })
+    .catch() // what
 }
 
 /* userWelcomed
@@ -122,6 +129,7 @@ export function * userWelcomed () {
   firebase.database().ref('users/' + uid).update({
     welcomed: true
   })
+  store.dispatch(AuthActions.setWelcomed(true))
 }
 
 /*
