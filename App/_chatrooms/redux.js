@@ -2,7 +2,8 @@ import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
-  fetchNearby: null
+  fetchNearby: null,
+  addChatroom: ['chatroom']
 }, {prefix: 'chatrooms - '})
 
 export const UserTypes = Types

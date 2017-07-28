@@ -1,7 +1,8 @@
 import { takeLatest } from 'redux-saga/effects'
 
 import { AuthTypes } from '../_auth/redux'
-import { trackEvent, userLogin, userLoginSuccess, userWelcomed, userLogout, initializeFirebase } from '../_auth/sagas'
+import { trackEvent, userLogin, userLoginSuccess, userWelcomed,
+    userLogout, initializeFirebase } from '../_auth/sagas'
 
 import { LocTypes } from '../_loc/redux'
 import { fetchUserLoc } from '../_loc/sagas'
@@ -9,7 +10,9 @@ import { fetchUserLoc } from '../_loc/sagas'
 import { DriveTypes } from '../_drive/redux'
 import { driverSignupSubmit, driverSignupSuccess, addDriverBeacon } from '../_drive/sagas'
 
-import { findNearbyDrivers } from './NearbySagas'
+import { UsersTypes } from '../_users/redux'
+import { fetchNearbyDrivers } from '../_users/sagas'
+
 import { initializeChat, messageSent, fetchRoomData,
     setActiveChatRoom, fetchOrRegisterRoom } from './ChatSagas'
 
@@ -32,18 +35,10 @@ export default function * root () {
     takeLatest(DriveTypes.ADD_DRIVER_BEACON, addDriverBeacon),
 
     // New Users
-    // takeLatest(UsersTypes.FETCH_NEARBY_DRIVERS, fetchNearbyDrivers),
-    // takeLatest(UsersTypes.ADD_USER, addUser),
+    takeLatest(UsersTypes.FETCH_NEARBY_DRIVERS, fetchNearbyDrivers),
 
     // New Chatrooms
     // takeLatest(ChatroomsTypes.FETCH_ACTIVE_CHATROOMS, fetchActiveChatrooms),
-    // takeLatest(ChatroomsTypes.ADD_CHATROOM, addChatroom),
-
-    // New Messages
-    // takeLatest(ChatroomsTypes.ADD_MESSAGE, addMessage),
-
-    // Old Nearby
-    takeLatest('FIND_NEARBY_DRIVERS', findNearbyDrivers),
 
     // Old Chat
     takeLatest('INITIALIZE_CHAT', initializeChat),

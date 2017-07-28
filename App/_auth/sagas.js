@@ -4,11 +4,10 @@ import { AccessToken, LoginManager } from 'react-native-fbsdk'
 import firebase from '../Config/FirebaseConfig'
 import { NavigationActions } from 'react-navigation'
 import AuthActions from './redux'
+import UsersActions from '../_users/redux'
 import * as AuthSelectors from './selectors'
-import * as LocSelectors from '../_loc/selectors'
 
 import ChatActions from '../Redux/ChatRedux'
-import NearbyActions from '../Redux/NearbyRedux'
 
 /*
 trackEvent
@@ -87,19 +86,12 @@ export function * userLoginSuccess ({ obj }) {
       store.dispatch(NavigationActions.navigate({ routeName: 'WelcomeScreen' }))
     } else if (userFromFirebase.driver) {
       console.tron.log('Welcomed driver')
-      const loc = LocSelectors.getUserLoc(store.getState())
-      if (loc) {
-        store.dispatch(NearbyActions.findNearbyDrivers(loc))
-      }
       store.dispatch(AuthActions.setUserClass('driver'))
       store.dispatch(AuthActions.setWelcomed(true))
+      store.dispatch(UsersActions.fetchNearbyDrivers())
       store.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }))
     } else {
       console.tron.log('Welcomed not driver')
-      // const loc = store.getState().user.loc
-      // if (loc) {
-      //   store.dispatch(NearbyActions.findNearbyDrivers(loc))
-      // }
       store.dispatch(AuthActions.setUserClass('rider'))
       store.dispatch(AuthActions.setWelcomed(true))
       store.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }))

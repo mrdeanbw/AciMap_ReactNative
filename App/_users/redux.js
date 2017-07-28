@@ -2,10 +2,11 @@ import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
-  fetchNearby: null
+  fetchNearbyDrivers: null,
+  addUser: ['user']
 }, {prefix: 'users - '})
 
-export const UserTypes = Types
+export const UsersTypes = Types
 export default Creators
 
 export const INITIAL_STATE = Immutable({
@@ -13,10 +14,10 @@ export const INITIAL_STATE = Immutable({
   allIds: []
 })
 
-export const fetchNearby = (state) => {
+export const fetchNearbyDrivers = (state) => {
   return state
 }
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.FETCH_NEARBY]: fetchNearby
+  [Types.FETCH_NEARBY_DRIVERS]: fetchNearbyDrivers
 })

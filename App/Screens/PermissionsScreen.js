@@ -31,7 +31,7 @@ class PermissionsScreen extends Component {
         // this.props.updateUserLoc(loc)
         this.props.userWelcomed()
         if (this.props.className === 'rider') {
-          this.props.findNearbyDrivers(loc) // do this for rider now. driver will wait til signup done +/? beacon down?
+          // this.props.findNearbyDrivers(loc) // do this for rider now. driver will wait til signup done +/? beacon down?
           this.props.navigateTo('HomeScreen')
         } else if (this.props.className === 'driverSigningUp') {
           this.props.navigateTo('DriverSignupScreen')
@@ -105,8 +105,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  navigateTo: (route) => dispatch(NavigationActions.navigate({ routeName: route })),
-  findNearbyDrivers: (user, loc) => dispatch(NearbyActions.findNearbyDrivers(user, loc)),
+  navigateTo: (route) => dispatch(NavigationActions.navigate({ routeName: route })),  
   userWelcomed: () => dispatch(AuthActions.userWelcomed())
 })
 
