@@ -1,7 +1,7 @@
 // USERS SAGAS
 import { store } from '../Containers/App'
 import firebase from '../Config/FirebaseConfig'
-// import UsersActions from '../_users/redux'
+import UsersActions from '../_users/redux'
 import * as LocSelectors from '../_loc/selectors'
 const Geofire = require('geofire')
 
@@ -33,6 +33,7 @@ export function * fetchNearbyDrivers () {
   geoQuery.on('key_entered', function (key, loc, distance) {
     console.tron.log(`geoQuery - key_entered - key ${key}, distance ${distance}, loc:`)
     console.tron.log(loc)
+    store.dispatch(UsersActions.addUser(key, loc))
     // store.dispatch(NearbyActions.updateDriverLoc(key, loc, distance))
     // firebase.database()
     //   .ref('users/' + key)

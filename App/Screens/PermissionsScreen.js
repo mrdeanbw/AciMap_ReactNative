@@ -3,15 +3,14 @@ import { connect } from 'react-redux'
 import firebase from '../Config/FirebaseConfig'
 import { StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native'
 import { Colors, Metrics } from '../Themes/'
-import NearbyActions from '../Redux/NearbyRedux'
 import AuthActions from '../_auth/redux'
 import { NavigationActions } from 'react-navigation'
 import * as AuthSelectors from '../_auth/selectors'
 import Loading from '../Components/Loading'
 
-const ASPECT_RATIO = Metrics.screenWidth / Metrics.screenHeight
-const LATITUDE_DELTA = 0.0922
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
+// const ASPECT_RATIO = Metrics.screenWidth / Metrics.screenHeight
+// const LATITUDE_DELTA = 0.0922
+// const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO
 
 class PermissionsScreen extends Component {
   state = {
@@ -22,12 +21,12 @@ class PermissionsScreen extends Component {
     firebase.messaging().requestPermissions()
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        var loc = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          latitudeDelta: LATITUDE_DELTA,
-          longitudeDelta: LONGITUDE_DELTA
-        }
+        // var loc = {
+        //   latitude: position.coords.latitude,
+        //   longitude: position.coords.longitude,
+        //   latitudeDelta: LATITUDE_DELTA,
+        //   longitudeDelta: LONGITUDE_DELTA
+        // }
         // this.props.updateUserLoc(loc)
         this.props.userWelcomed()
         if (this.props.className === 'rider') {
@@ -105,7 +104,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  navigateTo: (route) => dispatch(NavigationActions.navigate({ routeName: route })),  
+  navigateTo: (route) => dispatch(NavigationActions.navigate({ routeName: route })),
   userWelcomed: () => dispatch(AuthActions.userWelcomed())
 })
 
