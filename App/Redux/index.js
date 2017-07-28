@@ -6,11 +6,11 @@ export default () => {
   const rootReducer = combineReducers({
     _auth: require('../_auth/redux').reducer,
     _chatrooms: require('../_chatrooms/redux').reducer,
+    _drive: require('../_drive/redux').reducer,
     _loc: require('../_loc/redux').reducer,
     _messages: require('../_messages/redux').reducer,
     _users: require('../_users/redux').reducer,
     chat: require('./ChatRedux').reducer,
-    driver: require('./DriverRedux').reducer,
     nearby: require('./NearbyRedux').reducer,
     nav: require('./NavigationRedux').reducer,
     ui: require('./UiRedux').reducer

@@ -76,8 +76,4 @@ const mapStateToProps = (state) => ({
   toast: state.ui.toast
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  // addDriverBeacon: (user, loc, driver) => dispatch(DriverActions.addDriverBeacon(user, loc, driver))
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Toast)
+export default connect(mapStateToProps)(Toast)

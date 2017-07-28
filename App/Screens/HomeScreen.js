@@ -14,7 +14,7 @@ class HomeScreen extends Component {
       <View style={{ flex: 1, paddingBottom: '10%', backgroundColor: Colors.acnavy }}>
         <ACMap navigation={navigation} />
         <View style={{position: 'absolute', bottom: 0, alignItems: 'center', width: Metrics.screenWidth}}>
-          { this.props.className === 'driver' ? <DriverWidget /> : <RiderWidget /> }
+          { this.props.userClass === 'driver' ? <DriverWidget /> : <RiderWidget /> }
         </View>
       </View>
     )
@@ -23,7 +23,7 @@ class HomeScreen extends Component {
 
 const mapStateToProps = (state) => ({
   user: AuthSelectors.getUser(state),
-  className: state.ui.className
+  userClass: AuthSelectors.getUserClass(state)
 })
 
 export default connect(mapStateToProps, null)(HomeScreen)

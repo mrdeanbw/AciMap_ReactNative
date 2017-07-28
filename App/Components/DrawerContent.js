@@ -6,6 +6,7 @@ import { Fonts, Colors } from '../Themes/'
 import ChatActions from '../Redux/ChatRedux'
 import DrawerChatWidget from './DrawerChatWidget'
 import AuthActions from '../_auth/redux'
+import * as AuthSelectors from '../_auth/selectors'
 
 class DrawerContent extends Component {
   clickDrawerNav (route, navigation) {
@@ -34,7 +35,7 @@ class DrawerContent extends Component {
           <Text style={styles.text}>City Map</Text>
         </TouchableOpacity>
 
-        {this.props.className !== 'driver' ? (
+        {this.props.userClass !== 'driver' ? (
           <TouchableOpacity
             style={{ paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}
             onPress={() => this.clickDrawerNav('DriverSignupScreen', navigation)}
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   roomKey: state.chat.roomKey,
-  className: state.ui.className
+  userClass: AuthSelectors.getUserClass(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

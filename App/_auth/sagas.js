@@ -5,6 +5,7 @@ import firebase from '../Config/FirebaseConfig'
 import { NavigationActions } from 'react-navigation'
 import AuthActions from './redux'
 import * as AuthSelectors from './selectors'
+import * as LocSelectors from '../_loc/selectors'
 
 import ChatActions from '../Redux/ChatRedux'
 import NearbyActions from '../Redux/NearbyRedux'
@@ -86,7 +87,7 @@ export function * userLoginSuccess ({ obj }) {
       store.dispatch(NavigationActions.navigate({ routeName: 'WelcomeScreen' }))
     } else if (userFromFirebase.driver) {
       console.tron.log('Welcomed driver')
-      const loc = store.getState().user.loc
+      const loc = LocSelectors.getUserLoc(store.getState())
       if (loc) {
         store.dispatch(NearbyActions.findNearbyDrivers(loc))
       }

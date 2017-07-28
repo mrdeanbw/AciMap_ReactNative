@@ -26,6 +26,11 @@ export const updateUserLoc = (state, { loc }) => {
   })
 }
 
+export const userLogout = (state) => {
+  return INITIAL_STATE
+}
+
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.UPDATE_USER_LOC]: updateUserLoc
+  [Types.UPDATE_USER_LOC]: updateUserLoc,
+  'auth - USER_LOGOUT': userLogout
 })

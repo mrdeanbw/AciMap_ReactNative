@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { Linking, StyleSheet, Text, View, TouchableHighlight, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
-import firebase from '../Config/FirebaseConfig'
-import DriverActions from '../Redux/DriverRedux'
+import DriveActions from '../_drive/redux'
 import { Colors, Metrics } from '../Themes/'
 import t from 'tcomb-form-native'
 import * as AuthSelectors from '../_auth/selectors'
@@ -35,20 +34,7 @@ class DriverSignupScreen extends Component {
   onPress () {
     var value = this.refs.form.getValue()
     if (value) { // if validation fails, value will be null
-      var user = this.props.user
-      firebase.database().ref('users/' + user.uid).update({
-        driver: {
-          vehicle: value.describeYourVehicle,
-          self: value.describeYourself
-        }
-      })
-      .then(response => {
-        if (response.status === 'success') {
-          this.props.driverSignupSuccess(value, user)
-        } else {
-          window.alert('Error, try again')
-        }
-      })
+      this.props.driverSignupSubmit(value)
     }
   }
   render () {
@@ -162,8 +148,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  driverSignupSubmit: (formData, user) => dispatch(DriverActions.driverSignupSubmit(formData, user)),
-  driverSignupSuccess: (formData, user) => dispatch(DriverActions.driverSignupSuccess(formData, user))
+  driverSignupSubmit: (formData, user) => dispatch(DriveActions.driverSignupSubmit(formData, user))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DriverSignupScreen)

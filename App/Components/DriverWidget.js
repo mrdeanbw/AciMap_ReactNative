@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
+import { StyleSheet, Text, View } from 'react-native'
 import { Metrics, Colors, Fonts } from '../Themes/'
-import DriverActions from '../Redux/DriverRedux'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import * as AuthSelectors from '../_auth/selectors'
-import * as LocSelectors from '../_loc/selectors'
+import DriveActions from '../_drive/redux'
 
 class DriverWidget extends Component {
   render () {
@@ -13,7 +11,7 @@ class DriverWidget extends Component {
       <View style={styles.container}>
         <Text style={styles.beaconText}>Set Driver Beacon</Text>
         <Icon.Button name='facebook'
-          onPress={() => this.props.addDriverBeacon(this.props.user, this.props.loc, this.props.driver)}
+          onPress={() => this.props.addDriverBeacon()}
           style={styles.button}>
           <Text style={styles.buttonText}>&nbsp;Set Driver Beacon</Text>
         </Icon.Button>
@@ -55,14 +53,8 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapStateToProps = (state) => ({
-  user: AuthSelectors.getUser(state),
-  loc: LocSelectors.getUserLoc(state),
-  driver: state.driver.formData || null
-})
-
 const mapDispatchToProps = (dispatch) => ({
-  addDriverBeacon: (user, loc, driver) => dispatch(DriverActions.addDriverBeacon(user, loc, driver))
+  addDriverBeacon: () => dispatch(DriveActions.addDriverBeacon())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(DriverWidget)
+export default connect(null, mapDispatchToProps)(DriverWidget)
