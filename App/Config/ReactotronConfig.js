@@ -10,7 +10,7 @@ if (Config.useReactotron) {
     // .configure({ name: 'Arcade City', host: '192.168.0.6' }) // Home iPad
     // .configure({ name: 'Arcade City', host: '10.24.105.91' })   // WeWork iPad
     .configure({ name: 'Arcade City', host: '127.0.0.1' })   // iOS Emulator
-    // .configure({ name: 'Arcade City', host: '127.0.0.1', port: 9090 })   // Home Android 
+    // .configure({ name: 'Arcade City', host: '127.0.0.1', port: 9090 })   // Home Android
     .useReactNative()
     .use(reduxPlugin({ onRestore: Immutable }))
     .use(sagaPlugin())

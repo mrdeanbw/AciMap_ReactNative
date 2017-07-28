@@ -4,7 +4,7 @@ import rootSaga from '../Sagas/'
 
 export default () => {
   const rootReducer = combineReducers({
-  	_auth: require('../_auth/redux').reducer,
+    _auth: require('../_auth/redux').reducer,
     _chatrooms: require('../_chatrooms/redux').reducer,
     _loc: require('../_loc/redux').reducer,
     _messages: require('../_messages/redux').reducer,

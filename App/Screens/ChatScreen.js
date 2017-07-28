@@ -5,8 +5,7 @@ import ChatActions from '../Redux/ChatRedux'
 import { GiftedChat } from 'react-native-gifted-chat'
 
 class ChatScreen extends Component {
-
-  componentDidUpdate() {
+  componentDidUpdate () {
     console.tron.log(this.props)
   }
 

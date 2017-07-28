@@ -5,7 +5,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Image, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Metrics, Images } from '../Themes/'
-import UserActions from '../Redux/UserRedux'
+// import UserActions from '../Redux/UserRedux'
+import AuthActions from '../_auth/redux'
 import Loading from '../Components/Loading'
 
 class LoginScreen extends Component {
@@ -54,7 +55,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  userLogin: (loc) => dispatch(UserActions.userLogin(loc))
+  // userLogin: (loc) => dispatch(UserActions.userLogin(loc))
+  userLogin: () => dispatch(AuthActions.userLogin())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)

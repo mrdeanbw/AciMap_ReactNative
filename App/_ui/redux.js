@@ -3,16 +3,13 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   fetchNearby: null
-}, {prefix: 'loc: '})
+}, {prefix: 'ui: '})
 
 export const UserTypes = Types
 export default Creators
 
 export const INITIAL_STATE = Immutable({
-  lat: null,
-  lng: null,
-  when: null,
-  error: null
+  activeSomething: null
 })
 
 export const fetchNearby = (state) => {
@@ -22,7 +19,3 @@ export const fetchNearby = (state) => {
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.FETCH_NEARBY]: fetchNearby
 })
-
-// Actions
-// fetchUserLoc
-// updateUserLoc
