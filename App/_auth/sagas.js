@@ -5,6 +5,7 @@ import firebase from '../Config/FirebaseConfig'
 import { NavigationActions } from 'react-navigation'
 import AuthActions from './redux'
 import UsersActions from '../_users/redux'
+import ChatroomsActions from '../_chatrooms/redux'
 import * as AuthSelectors from './selectors'
 import { startDummyData } from '../Services/dummyData'
 
@@ -61,9 +62,6 @@ User logged in successfully. Look up user object in db to see status (welcomed/d
 Fire action to set up Firebase listeners.
 */
 export function * userLoginSuccess ({ obj }) {
-  startDummyData()
-
-  store.dispatch(AuthActions.initializeFirebase())
 
   const user = obj
   const uid = obj.uid
@@ -99,6 +97,9 @@ export function * userLoginSuccess ({ obj }) {
       store.dispatch(AuthActions.setWelcomed(true))
       store.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }))
     }
+  }).then(() => {
+    store.dispatch(ChatroomsActions.initializeChat())
+    startDummyData()
   })
 }
 
@@ -126,44 +127,4 @@ export function * userWelcomed () {
     welcomed: true
   })
   store.dispatch(AuthActions.setWelcomed(true))
-}
-
-/*
-initializeFirebase
-User just logged in successfully and their info is in redux. Set up all relevant Firebase listeners.
-*/
-
-export function * initializeFirebase () {
-  console.tron.log('Setting up Firebase listeners...')
-
-  const user = AuthSelectors.getUser(store.getState())
-  const uid = user.uid
-
-  console.tron.log('Listening for user chatrooms...')
-  firebase.database().ref(`users/${uid}/rooms`).on('value', rooms => {
-    rooms.forEach(room => {
-      // Add that room with user info to redux for DrawerChatWidget
-      store.dispatch(ChatActions.fetchRoomData(room.key))
-      // Listen to each room's messages
-      console.tron.log(`Found user chatroom with key ${room.key}, now listening for messages.`)
-      firebase.database().ref(`messages/${room.key}`).orderByKey().limitToLast(25).on('value', snap => {
-        const messages = []
-        snap.forEach(message => {
-          const msg = message.val()
-          messages.push({
-            _id: message.key,
-            text: msg.text,
-            user: msg.user,
-            createdAt: msg.createdAt
-          })
-        })
-        messages.sort((a, b) => {
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        })
-        console.tron.log('Firing setChatRoomMessages action with messages:')
-        console.tron.log(messages)
-        store.dispatch(ChatActions.setChatRoomMessages(room.key, messages))
-      })
-    })
-  })
 }

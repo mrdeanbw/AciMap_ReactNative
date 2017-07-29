@@ -1,8 +1,7 @@
 import { takeLatest } from 'redux-saga/effects'
 
 import { AuthTypes } from '../_auth/redux'
-import { trackEvent, userLogin, userLoginSuccess, userWelcomed,
-    userLogout, initializeFirebase } from '../_auth/sagas'
+import { trackEvent, userLogin, userLoginSuccess, userWelcomed, userLogout } from '../_auth/sagas'
 
 import { LocTypes } from '../_loc/redux'
 import { fetchUserLoc } from '../_loc/sagas'
@@ -13,8 +12,10 @@ import { driverSignupSubmit, driverSignupSuccess, addDriverBeacon } from '../_dr
 import { UsersTypes } from '../_users/redux'
 import { fetchNearbyDrivers } from '../_users/sagas'
 
-import { initializeChat, messageSent, fetchRoomData,
-    setActiveChatRoom, fetchOrRegisterRoom } from './ChatSagas'
+import { ChatroomsTypes } from '../_chatrooms/redux'
+import { initializeChat } from '../_chatrooms/sagas'
+
+import { messageSent, fetchRoomData, setActiveChatRoom, fetchOrRegisterRoom } from './ChatSagas'
 
 export default function * root () {
   yield [
@@ -24,7 +25,6 @@ export default function * root () {
     takeLatest(AuthTypes.USER_LOGIN_SUCCESS, userLoginSuccess),
     takeLatest(AuthTypes.USER_WELCOMED, userWelcomed),
     takeLatest(AuthTypes.USER_LOGOUT, userLogout),
-    takeLatest(AuthTypes.INITIALIZE_FIREBASE, initializeFirebase),
 
     // New Loc
     takeLatest(LocTypes.FETCH_USER_LOC, fetchUserLoc),
@@ -38,13 +38,14 @@ export default function * root () {
     takeLatest(UsersTypes.FETCH_NEARBY_DRIVERS, fetchNearbyDrivers),
 
     // New Chatrooms
+    takeLatest(ChatroomsTypes.INITIALIZE_CHAT, initializeChat)
     // takeLatest(ChatroomsTypes.FETCH_ACTIVE_CHATROOMS, fetchActiveChatrooms),
 
     // Old Chat
-    takeLatest('INITIALIZE_CHAT', initializeChat),
-    takeLatest('MESSAGE_SENT', messageSent),
-    takeLatest('FETCH_ROOM_DATA', fetchRoomData),
-    takeLatest('SET_ACTIVE_CHAT_ROOM', setActiveChatRoom),
-    takeLatest('FETCH_OR_REGISTER_ROOM', fetchOrRegisterRoom)
+    // takeLatest('INITIALIZE_CHAT', initializeChat),
+    // takeLatest('MESSAGE_SENT', messageSent),
+    // takeLatest('FETCH_ROOM_DATA', fetchRoomData),
+    // takeLatest('SET_ACTIVE_CHAT_ROOM', setActiveChatRoom),
+    // takeLatest('FETCH_OR_REGISTER_ROOM', fetchOrRegisterRoom)
   ]
 }

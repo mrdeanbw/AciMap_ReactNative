@@ -9,8 +9,7 @@ const { Types, Creators } = createActions({
   userLogout: null,
   userWelcomed: null,
   setWelcomed: ['welcomed'],
-  setUserClass: ['userClass'],
-  initializeFirebase: null
+  setUserClass: ['userClass']
 }, { prefix: 'auth - ' })
 
 export const AuthTypes = Types

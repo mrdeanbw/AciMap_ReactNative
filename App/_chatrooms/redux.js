@@ -2,11 +2,14 @@ import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
+  initializeChat: null,
   fetchNearby: null,
-  addChatroom: ['chatroom']
+  addChatroom: ['chatroom'],
+  fetchRoomData: ['roomKey'],
+  setChatRoomMessages: ['roomKey', 'messages']
 }, {prefix: 'chatrooms - '})
 
-export const UserTypes = Types
+export const ChatroomsTypes = Types
 export default Creators
 
 export const INITIAL_STATE = Immutable({

@@ -98,7 +98,7 @@ export function * fetchOrRegisterRoom ({ uid }) {
 
       // Temporarily hardcode user ids
       const myid = store.getState().user.obj.uid
-      const friendid = uid
+      const friendid = uid // so thats why that was fucked
 
       /**
        * update room
