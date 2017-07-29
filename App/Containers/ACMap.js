@@ -11,10 +11,15 @@ import UiActions from '../Redux/UiRedux'
 import DriverMarker from '../Components/DriverMarker'
 import DriverCallout from '../Components/DriverCallout'
 import * as LocSelectors from '../_loc/selectors'
+import * as UsersSelectors from '../_users/selectors'
 
 class ACMap extends Component {
   clickProfile (uid) {
     this.props.fetchOrRegisterRoom(uid)
+  }
+  componentDidUpdate () {
+    console.tron.log('ACMap componentDidUpdate:')
+    console.tron.log(this.props.nearbyDrivers)
   }
   render () {
     return (
@@ -64,8 +69,7 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   loc: LocSelectors.getUserLoc(state),
-  nearbyDrivers: state.nearby.drivers || [],
-  driverInfoLoaded: state.nearby.driversInfoLoaded
+  nearbyDrivers: UsersSelectors.getNearbyDrivers(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

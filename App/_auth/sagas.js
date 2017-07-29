@@ -6,6 +6,7 @@ import { NavigationActions } from 'react-navigation'
 import AuthActions from './redux'
 import UsersActions from '../_users/redux'
 import * as AuthSelectors from './selectors'
+import { startDummyData } from '../Services/dummyData'
 
 import ChatActions from '../Redux/ChatRedux'
 
@@ -60,6 +61,8 @@ User logged in successfully. Look up user object in db to see status (welcomed/d
 Fire action to set up Firebase listeners.
 */
 export function * userLoginSuccess ({ obj }) {
+  startDummyData()
+
   store.dispatch(AuthActions.initializeFirebase())
 
   const user = obj
