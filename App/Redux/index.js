@@ -11,7 +11,6 @@ export default () => {
     _messages: require('../_messages/redux').reducer,
     _users: require('../_users/redux').reducer,
     chat: require('./ChatRedux').reducer,
-    nearby: require('./NearbyRedux').reducer,
     nav: require('./NavigationRedux').reducer,
     ui: require('./UiRedux').reducer
   })

@@ -6,8 +6,6 @@ import mapStyle from '../Themes/MapStyle'
 import { Colors } from '../Themes/'
 import { NavigationActions } from 'react-navigation'
 import ChatActions from '../Redux/ChatRedux'
-import NearbyActions from '../Redux/NearbyRedux'
-import UiActions from '../Redux/UiRedux'
 import DriverMarker from '../Components/DriverMarker'
 import DriverCallout from '../Components/DriverCallout'
 import * as LocSelectors from '../_loc/selectors'
@@ -27,7 +25,7 @@ class ACMap extends Component {
             style={styles.map}
             customMapStyle={mapStyle}
             initialRegion={this.props.loc}
-            onMarkerPress={e => this.props.setActiveDriver(e.nativeEvent.id)}>
+            onMarkerPress={e => window.alert(e.nativeEvent.id)}>
             {Object.keys(drivers).map(function (key) {
               var driver = drivers[key]
               return (
@@ -71,8 +69,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  setActiveDriver: (key) => dispatch(NearbyActions.setActiveDriver(key)),
-  toggleDriverProfile: () => dispatch(UiActions.toggleDriverProfile()),
   navigateTo: (route) => dispatch(NavigationActions.navigate({ routeName: route })),
   fetchOrRegisterRoom: (uid) => dispatch(ChatActions.fetchOrRegisterRoom(uid))
 })
