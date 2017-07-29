@@ -17,11 +17,8 @@ class ACMap extends Component {
   clickProfile (uid) {
     this.props.fetchOrRegisterRoom(uid)
   }
-  componentDidUpdate () {
-    console.tron.log('ACMap componentDidUpdate:')
-    console.tron.log(this.props.nearbyDrivers)
-  }
   render () {
+    let drivers = this.props.nearbyDrivers
     return (
       <View style={styles.container}>
         { this.props.loc
@@ -31,22 +28,23 @@ class ACMap extends Component {
             customMapStyle={mapStyle}
             initialRegion={this.props.loc}
             onMarkerPress={e => this.props.setActiveDriver(e.nativeEvent.id)}>
-            {this.props.driverInfoLoaded ? this.props.nearbyDrivers.map(driver => {
+            {Object.keys(drivers).map(function (key) {
+              var driver = drivers[key]
               return (
                 <MapView.Marker
-                  key={driver.key}
-                  identifier={driver.key}
+                  key={key}
+                  identifier={key}
                   coordinate={{latitude: driver.loc[0], longitude: driver.loc[1]}}
-                  title={driver.key}
+                  title={key}
                   description={'Test Description'}
                   >
                   <DriverMarker color={'green'} />
-                  <MapView.Callout tooltip onPress={() => this.clickProfile(driver.key)}>
-                    <DriverCallout driver={driver} />
+                  <MapView.Callout tooltip onPress={() => this.clickProfile(key)}>
+                    <DriverCallout user={driver} />
                   </MapView.Callout>
                 </MapView.Marker>
               )
-            }) : <View />}
+            })}
           </MapView>
           : <Text style={{color: 'white'}}>Waiting for location...</Text>
         }
