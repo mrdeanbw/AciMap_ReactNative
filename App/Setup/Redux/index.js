@@ -4,14 +4,13 @@ import rootSaga from './sagas'
 
 export default () => {
   const rootReducer = combineReducers({
-    _auth: require('../Modules/auth/redux').reducer,
-    _chatrooms: require('../Modules/chatrooms/redux').reducer,
-    _drive: require('../Modules/drive/redux').reducer,
-    _loc: require('../Modules/loc/redux').reducer,
-    _messages: require('../Modules/messages/redux').reducer,
-    _users: require('../Modules/users/redux').reducer,
-    nav: require('./NavigationRedux').reducer,
-    ui: require('./UiRedux').reducer
+    auth: require('../Modules/auth/redux').reducer,
+    chat: require('../Modules/chatrooms/redux').reducer,
+    drive: require('../Modules/drive/redux').reducer,
+    loc: require('../Modules/loc/redux').reducer,
+    users: require('../Modules/users/redux').reducer,
+    ui: require('../Modules/ui/redux').reducer,
+    nav: require('./NavigationRedux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)

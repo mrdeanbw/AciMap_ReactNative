@@ -1,1 +1,1 @@
-export const getUserLoc = (state) => state._loc
+export const getUserLoc = (state) => state.loc

@@ -1,19 +1,13 @@
 import { createSelector } from 'reselect'
 
-export const getUsersById = (state) => state._users.byId
-export const getUserIds = (state) => state._users.allIds
+export const getUsersById = (state) => state.users.byId
+export const getUserIds = (state) => state.users.allIds
 
 export const getNearbyDrivers = createSelector(
   [ getUsersById, getUserIds ],
   (usersById, userIds) => {
-    // console.tron.log('in getNearbyDrivers piece with users and userIds')
-    // console.tron.log(usersById)
-    // console.tron.log(userIds)
-
-    // Build array of driver uids -- it's all users that have a driver property.
+    // Of nearby users, find drivers
     const driverIds = userIds.filter(u => usersById[u].driver)
-    // console.tron.log('filtered ids:')
-    // console.tron.log(driverIds)
 
     // Build object of drivers with info
     const filtered = Object.keys(usersById)
@@ -22,9 +16,6 @@ export const getNearbyDrivers = createSelector(
         obj[key] = usersById[key]
         return obj
       }, {})
-
-    // console.tron.log('filtered users:')
-    // console.tron.log(filtered)
 
     return filtered
   }

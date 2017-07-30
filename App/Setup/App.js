@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
-import RootContainer from './_RootContainer'
+import RootContainer from './RootContainer'
 import createStore from '../Redux'
 
 export const store = createStore()
