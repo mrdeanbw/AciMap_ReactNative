@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Colors } from '../Theme/'
-import ChatActions from '../Redux/ChatRedux'
+import { Colors } from '../../../Theme/'
+import ChatActions from '../redux'
 import { GiftedChat } from 'react-native-gifted-chat'
 
 class ChatScreen extends Component {

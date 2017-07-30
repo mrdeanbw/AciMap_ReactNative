@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Text, View } from 'react-native'
-import RoundedButton from './RoundedButton'
+import RoundedButton from '../../ui/components/RoundedButton'
 
 export default class DriverCallout extends Component {
   render () {

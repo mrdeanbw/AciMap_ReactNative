@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
-import { Metrics, Colors } from '../Theme/'
-import ACMap from '../Containers/ACMap'
-import RiderWidget from '../Components/RiderWidget'
-import DriverWidget from '../Components/DriverWidget'
-import * as AuthSelectors from '../_auth/selectors'
+import { Metrics, Colors } from '../../../Theme/'
+import ACMap from '../components/ACMap'
+import RiderWidget from '../components/RiderWidget'
+import DriverWidget from '../../drive/components/DriverWidget'
+import * as AuthSelectors from '../../auth/selectors'
 
 class HomeScreen extends Component {
   render () {

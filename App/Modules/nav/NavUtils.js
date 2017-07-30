@@ -1,5 +1,5 @@
 import React from 'react'
-import DrawerContent from '../Modules/nav/components/DrawerContent'
+import DrawerContent from './components/DrawerContent'
 
 export const getNavigationOptions = (title, backgroundColor, color) => ({
   title,

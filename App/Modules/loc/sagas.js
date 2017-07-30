@@ -1,5 +1,5 @@
 // LOC SAGAS
-import { store } from '../../Containers/App'
+import { store } from '../../Setup/App'
 import LocActions from './redux'
 import { Metrics } from '../../Theme/'
 

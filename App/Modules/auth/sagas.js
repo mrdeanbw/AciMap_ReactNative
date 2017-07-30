@@ -1,21 +1,21 @@
 // AUTH SAGAS
-import { store } from '../../Containers/App'
+import { store } from '../../Setup/App'
 import { AccessToken, LoginManager } from 'react-native-fbsdk'
-import firebase from '../../Config/FirebaseConfig'
+import firebase from '../../Setup/Config/FirebaseConfig'
 import { NavigationActions } from 'react-navigation'
 import AuthActions from './redux'
 import UsersActions from '../users/redux'
-import ChatroomsActions from '../chatrooms/redux'
+import ChatActions from '../chat/redux'
 import * as AuthSelectors from './selectors'
-import { startDummyData } from '../../Services/dummyData'
+import { startDummyData } from '../../Setup/dummyData'
 
 /*
 trackEvent
 */
 export function * trackEvent ({ name, payload }) {
-  const user = store.getState()._auth // reselectize
-  if (!user.obj) return
-  firebase.database().ref('tracking/' + user.obj.uid).push().set({
+  const user = AuthSelectors.getUser(store.getState())
+  if (!user) return
+  firebase.database().ref('tracking/' + user.uid).push().set({
     name, payload, timestamp: Date.now()
   })
   firebase.analytics().logEvent(name, payload)
@@ -44,7 +44,6 @@ export function * userLogin (action) {
     .then((currentUser) => {
       if (!currentUser) return false
       store.dispatch(AuthActions.userLoginSuccess(currentUser.toJSON()))
-      // store.dispatch(AuthActions.initializeFirebase())
       store.dispatch(AuthActions.trackEvent('userLogin'))
     })
     .catch((error) => {
@@ -79,23 +78,20 @@ export function * userLoginSuccess ({ obj }) {
       store.dispatch(AuthActions.setWelcomed(false))
       store.dispatch(NavigationActions.navigate({ routeName: 'WelcomeScreen' }))
     } else if (!userFromFirebase.welcomed) {
-      console.tron.log('Not welcomed, now to welcome screen')
       store.dispatch(AuthActions.setWelcomed(false))
       store.dispatch(NavigationActions.navigate({ routeName: 'WelcomeScreen' }))
     } else if (userFromFirebase.driver) {
-      console.tron.log('Welcomed driver')
       store.dispatch(AuthActions.setUserClass('driver'))
       store.dispatch(AuthActions.setWelcomed(true))
       store.dispatch(UsersActions.fetchNearbyDrivers())
       store.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }))
     } else {
-      console.tron.log('Welcomed not driver')
       store.dispatch(AuthActions.setUserClass('rider'))
       store.dispatch(AuthActions.setWelcomed(true))
       store.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }))
     }
   }).then(() => {
-    store.dispatch(ChatroomsActions.initializeChat())
+    store.dispatch(ChatActions.initializeChat())
     startDummyData()
   })
 }

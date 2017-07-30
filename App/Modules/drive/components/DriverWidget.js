@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, View } from 'react-native'
-import { Metrics, Colors, Fonts } from '../Theme/'
+import { Metrics, Colors, Fonts } from '../../../Theme/'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import DriveActions from '../_drive/redux'
+import DriveActions from '../../drive/redux'
 
 class DriverWidget extends Component {
   render () {

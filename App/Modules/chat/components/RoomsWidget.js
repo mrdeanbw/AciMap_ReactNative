@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Image, StyleSheet, Text, TouchableOpacity, ScrollView, View } from 'react-native'
-import { Fonts, Colors } from '../Theme/'
-import ChatActions from '../Redux/ChatRedux'
+import { Fonts, Colors } from '../../../Theme/'
+import ChatActions from '../redux'
 import _ from 'lodash'
 
-class DrawerChatWidget extends Component {
+class RoomsWidget extends Component {
   _selectChat (roomKey) {
     this.props.setActiveChatRoom(roomKey)
     this.props.navigation.navigate('ChatScreen')
@@ -80,4 +80,4 @@ const mapDispatchToProps = (dispatch) => ({
   setActiveChatRoom: (roomKey) => dispatch(ChatActions.setActiveChatRoom(roomKey))
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(DrawerChatWidget)
+export default connect(mapStateToProps, mapDispatchToProps)(RoomsWidget)

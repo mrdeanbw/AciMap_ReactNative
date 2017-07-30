@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Animated, Easing, View } from 'react-native'
-import { Colors } from '../Theme/'
+import { Colors } from '../../../Theme/'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 export default class Loading extends Component {

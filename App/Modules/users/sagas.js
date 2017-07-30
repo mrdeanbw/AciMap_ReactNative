@@ -1,6 +1,6 @@
 // USERS SAGAS
-import { store } from '../../Containers/App'
-import firebase from '../../Config/FirebaseConfig'
+import { store } from '../../Setup/App'
+import firebase from '../../Setup/Config/FirebaseConfig'
 import UsersActions from '../users/redux'
 import * as LocSelectors from '../loc/selectors'
 const Geofire = require('geofire')

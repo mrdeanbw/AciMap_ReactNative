@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native'
-import { Colors, Metrics, Images } from '../Theme/'
-import UiActions from '../Redux/UiRedux'
+import { Colors, Metrics, Images } from '../../../Theme/'
+import UiActions from '../../ui/redux'
 import { NavigationActions } from 'react-navigation'
 import * as Animatable from 'react-native-animatable'
-import * as AuthSelectors from '../Modules/auth/selectors'
+import * as AuthSelectors from '../../auth/selectors'
 
 class WelcomeScreen extends Component {
   selectClass (className) {
     this.props.setClass(className)
-    this.props.navigateTo('PermissionsScreen')
+    this.props.navigateTo('HomeScreen')
   }
   render () {
     return (

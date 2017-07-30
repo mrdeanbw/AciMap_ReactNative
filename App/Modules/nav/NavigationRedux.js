@@ -1,4 +1,4 @@
-import AppNavigation from '../Modules/nav/AppNavigation'
+import AppNavigation from './AppNavigation'
 
 export const reducer = (state, action) => {
   const newState = AppNavigation.router.getStateForAction(action, state)

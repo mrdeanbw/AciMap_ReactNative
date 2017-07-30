@@ -1,10 +1,10 @@
 // CHATROOMS SAGAS
-import { store } from '../../Containers/App'
-import firebase from '../../Config/FirebaseConfig'
+import { store } from '../../Setup/App'
+import firebase from '../../Setup/Config/FirebaseConfig'
 import { NavigationActions } from 'react-navigation'
-import ChatroomsActions from '../chatrooms/redux'
+import ChatActions from '../chat/redux'
 import * as AuthSelectors from '../auth/selectors'
-import * as ChatroomsSelectors from '../chatrooms/selectors'
+import * as ChatSelectors from '../chat/selectors'
 import _ from 'lodash'
 
 /*
@@ -18,6 +18,9 @@ export function * initializeChat () {
   // Select user
   const user = AuthSelectors.getUser(store.getState())
   const uid = user.uid
+
+  // Request permission to notify -- TODO: Handle failure
+  firebase.messaging().requestPermissions()
 
   // Subscribe to receive push notifications via Firebase cloud messaging
   firebase.messaging().subscribeToTopic(uid) // Replace with current userid
@@ -34,7 +37,7 @@ export function * initializeChat () {
   firebase.messaging().onMessage((message) => {
     console.tron.log(message)
     const not = message.notification
-    if (not.roomKey !== ChatroomsSelectors.getActiveChatroomKey(store.getState())) { // store.getState().chat.roomKey
+    if (not.roomKey !== ChatSelectors.getActiveChatroomKey(store.getState())) { // store.getState().chat.roomKey
       // store.dispatch(UiActions.sendToast(not.title, not.body, not.icon, 'chat'))
     }
   })
@@ -48,11 +51,15 @@ export function * initializeChat () {
       }
     })
 
-  // Listen for list of rooms
+  // Listen for list of rooms (and this is not just new rooms)
   firebase.database().ref(`users/${uid}/rooms`).on('value', rooms => {
+    console.tron.log('rooms:')
+    console.tron.log(rooms)
     rooms.forEach(room => {
+      console.tron.log('heres a room:')
+      console.tron.log(room)
       // Add that room with user info to redux for DrawerChatWidget etc.
-      store.dispatch(ChatroomsActions.fetchRoomData(room.key))
+      // store.dispatch(ChatActions.fetchRoomData(room.key))
       // Listen to each room's messages
       firebase.database().ref(`messages/${room.key}`).orderByKey().limitToLast(25).on('value', snap => {
         const messages = []
@@ -68,7 +75,7 @@ export function * initializeChat () {
         messages.sort((a, b) => {
           return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         })
-        store.dispatch(ChatroomsActions.setChatRoomMessages(room.key, messages))
+        store.dispatch(ChatActions.setChatroomMessages(room.key, messages))
       })
     })
   })
@@ -93,7 +100,7 @@ export function * fetchOrRegisterRoom ({ uid }) {
         if (key === uid) {
           console.tron.log('Looks like a match... so YAY ' + thisRoomKey)
           roomKey = thisRoomKey
-          store.dispatch(ChatroomsActions.setActiveChatRoom(roomKey))
+          store.dispatch(ChatActions.setActiveChatRoom(roomKey))
           store.dispatch(NavigationActions.navigate({ routeName: 'ChatScreen' }))
         }
       })
@@ -139,7 +146,7 @@ export function * fetchRoomData (action) {
         firebase.database().ref(`users/${userId.key}`).once('value', user => {
           var newuser = user.val()
           newuser.uid = user.key
-          store.dispatch(ChatroomsActions.updateRoomUser(roomKey, newuser))
+          store.dispatch(ChatActions.updateRoomUser(roomKey, newuser))
         })
       }
     })
@@ -165,6 +172,28 @@ export function * setActiveChatRoom ({ roomKey }) {
     messages.sort((a, b) => {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     })
-    store.dispatch(ChatroomsActions.setChatRoomMessages(roomKey, messages))
+    store.dispatch(ChatActions.setChatRoomMessages(roomKey, messages))
   })
+}
+
+/*
+messageSent [old]
+Given room id and recipient uid, store the message in firebase db
+*/
+export function * messageSent (action) {
+  const { roomKey, rid, text } = action
+  const user = store.getState().user
+  firebase.database()
+    .ref('messages/' + roomKey)
+    .push()
+    .set({
+      createdAt: Date.now(),
+      text: text,
+      user: {
+        _id: user.obj.uid,
+        avatar: user.obj.photoURL,
+        name: user.obj.displayName
+      },
+      rid: rid
+    })
 }

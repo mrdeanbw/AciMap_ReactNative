@@ -3,19 +3,30 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   initializeChat: null,
+  // Chatrooms
   addChatroom: ['chatroom'],
   fetchRoomData: ['roomKey'],
   fetchOrRegisterRoom: ['uid'],
   setActiveChatRoom: ['roomKey'],
-  updateRoomUser: ['roomKey', 'user']
-}, {prefix: 'chatrooms - '})
+  updateRoomUser: ['roomKey', 'user'],
+  setChatroomMessages: ['roomKey', 'messages'],
+  // Messages
+  addMessage: ['message'], // User received message, add it to the redux entity
+  sendMessage: ['message'] // User sending message elsewhere
+}, {prefix: 'chat - '})
 
-export const ChatroomsTypes = Types
+export const ChatTypes = Types
 export default Creators
 
 export const INITIAL_STATE = Immutable({
-  byId: {},
-  allIds: []
+  rooms: {
+    byId: {},
+    allIds: []
+  },
+  messages: {
+    byId: {},
+    allIds: []
+  }
 })
 
 export const initializeChat = (state) => {

@@ -1,10 +1,9 @@
-import { store } from '../Containers/App'
-import firebase from '../Config/FirebaseConfig'
+import { store } from './App'
+import firebase from './Config/FirebaseConfig'
 import * as AuthSelectors from '../Modules/auth/selectors'
 import _ from 'lodash'
 
 export const startDummyData = () => {
-  window.alert('dummy data')
   const user = AuthSelectors.getUser(store.getState())
   for (var i = 0; i < 3; i++) {
     let fakeUser = {

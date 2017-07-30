@@ -1,6 +1,6 @@
-import { store } from '../Containers/App'
+import { store } from '../App'
 import { NavigationActions } from 'react-navigation'
-import AuthActions from '../Modules/auth/redux'
+import AuthActions from '../../Modules/auth/redux'
 
 // gets the current screen from navigation state
 const getCurrentRouteName = (navigationState) => {

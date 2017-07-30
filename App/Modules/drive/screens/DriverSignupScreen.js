@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { Linking, StyleSheet, Text, View, TouchableHighlight, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
-import DriveActions from '../_drive/redux'
-import { Colors, Metrics } from '../Theme/'
+import DriveActions from '../redux'
+import { Colors, Metrics } from '../../../Theme/'
 import t from 'tcomb-form-native'
-import * as AuthSelectors from '../_auth/selectors'
+import * as AuthSelectors from '../../auth/selectors'
 
 var Form = t.form.Form
 

@@ -16,7 +16,6 @@ export const AuthTypes = Types
 export default Creators
 
 export const INITIAL_STATE = Immutable({
-  fcmToken: null,
   error: null,
   obj: null,
   initialFetch: false,

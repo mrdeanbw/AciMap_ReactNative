@@ -1,6 +1,6 @@
 // DRIVE SAGAS
-import { store } from '../../Containers/App'
-import firebase from '../../Config/FirebaseConfig'
+import { store } from '../../Setup/App'
+import firebase from '../../Setup/Config/FirebaseConfig'
 import { NavigationActions } from 'react-navigation'
 import DriveActions from './redux'
 import AuthActions from '../auth/redux'

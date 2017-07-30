@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ScrollView, View, StyleSheet, Text, TouchableOpacity } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
-import { Fonts, Colors } from '../Theme/'
-import ChatActions from '../Redux/ChatRedux'
-import DrawerChatWidget from './DrawerChatWidget'
-import AuthActions from '../auth/redux'
-import * as AuthSelectors from '../auth/selectors'
+import { Fonts, Colors } from '../../../Theme/'
+import ChatActions from '../../chat/redux'
+import RoomsWidget from '../../chat/components/RoomsWidget'
+import AuthActions from '../../auth/redux'
+import * as AuthSelectors from '../../auth/selectors'
 
 class DrawerContent extends Component {
   clickDrawerNav (route, navigation) {
@@ -77,7 +77,7 @@ class DrawerContent extends Component {
           <Text style={styles.text}>Logout</Text>
         </TouchableOpacity>
 
-        <DrawerChatWidget navigation={navigation} />
+        <RoomsWidget navigation={navigation} />
       </ScrollView>
     )
   }

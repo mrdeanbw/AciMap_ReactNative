@@ -1,18 +1,17 @@
 import { DrawerNavigator } from 'react-navigation'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import React from 'react'
-import { getNavigationOptionsWithAction, getDrawerNavigationOptions, getDrawerConfig } from '../Config/NavUtils'
-import NavBarItem from '../Modules/nav/components/NavBarItem'
+import { getNavigationOptionsWithAction, getDrawerNavigationOptions, getDrawerConfig } from '../NavUtils'
+import NavBarItem from './NavBarItem'
 
-import LoginScreen from '../Screens/LoginScreen'
-import WelcomeScreen from '../Screens/WelcomeScreen'
-import HomeScreen from '../Screens/HomeScreen'
-import ChatScreen from '../Screens/ChatScreen'
-import DriverSignupScreen from '../Screens/DriverSignupScreen'
-import FeedbackScreen from '../Screens/FeedbackScreen'
-import ConnectScreen from '../Screens/ConnectScreen'
-import PermissionsScreen from '../Screens/PermissionsScreen'
-import { Colors } from '../Theme/'
+import LoginScreen from '../../auth/screens/LoginScreen'
+import WelcomeScreen from '../../comms/screens/WelcomeScreen'
+import FeedbackScreen from '../../comms/screens/FeedbackScreen'
+import ConnectScreen from '../../comms/screens/ConnectScreen'
+import HomeScreen from '../../ride/screens/HomeScreen'
+import ChatScreen from '../../chat/screens/ChatScreen'
+import DriverSignupScreen from '../../drive/screens/DriverSignupScreen'
+import { Colors } from '../../../Theme/'
 
 const getDrawerItem = navigation => (
   <NavBarItem
@@ -42,7 +41,6 @@ const connectNavOptions = getDrawerNavigationOptions('Connect', Colors.acnavy, '
 const DrawerRoutes = {
   LoginScreen: { screen: LoginScreen, navigationOptions: { header: null } },
   WelcomeScreen: { screen: WelcomeScreen, navigationOptions: { header: null } },
-  PermissionsScreen: { screen: PermissionsScreen, navigationOptions: { header: null } },
   HomeScreen: { screen: HomeScreen, navigationOptions: homeNavOptions },
   DriverSignupScreen: { screen: DriverSignupScreen, navigationOptions: userNavOptions },
   ChatScreen: { screen: ChatScreen, navigationOptions: chatNavOptions },

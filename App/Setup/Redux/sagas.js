@@ -1,19 +1,19 @@
 import { takeLatest } from 'redux-saga/effects'
 
-import { AuthTypes } from '../Modules/auth/redux'
-import { trackEvent, userLogin, userLoginSuccess, userWelcomed, userLogout } from '../Modules/auth/sagas'
+import { AuthTypes } from '../../Modules/auth/redux'
+import { trackEvent, userLogin, userLoginSuccess, userWelcomed, userLogout } from '../../Modules/auth/sagas'
 
-import { LocTypes } from '../Modules/loc/redux'
-import { fetchUserLoc } from '../Modules/loc/sagas'
+import { LocTypes } from '../../Modules/loc/redux'
+import { fetchUserLoc } from '../../Modules/loc/sagas'
 
-import { DriveTypes } from '../Modules/drive/redux'
-import { driverSignupSubmit, driverSignupSuccess, addDriverBeacon } from '../Modules/drive/sagas'
+import { DriveTypes } from '../../Modules/drive/redux'
+import { driverSignupSubmit, driverSignupSuccess, addDriverBeacon } from '../../Modules/drive/sagas'
 
-import { UsersTypes } from '../Modules/users/redux'
-import { fetchNearbyDrivers } from '../Modules/users/sagas'
+import { UsersTypes } from '../../Modules/users/redux'
+import { fetchNearbyDrivers } from '../../Modules/users/sagas'
 
-import { ChatroomsTypes } from '../Modules/chatrooms/redux'
-import { initializeChat } from '../Modules/chatrooms/sagas'
+import { ChatTypes } from '../../Modules/chat/redux'
+import { initializeChat } from '../../Modules/chat/sagas'
 
 export default function * root () {
   yield [
@@ -35,8 +35,8 @@ export default function * root () {
     // New Users
     takeLatest(UsersTypes.FETCH_NEARBY_DRIVERS, fetchNearbyDrivers),
 
-    // New Chatrooms
-    takeLatest(ChatroomsTypes.INITIALIZE_CHAT, initializeChat)
+    // New Chat
+    takeLatest(ChatTypes.INITIALIZE_CHAT, initializeChat)
     // takeLatest(ChatroomsTypes.FETCH_ACTIVE_CHATROOMS, fetchActiveChatrooms),
 
     // New Messages

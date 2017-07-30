@@ -1,5 +1,5 @@
 import { StackNavigator } from 'react-navigation'
-import Drawer from '../../Containers/Drawer'
+import Drawer from './components/Drawer'
 import { StyleSheet } from 'react-native'
 import { Colors } from '../../Theme/'
 
