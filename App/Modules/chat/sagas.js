@@ -53,6 +53,10 @@ export function * initializeChat () {
 
   // Listen for list of rooms (and this is not just new rooms)
   firebase.database().ref(`users/${uid}/rooms`).on('value', rooms => {
+
+    // Before setting up listener or whatever, see if this is already in our room list (and will therefore have listener..)
+
+
     console.tron.log('rooms:')
     console.tron.log(rooms)
     rooms.forEach(room => {
