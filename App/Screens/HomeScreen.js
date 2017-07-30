@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
-import { Metrics, Colors } from '../Themes/'
+import { Metrics, Colors } from '../Theme/'
 import ACMap from '../Containers/ACMap'
 import RiderWidget from '../Components/RiderWidget'
 import DriverWidget from '../Components/DriverWidget'

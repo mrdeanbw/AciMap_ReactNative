@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, ScrollView, Linking } from 'react-native'
 import { connect } from 'react-redux'
-import { Colors, Metrics } from '../Themes/'
+import { Colors, Metrics } from '../Theme/'
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 class ConnectScreen extends Component {

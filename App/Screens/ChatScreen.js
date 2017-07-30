@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Colors } from '../Themes/'
+import { Colors } from '../Theme/'
 import ChatActions from '../Redux/ChatRedux'
 import { GiftedChat } from 'react-native-gifted-chat'
 

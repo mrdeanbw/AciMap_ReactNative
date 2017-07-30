@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Linking, StyleSheet, Text, View, TouchableHighlight, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import DriveActions from '../_drive/redux'
-import { Colors, Metrics } from '../Themes/'
+import { Colors, Metrics } from '../Theme/'
 import t from 'tcomb-form-native'
 import * as AuthSelectors from '../_auth/selectors'
 

@@ -5,10 +5,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
 import { Image, View, StyleSheet, TouchableOpacity } from 'react-native'
-import { Metrics, Images } from '../Themes/'
-import AuthActions from '../_auth/redux'
-import Loading from '../Components/Loading'
-import * as AuthSelectors from '../_auth/selectors'
+import { Metrics, Images } from '../Theme/'
+import AuthActions from '../Modules/auth/redux'
+import Loading from '../Modules/ui/components/Loading'
+import * as AuthSelectors from '../Modules/auth/selectors'
 
 class LoginScreen extends Component {
   render () {

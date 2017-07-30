@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableHighlight, ScrollView } from 'react-native'
 import { connect } from 'react-redux'
 import firebase from '../Config/FirebaseConfig'
-import { Colors, Metrics } from '../Themes/'
+import { Colors, Metrics } from '../Theme/'
 import t from 'tcomb-form-native'
 
 var Form = t.form.Form
