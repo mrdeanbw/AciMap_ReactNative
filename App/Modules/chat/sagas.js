@@ -46,25 +46,24 @@ export function * initializeChat () {
 
   // Listen for list of rooms (and this is not just new rooms)
   firebase.database().ref(`users/${uid}/rooms`).on('value', rooms => {
-    const existingRoomIds = ChatSelectors.getRoomIds(store.getState()) // We won't update rooms that exist in redux - they already have
-
     rooms.forEach(room => {
-      if (_.includes(existingRoomIds, room.key)) {
-        console.tron.log(`existingRoomIds does include ${room.key}. Skipping...`)
-      } else {
-        // console.tron.log(`existingRoomIds does NOT include ${room.key}. Adding to redux...`)
+      const existingRoomIds = ChatSelectors.getRoomIds(store.getState()) // We won't update rooms that exist in redux - they already have
+      if (!_.includes(existingRoomIds, room.key)) {
         store.dispatch(ChatActions.fetchRoomData(room.key))
         firebase.database().ref(`messages/${room.key}`).orderByKey().limitToLast(25).on('value', snap => {
           snap.forEach(message => {
-            const msg = message.val()
-            const newMsg = {
-              _id: message.key,
-              text: msg.text,
-              user: msg.user,
-              roomKey: msg.roomKey,
-              createdAt: msg.createdAt
+            const existingMessageIds = ChatSelectors.getMessageIds(store.getState())
+            if (!_.includes(existingMessageIds, message.key)) {
+              const msg = message.val()
+              const newMsg = {
+                _id: message.key,
+                text: msg.text,
+                user: msg.user,
+                roomKey: msg.roomKey,
+                createdAt: msg.createdAt
+              }
+              store.dispatch(ChatActions.addMessage(newMsg))
             }
-            store.dispatch(ChatActions.addMessage(newMsg))
           })
         })
       }
@@ -78,7 +77,6 @@ fetchOrRegisterRoom [old]
 - updateRoomuser w dat?!
 */
 export function * fetchOrRegisterRoom ({ uid }) {
-  console.tron.log('In fetchOrRegisterRoom saga with uid ' + uid)
   // First we see if we share any rooms with this person
   let roomKey = null
   firebase.database().ref(`rooms`).once('value', snap => {
@@ -87,9 +85,7 @@ export function * fetchOrRegisterRoom ({ uid }) {
     snap.forEach(someid => {
       const dese = _.keys(someid.val())
       dese.forEach(key => {
-        console.tron.log('CHECKING ' + key + ' AGAINST ' + uid)
         if (key === uid) {
-          console.tron.log('Looks like a match... so YAY ' + thisRoomKey)
           roomKey = thisRoomKey
           store.dispatch(ChatActions.setActiveChatroom(roomKey))
           store.dispatch(NavigationActions.navigate({ routeName: 'ChatScreen' }))
@@ -147,10 +143,7 @@ export function * fetchRoomData ({ roomKey }) {
 sendMessage
 Given room id and recipient uid, store the message in firebase db
 */
-export function * sendMessage (action) {
-  const { roomKey, rid, text } = action
-  console.tron.log('in sendMessage saga with action:')
-  console.tron.log(action)
+export function * sendMessage ({ roomKey, rid, text }) {
   const user = AuthSelectors.getUser(store.getState())
   firebase.database()
     .ref('messages/' + roomKey)

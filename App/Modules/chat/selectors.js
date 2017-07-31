@@ -1,10 +1,11 @@
 import { createSelector } from 'reselect'
 import _ from 'lodash'
 
-export const getRoomIds = (state) => state.chat.rooms.allIds
+export const getActiveRoomKey = (state) => state.chat.roomKey
 export const getAllRooms = (state) => state.chat.rooms.byId
 export const getAllMessages = (state) => state.chat.messages.byId
-export const getActiveRoomKey = (state) => state.chat.roomKey
+export const getRoomIds = (state) => state.chat.rooms.allIds
+export const getMessageIds = (state) => state.chat.messages.allIds
 
 export const getActiveRoom = createSelector(
   [ getActiveRoomKey, getAllRooms ],
