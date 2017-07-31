@@ -10,13 +10,23 @@ export const getMessageIds = (state) => state.chat.messages.allIds
 export const getActiveRoom = createSelector(
   [ getActiveRoomKey, getAllRooms ],
   (roomKey, rooms) => {
-    return rooms[roomKey]
+    if (rooms && roomKey && rooms[roomKey]) {
+      return rooms[roomKey]
+    } else {
+      return null
+    }
   }
 )
 
 export const getActiveRoomUser = createSelector(
   [ getActiveRoom ],
-  (room) => room.user
+  (room) => {
+    if (room) {
+      return room.user
+    } else {
+      return null
+    }
+  }
 )
 
 export const getActiveMessages = createSelector(

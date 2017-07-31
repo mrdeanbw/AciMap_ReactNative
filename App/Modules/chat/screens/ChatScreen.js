@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { Colors } from '../../../Theme/'
 import ChatActions from '../redux'
@@ -16,11 +17,9 @@ class ChatScreen extends Component {
       this.props.roomUser ? <GiftedChat
         messages={this.props.messages}
         onSend={(messages) => this.onSend(messages)}
-        showUserAvatar={true}
+        showUserAvatar
         user={{
-          _id: this.props.userId,
-          // name: this.props.room.user.name,
-          // avatar: this.props.room.user.avatar
+          _id: this.props.userId
         }}
         style={{marginTop: 200, backgroundColor: Colors.silver}}
       /> : <View />

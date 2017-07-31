@@ -113,6 +113,7 @@ export function * fetchOrRegisterRoom ({ uid }) {
       update[`users/${myid}/rooms/${roomKey}`] = true
       update[`users/${friendid}/rooms/${roomKey}`] = true
 
+      store.dispatch(ChatActions.setActiveChatroom(roomKey))
       firebase.database().ref().update(update).catch(error => console.tron.log(error))
       store.dispatch(NavigationActions.navigate({ routeName: 'ChatScreen' })) // ??? -- should this go in callback above
     }
