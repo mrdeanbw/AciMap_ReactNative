@@ -22,13 +22,10 @@ const sendTestMessage = (roomKey, rid, text, fromUser) => {
     .ref('messages/' + roomKey)
     .push()
     .set({
+      roomKey: roomKey,
       createdAt: Date.now(),
       text: text,
-      user: {
-        _id: fromUser.uid,
-        avatar: fromUser.photoURL,
-        name: fromUser.displayName
-      },
+      user: fromUser,
       rid: rid
     })
 }

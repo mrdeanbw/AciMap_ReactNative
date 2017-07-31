@@ -24,15 +24,15 @@ export function * initializeChat () {
 
   // Subscribe to receive push notifications via Firebase cloud messaging
   firebase.messaging().subscribeToTopic(uid) // Replace with current userid
-  console.tron.log('Subscibed to topic ' + uid)
+  console.tron.log('Subscribed to topic ' + uid)
 
   // Handle new incoming FCM notification
   firebase.messaging().onMessage((message) => {
     console.tron.log(message)
-    const not = message.notification
-    if (not.roomKey !== ChatSelectors.getActiveChatroomKey(store.getState())) { // store.getState().chat.roomKey
-      // store.dispatch(UiActions.sendToast(not.title, not.body, not.icon, 'chat'))
-    }
+    // const not = message.notification
+    // if (not.roomKey !== ChatSelectors.getActiveChatroomKey(store.getState())) { // store.getState().chat.roomKey
+    //   // store.dispatch(UiActions.sendToast(not.title, not.body, not.icon, 'chat'))
+    // }
   })
 
   // Handle existing FCM notification..?
@@ -62,20 +62,16 @@ export function * initializeChat () {
         console.tron.log(`existingRoomIds does NOT include ${room.key}. Adding to redux...`)
         store.dispatch(ChatActions.fetchRoomData(room.key))
         firebase.database().ref(`messages/${room.key}`).orderByKey().limitToLast(25).on('value', snap => {
-          const messages = []
           snap.forEach(message => {
             const msg = message.val()
-            messages.push({
+            const newMsg = {
               _id: message.key,
               text: msg.text,
               user: msg.user,
               createdAt: msg.createdAt
-            })
+            }
+            store.dispatch(ChatActions.addMessage(newMsg))
           })
-          messages.sort((a, b) => {
-            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-          })
-          store.dispatch(ChatActions.setChatroomMessages(room.key, messages))
         })
       }
     })
@@ -138,8 +134,7 @@ export function * fetchOrRegisterRoom ({ uid }) {
 fetchRoomData [old]
 - Given a room key, fetch user object of other participants and fire UPDATE_ROOM_USER with the data
 */
-export function * fetchRoomData (action) {
-  const { roomKey } = action
+export function * fetchRoomData ({ roomKey }) {
   const thisUid = AuthSelectors.getUser(store.getState()).uid
   firebase.database().ref(`rooms/${roomKey}`).once('value', userIds => {
     userIds.forEach(userId => {
@@ -165,6 +160,7 @@ export function * setActiveChatroom ({ roomKey }) {
       const msg = message.val()
       messages.push({
         _id: message.key,
+        roomKey: roomKey,
         text: msg.text,
         user: msg.user,
         createdAt: msg.createdAt
@@ -173,7 +169,8 @@ export function * setActiveChatroom ({ roomKey }) {
     messages.sort((a, b) => {
       return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
     })
-    store.dispatch(ChatActions.setChatRoomMessages(roomKey, messages))
+    // store.dispatch(ChatActions.setChatRoomMessages(roomKey, messages))
+    store.dispatch(ChatActions.addMessagesForRoom(messages, roomKey))
   })
 }
 
