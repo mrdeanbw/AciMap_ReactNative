@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { connect } from 'react-redux'
 import { Colors } from '../../../Theme/'
+import * as UsersSelectors from '../../users/selectors'
 
 class RiderWidget extends Component {
   render () {
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  nearbyDrivers: state.nearby.drivers || []
+  nearbyDrivers: UsersSelectors.getNearbyDrivers(state)
 })
 
 export default connect(mapStateToProps, null)(RiderWidget)

@@ -1,11 +1,12 @@
 import { createSelector } from 'reselect'
+import _ from 'lodash'
 
 export const getUsersById = (state) => state.users.byId
 export const getUserIds = (state) => state.users.allIds
 
 export const getNearbyDrivers = createSelector(
   [ getUsersById, getUserIds ],
-  (usersById, userIds) => {
+  (usersById = {}, userIds = []) => {
     // Of nearby users, find drivers
     const driverIds = userIds.filter(u => usersById[u].driver)
 

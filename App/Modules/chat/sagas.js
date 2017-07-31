@@ -50,16 +50,16 @@ export function * initializeChat () {
     // const roomsToUpdate = []
 
     rooms.forEach(room => {
-      console.tron.display({
-        name: 'User Chatroom Found',
-        value: room,
-        preview: room.key
-      })
+      // console.tron.display({
+      //   name: 'User Chatroom Found',
+      //   value: room,
+      //   preview: room.key
+      // })
 
       if (_.includes(existingRoomIds, room.key)) {
         console.tron.log(`existingRoomIds does include ${room.key}. Skipping...`)
       } else {
-        console.tron.log(`existingRoomIds does NOT include ${room.key}. Adding to redux...`)
+        // console.tron.log(`existingRoomIds does NOT include ${room.key}. Adding to redux...`)
         store.dispatch(ChatActions.fetchRoomData(room.key))
         firebase.database().ref(`messages/${room.key}`).orderByKey().limitToLast(25).on('value', snap => {
           snap.forEach(message => {

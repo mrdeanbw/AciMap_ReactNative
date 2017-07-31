@@ -92,6 +92,7 @@ export function * userLoginSuccess ({ obj }) {
     }
   }).then(() => {
     store.dispatch(ChatActions.initializeChat())
+    store.dispatch(UsersActions.fetchNearbyDrivers())
     startDummyData()
   })
 }

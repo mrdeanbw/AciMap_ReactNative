@@ -45,11 +45,11 @@ export const updateRoomUser = (state, { roomKey, user }) => {
   var updated = false
   const roomValues = _.values(state.rooms)
 
-  console.tron.display({
-    name: 'updateRoomUser roomValues',
-    value: roomValues,
-    preview: 'for roomKey ' + roomKey
-  })
+  // console.tron.display({
+  //   name: 'updateRoomUser roomValues',
+  //   value: roomValues,
+  //   preview: 'for roomKey ' + roomKey
+  // })
 
   const updatedItems = roomValues.map(item => {
     if (item.roomKey === roomKey) {
@@ -63,7 +63,7 @@ export const updateRoomUser = (state, { roomKey, user }) => {
     console.tron.log('1 way')
     return state.merge({ rooms: updatedItems }) // need to add any o dat here? test this.
   } else {
-    console.tron.log('2 way')
+    // console.tron.log('2 way')
     return state.merge(
       {
         rooms: {
@@ -106,11 +106,11 @@ export const addMessagesForRoom = (state, { messages = [], roomKey }) => {
 }
 
 export const addMessage = (state, { message }) => {
-  console.tron.display({
-    name: 'adding message:',
-    value: message,
-    preview: message._id
-  })
+  // console.tron.display({
+  //   name: 'adding message:',
+  //   value: message,
+  //   preview: message._id
+  // })
   return state.merge({
     messages: {
       ...state.messages,

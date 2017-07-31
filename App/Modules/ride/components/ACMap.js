@@ -12,6 +12,16 @@ import * as LocSelectors from '../../loc/selectors'
 import * as UsersSelectors from '../../users/selectors'
 
 class ACMap extends Component {
+  componentDidUpdate () {
+    console.tron.log('hey')
+    console.tron.log(this.props.nearbyDrivers)
+    console.tron.log(this.props.users)
+  }
+  componentDidMount () {
+    console.tron.log('hey')
+    console.tron.log(this.props.nearbyDrivers)
+    console.tron.log(this.props.users)
+  }
   clickProfile (uid) {
     this.props.fetchOrRegisterRoom(uid)
   }
@@ -65,7 +75,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   loc: LocSelectors.getUserLoc(state),
-  nearbyDrivers: UsersSelectors.getNearbyDrivers(state)
+  nearbyDrivers: UsersSelectors.getNearbyDrivers(state),
+  users: UsersSelectors.getUsersById(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
