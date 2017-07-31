@@ -12,11 +12,15 @@ class WelcomeScreen extends Component {
   selectClass (className) {
     this.props.setClass(className)
     this.props.userWelcomed()
-    this.props.navigateTo('HomeScreen')
+    if (className === 'driver') {
+      this.props.navigateTo('DriverSignupScreen')
+    } else {
+      this.props.navigateTo('HomeScreen')
+    }    
   }
   render () {
     return (
-      <ScrollView style={styles.container} contentContainerStyle={{flexGrow: 1, alignItems: 'center'}}>
+      <ScrollView style={styles.container} contentContainerStyle={{flexGrow: 1, alignItems: 'center'}} keyboard>
         <Animatable.Image animation='fadeInDown' source={Images.welcome} style={styles.welcomeText} />
         <Animatable.Image animation='fadeInDown' delay={500} source={Images.arcadecityis} style={styles.textImage} />
         <Animatable.Image animation='fadeInDown' delay={3000} source={Images.acmission} style={styles.textImage} />
@@ -26,7 +30,7 @@ class WelcomeScreen extends Component {
             <Text style={styles.buttonText}>I am a RIDER</Text>
           </Animatable.View>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.selectClass('driverSigningUp')}>
+        <TouchableOpacity onPress={() => this.selectClass('driver')}>
           <Animatable.View style={styles.button} animation='fadeIn' delay={6000}>
             <Text style={styles.buttonText}>I am a DRIVER</Text>
           </Animatable.View>

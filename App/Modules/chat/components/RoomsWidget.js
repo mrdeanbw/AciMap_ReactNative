@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Image, StyleSheet, Text, TouchableOpacity, ScrollView, View } from 'react-native'
 import { Fonts, Colors } from '../../../Theme/'
 import ChatActions from '../redux'
+import * as ChatSelectors from '../selectors'
 import _ from 'lodash'
 
 class RoomsWidget extends Component {
@@ -72,8 +73,8 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  roomKey: state.chat.roomKey,
-  rooms: _.values(state.chat.rooms)
+  roomKey: ChatSelectors.getActiveRoomKey(state),
+  rooms: _.values(ChatSelectors.getAllRooms(state))
 })
 
 const mapDispatchToProps = (dispatch) => ({

@@ -30,9 +30,10 @@ export function * initializeChat () {
   firebase.messaging().onMessage((message) => {
     console.tron.log(message)
     // const not = message.notification
-    // if (not.roomKey !== ChatSelectors.getActiveChatroomKey(store.getState())) { // store.getState().chat.roomKey
-    //   // store.dispatch(UiActions.sendToast(not.title, not.body, not.icon, 'chat'))
-    // }
+    if (not.roomKey !== ChatSelectors.getActiveChatroomKey(store.getState())) {
+      window.alert(not.title + " - " + not.body)
+      store.dispatch(UiActions.sendToast(not.title, not.body, not.icon, 'chat'))
+    }
   })
 
   // Handle existing FCM notification..?
