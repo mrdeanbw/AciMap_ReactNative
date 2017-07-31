@@ -12,14 +12,14 @@ class ChatScreen extends Component {
 
   render () {
     return (
-      <GiftedChat
+      this.props.room.user ? <GiftedChat
         messages={this.props.messages}
         onSend={(messages) => this.onSend(messages)}
         user={{
           _id: this.props.room.user.uid
         }}
         style={{marginTop: 200, backgroundColor: Colors.silver}}
-      />
+      /> : <View />
     )
   }
 }

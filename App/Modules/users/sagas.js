@@ -3,6 +3,7 @@ import { store } from '../../Setup/App'
 import firebase from '../../Setup/Config/FirebaseConfig'
 import UsersActions from '../users/redux'
 import * as LocSelectors from '../loc/selectors'
+import * as UsersSelectors from '../users/selectors'
 import _ from 'lodash'
 const Geofire = require('geofire')
 

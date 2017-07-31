@@ -98,9 +98,8 @@ export function * fetchOrRegisterRoom ({ uid }) {
       const update = {}
       console.tron.log('Using roomKey ' + roomKey)
 
-      // Temporarily hardcode user ids
-      const myid = store.getState().user.obj.uid
-      const friendid = uid // so thats why that was fucked
+      const myid = AuthSelectors.getUser(store.getState()).uid
+      const friendid = uid
 
       /**
        * update room
