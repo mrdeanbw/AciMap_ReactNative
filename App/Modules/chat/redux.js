@@ -15,7 +15,7 @@ const { Types, Creators } = createActions({
   addMessagesForRoom: ['messages', 'roomKey'],
   // Messages
   addMessage: ['message'], // User received message, add it to the redux entity
-  sendMessage: ['message'] // User sending message elsewhere
+  sendMessage: ['roomKey', 'rid', 'text'] // User sending message elsewhere
 }, {prefix: 'chat.'})
 
 export const ChatTypes = Types

@@ -19,6 +19,9 @@ export const getActiveMessages = createSelector(
     // Loop through all messages, return array of messages where roomKey is roomKey
     const messagesArray = _.values(messages)
     const roomMessages = messagesArray.filter(m => m.roomKey === roomKey)
+    roomMessages.sort((a, b) => {
+      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    })
     return roomMessages
   }
 )

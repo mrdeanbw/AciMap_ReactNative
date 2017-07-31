@@ -7,7 +7,7 @@ import { GiftedChat } from 'react-native-gifted-chat'
 
 class ChatScreen extends Component {
   onSend (messages = []) {
-    this.props.messageSent(this.props.roomKey, this.props.room.user.uid, messages[0].text)
+    this.props.sendMessage(this.props.roomKey, this.props.room.user.uid, messages[0].text)
   }
 
   render () {
@@ -31,7 +31,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  messageSent: (roomKey, rid, text) => dispatch(ChatActions.messageSent(roomKey, rid, text))
+  sendMessage: (roomKey, rid, text) => dispatch(ChatActions.sendMessage(roomKey, rid, text))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatScreen)

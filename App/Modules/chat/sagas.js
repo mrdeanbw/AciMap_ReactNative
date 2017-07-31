@@ -47,15 +47,8 @@ export function * initializeChat () {
   // Listen for list of rooms (and this is not just new rooms)
   firebase.database().ref(`users/${uid}/rooms`).on('value', rooms => {
     const existingRoomIds = ChatSelectors.getRoomIds(store.getState()) // We won't update rooms that exist in redux - they already have
-    // const roomsToUpdate = []
 
     rooms.forEach(room => {
-      // console.tron.display({
-      //   name: 'User Chatroom Found',
-      //   value: room,
-      //   preview: room.key
-      // })
-
       if (_.includes(existingRoomIds, room.key)) {
         console.tron.log(`existingRoomIds does include ${room.key}. Skipping...`)
       } else {
@@ -132,7 +125,7 @@ export function * fetchOrRegisterRoom ({ uid }) {
 }
 
 /*
-fetchRoomData [old]
+fetchRoomData
 - Given a room key, fetch user object of other participants and fire UPDATE_ROOM_USER with the data
 */
 export function * fetchRoomData ({ roomKey }) {
@@ -151,23 +144,26 @@ export function * fetchRoomData ({ roomKey }) {
 }
 
 /*
-messageSent [old]
+sendMessage
 Given room id and recipient uid, store the message in firebase db
 */
 export function * sendMessage (action) {
   const { roomKey, rid, text } = action
-  const user = store.getState().user
+  console.tron.log('in sendMessage saga with action:')
+  console.tron.log(action)
+  const user = AuthSelectors.getUser(store.getState())
   firebase.database()
     .ref('messages/' + roomKey)
     .push()
     .set({
       createdAt: Date.now(),
       text: text,
+      rid: rid,
+      roomKey: roomKey,
       user: {
-        _id: user.obj.uid,
-        avatar: user.obj.photoURL,
-        name: user.obj.displayName
-      },
-      rid: rid
+        _id: user.uid,
+        avatar: user.photoURL,
+        name: user.displayName
+      }
     })
 }
