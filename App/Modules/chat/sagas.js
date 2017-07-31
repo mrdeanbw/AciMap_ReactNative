@@ -68,6 +68,7 @@ export function * initializeChat () {
               _id: message.key,
               text: msg.text,
               user: msg.user,
+              roomKey: msg.roomKey,
               createdAt: msg.createdAt
             }
             store.dispatch(ChatActions.addMessage(newMsg))
@@ -146,31 +147,6 @@ export function * fetchRoomData ({ roomKey }) {
         })
       }
     })
-  })
-}
-
-/*
-setActiveChatroom [old]
-- User selected a chat. Let's grab the messages.
-*/
-export function * setActiveChatroom ({ roomKey }) {
-  firebase.database().ref(`messages/${roomKey}`).orderByKey().limitToLast(50).once('value', snap => {
-    const messages = []
-    snap.forEach(message => {
-      const msg = message.val()
-      messages.push({
-        _id: message.key,
-        roomKey: roomKey,
-        text: msg.text,
-        user: msg.user,
-        createdAt: msg.createdAt
-      })
-    })
-    messages.sort((a, b) => {
-      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    })
-    // store.dispatch(ChatActions.setChatRoomMessages(roomKey, messages))
-    store.dispatch(ChatActions.addMessagesForRoom(messages, roomKey))
   })
 }
 

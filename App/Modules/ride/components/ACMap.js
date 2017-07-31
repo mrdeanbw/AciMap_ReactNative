@@ -12,16 +12,6 @@ import * as LocSelectors from '../../loc/selectors'
 import * as UsersSelectors from '../../users/selectors'
 
 class ACMap extends Component {
-  componentDidUpdate () {
-    console.tron.log('hey')
-    console.tron.log(this.props.nearbyDrivers)
-    console.tron.log(this.props.users)
-  }
-  componentDidMount () {
-    console.tron.log('hey')
-    console.tron.log(this.props.nearbyDrivers)
-    console.tron.log(this.props.users)
-  }
   clickProfile (uid) {
     this.props.fetchOrRegisterRoom(uid)
   }
@@ -34,9 +24,8 @@ class ACMap extends Component {
             provider={PROVIDER_GOOGLE}
             style={styles.map}
             customMapStyle={mapStyle}
-            initialRegion={this.props.loc}
-            onMarkerPress={e => window.alert(e.nativeEvent.id)}>
-            {Object.keys(drivers).map(function (key) {
+            initialRegion={this.props.loc}>
+            {Object.keys(drivers).map((key) => {
               var driver = drivers[key]
               return (
                 <MapView.Marker

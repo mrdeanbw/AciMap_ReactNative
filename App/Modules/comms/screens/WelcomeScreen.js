@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native'
 import { Colors, Metrics, Images } from '../../../Theme/'
 import UiActions from '../../ui/redux'
+import AuthActions from '../../auth/redux'
 import { NavigationActions } from 'react-navigation'
 import * as Animatable from 'react-native-animatable'
 import * as AuthSelectors from '../../auth/selectors'
@@ -10,6 +11,7 @@ import * as AuthSelectors from '../../auth/selectors'
 class WelcomeScreen extends Component {
   selectClass (className) {
     this.props.setClass(className)
+    this.props.userWelcomed()
     this.props.navigateTo('HomeScreen')
   }
   render () {
@@ -85,7 +87,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   setClass: (className) => dispatch(UiActions.setClass(className)),
-  navigateTo: (route) => dispatch(NavigationActions.navigate({ routeName: route }))
+  navigateTo: (route) => dispatch(NavigationActions.navigate({ routeName: route })),
+  userWelcomed: () => dispatch(AuthActions.userWelcomed())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen)

@@ -13,7 +13,7 @@ import { UsersTypes } from '../../Modules/users/redux'
 import { fetchNearbyDrivers } from '../../Modules/users/sagas'
 
 import { ChatTypes } from '../../Modules/chat/redux'
-import { initializeChat, fetchRoomData, fetchOrRegisterRoom, setActiveChatroom, sendMessage } from '../../Modules/chat/sagas'
+import { initializeChat, fetchRoomData, fetchOrRegisterRoom, sendMessage } from '../../Modules/chat/sagas'
 
 export default function * root () {
   yield [
@@ -28,7 +28,6 @@ export default function * root () {
     takeLatest(ChatTypes.INITIALIZE_CHAT, initializeChat),
     takeLatest(ChatTypes.FETCH_ROOM_DATA, fetchRoomData),
     takeLatest(ChatTypes.FETCH_OR_REGISTER_ROOM, fetchOrRegisterRoom),
-    takeLatest(ChatTypes.SET_ACTIVE_CHATROOM, setActiveChatroom),
     takeLatest(ChatTypes.SEND_MESSAGE, sendMessage),
 
     // drive

@@ -9,7 +9,7 @@ class RiderWidget extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.nearbyText}>
-          Drivers nearby: {this.props.nearbyDrivers.length}
+          Drivers nearby: {this.props.nearbyDriversCount}
         </Text>
       </View>
     )
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  nearbyDrivers: UsersSelectors.getNearbyDrivers(state)
+  nearbyDriversCount: UsersSelectors.getNearbyDriversCount(state)
 })
 
 export default connect(mapStateToProps, null)(RiderWidget)

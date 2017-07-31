@@ -106,11 +106,6 @@ export const addMessagesForRoom = (state, { messages = [], roomKey }) => {
 }
 
 export const addMessage = (state, { message }) => {
-  // console.tron.display({
-  //   name: 'adding message:',
-  //   value: message,
-  //   preview: message._id
-  // })
   return state.merge({
     messages: {
       ...state.messages,

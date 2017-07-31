@@ -2,15 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Colors } from '../../../Theme/'
 import ChatActions from '../redux'
+import * as ChatSelectors from '../selectors'
 import { GiftedChat } from 'react-native-gifted-chat'
 
 class ChatScreen extends Component {
-  componentDidUpdate () {
-    console.tron.log(this.props)
-  }
-
   onSend (messages = []) {
-    this.props.messageSent(this.props.roomKey, this.props.room.user.uid, messages[0].text) // Fmu6D27WD8ZYecsxt2cu6KuvPH93
+    this.props.messageSent(this.props.roomKey, this.props.room.user.uid, messages[0].text)
   }
 
   render () {
@@ -28,9 +25,9 @@ class ChatScreen extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  roomKey: state.chat.roomKey,
-  room: state.chat.rooms[state.chat.roomKey],
-  messages: state.chat.rooms[state.chat.roomKey].messages || []
+  roomKey: ChatSelectors.getActiveRoomKey(state),
+  room: ChatSelectors.getActiveRoom(state),
+  messages: ChatSelectors.getActiveMessages(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

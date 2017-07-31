@@ -21,3 +21,10 @@ export const getNearbyDrivers = createSelector(
     return filtered
   }
 )
+
+export const getNearbyDriversCount = createSelector(
+  [ getNearbyDrivers ],
+  (nearbyDrivers) => {
+    return _.values(nearbyDrivers).length
+  }
+)

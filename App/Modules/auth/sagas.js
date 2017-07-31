@@ -61,7 +61,6 @@ Fire action to set up Firebase listeners.
 export function * userLoginSuccess ({ obj }) {
   const user = obj
   const uid = obj.uid
-  console.tron.log('Looking up user ' + uid + ' in Firebase...')
 
   firebase.database().ref(`users/${uid}`).once('value', snap => {
     const userFromFirebase = snap.val()
