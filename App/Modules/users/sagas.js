@@ -3,6 +3,7 @@ import { store } from '../../Setup/App'
 import firebase from '../../Setup/Config/FirebaseConfig'
 import UsersActions from '../users/redux'
 import * as LocSelectors from '../loc/selectors'
+import _ from 'lodash'
 const Geofire = require('geofire')
 
 export function * fetchNearbyDrivers () {
@@ -20,9 +21,14 @@ export function * fetchNearbyDrivers () {
     firebase.database()
       .ref('users/' + key)
       .on('value', (snapshot) => {
+        const existingUserIds = UsersSelectors.getUserIds(store.getState())
         let user = snapshot.val()
         user.loc = loc
-        store.dispatch(UsersActions.addUser(key, user))
+        if (!_.includes(existingUserIds, key)) {
+          store.dispatch(UsersActions.addUser(key, user))
+        } else {
+          console.tron.log('this bro ' + key + ' already in the thing so no to dat')
+        }
       })
   })
 
