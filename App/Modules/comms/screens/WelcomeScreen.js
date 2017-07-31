@@ -16,7 +16,7 @@ class WelcomeScreen extends Component {
       this.props.navigateTo('DriverSignupScreen')
     } else {
       this.props.navigateTo('HomeScreen')
-    }    
+    }
   }
   render () {
     return (

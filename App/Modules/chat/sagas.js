@@ -3,6 +3,7 @@ import { store } from '../../Setup/App'
 import firebase from '../../Setup/Config/FirebaseConfig'
 import { NavigationActions } from 'react-navigation'
 import ChatActions from '../chat/redux'
+import UiActions from '../ui/redux'
 import * as AuthSelectors from '../auth/selectors'
 import * as ChatSelectors from '../chat/selectors'
 import _ from 'lodash'
@@ -29,9 +30,9 @@ export function * initializeChat () {
   // Handle new incoming FCM notification
   firebase.messaging().onMessage((message) => {
     console.tron.log(message)
-    // const not = message.notification
+    const not = message.notification
     if (not.roomKey !== ChatSelectors.getActiveChatroomKey(store.getState())) {
-      window.alert(not.title + " - " + not.body)
+      window.alert(not.title + ' - ' + not.body)
       store.dispatch(UiActions.sendToast(not.title, not.body, not.icon, 'chat'))
     }
   })
@@ -40,8 +41,8 @@ export function * initializeChat () {
   firebase.messaging().getInitialNotification()
     .then((notification) => {
       if (notification) {
-        // console.tron.log('Initial notification:')
-        // console.tron.log(notification)
+        console.tron.log('Initial notification:')
+        console.tron.log(notification)
       }
     })
 

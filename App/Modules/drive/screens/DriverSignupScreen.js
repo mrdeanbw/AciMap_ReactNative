@@ -5,7 +5,7 @@ import DriveActions from '../redux'
 import { Colors, Metrics } from '../../../Theme/'
 import t from 'tcomb-form-native'
 import * as AuthSelectors from '../../auth/selectors'
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 var Form = t.form.Form
 
@@ -42,7 +42,7 @@ class DriverSignupScreen extends Component {
     return (
       <KeyboardAvoidingView style={styles.container}>
         <ScrollView ref='scrollView'
-          keyboardShouldPersistTaps={'always'}> 
+          keyboardShouldPersistTaps={'always'}>
           <Text style={styles.headline}>Drive for Arcade City</Text>
           <Text style={styles.explainer}>Join the peer-to-peer ridesharing revolution.</Text>
           <View style={{paddingHorizontal: 10}}>
