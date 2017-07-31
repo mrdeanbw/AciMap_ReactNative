@@ -5,7 +5,7 @@ const { Types, Creators } = createActions({
   driverSignupSubmit: ['formData'],
   driverSignupSuccess: null,
   addDriverBeacon: null
-}, { prefix: 'drive - ' })
+}, { prefix: 'drive.' })
 
 export const DriveTypes = Types
 export default Creators
@@ -24,5 +24,5 @@ export const userLogout = (state) => {
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.DRIVER_SIGNUP_SUBMIT]: driverSignupSubmit,
-  'auth - USER_LOGOUT': userLogout
+  'auth.USER_LOGOUT': userLogout
 })

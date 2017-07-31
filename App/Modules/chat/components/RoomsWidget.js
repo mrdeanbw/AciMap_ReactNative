@@ -7,7 +7,7 @@ import _ from 'lodash'
 
 class RoomsWidget extends Component {
   _selectChat (roomKey) {
-    this.props.setActiveChatRoom(roomKey)
+    this.props.setActiveChatroom(roomKey)
     this.props.navigation.navigate('ChatScreen')
   }
 
@@ -77,7 +77,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  setActiveChatRoom: (roomKey) => dispatch(ChatActions.setActiveChatRoom(roomKey))
+  setActiveChatroom: (roomKey) => dispatch(ChatActions.setActiveChatroom(roomKey))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsWidget)

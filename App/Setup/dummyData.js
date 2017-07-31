@@ -4,6 +4,7 @@ import * as AuthSelectors from '../Modules/auth/selectors'
 import _ from 'lodash'
 
 export const startDummyData = () => {
+  return false
   const user = AuthSelectors.getUser(store.getState())
   for (var i = 0; i < 3; i++) {
     let fakeUser = {

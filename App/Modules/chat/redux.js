@@ -7,13 +7,13 @@ const { Types, Creators } = createActions({
   addChatroom: ['chatroom'],
   fetchRoomData: ['roomKey'],
   fetchOrRegisterRoom: ['uid'],
-  setActiveChatRoom: ['roomKey'],
+  setActiveChatroom: ['roomKey'],
   updateRoomUser: ['roomKey', 'user'],
   setChatroomMessages: ['roomKey', 'messages'],
   // Messages
   addMessage: ['message'], // User received message, add it to the redux entity
   sendMessage: ['message'] // User sending message elsewhere
-}, {prefix: 'chat - '})
+}, {prefix: 'chat.'})
 
 export const ChatTypes = Types
 export default Creators

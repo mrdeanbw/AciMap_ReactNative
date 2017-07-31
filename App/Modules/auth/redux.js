@@ -10,7 +10,7 @@ const { Types, Creators } = createActions({
   userWelcomed: null,
   setWelcomed: ['welcomed'],
   setUserClass: ['userClass']
-}, { prefix: 'auth - ' })
+}, { prefix: 'auth.' })
 
 export const AuthTypes = Types
 export default Creators

@@ -26,13 +26,6 @@ export function * initializeChat () {
   firebase.messaging().subscribeToTopic(uid) // Replace with current userid
   console.tron.log('Subscibed to topic ' + uid)
 
-  // Grab the Firebase Cloud Messaging device token -- and do what with it?
-  firebase.messaging().getToken()
-    .then((token) => {
-      console.tron.log('Fetched device FCM Token: ' + token)
-      // ACTION: UPDATE TOKEN IN THE DB
-    })
-
   // Handle new incoming FCM notification
   firebase.messaging().onMessage((message) => {
     console.tron.log(message)
@@ -53,34 +46,38 @@ export function * initializeChat () {
 
   // Listen for list of rooms (and this is not just new rooms)
   firebase.database().ref(`users/${uid}/rooms`).on('value', rooms => {
+    const existingRoomIds = ChatSelectors.getRoomIds(store.getState()) // We won't update rooms that exist in redux - they already have
+    // const roomsToUpdate = []
 
-    // Before setting up listener or whatever, see if this is already in our room list (and will therefore have listener..)
-
-
-    console.tron.log('rooms:')
-    console.tron.log(rooms)
     rooms.forEach(room => {
-      console.tron.log('heres a room:')
-      console.tron.log(room)
-      // Add that room with user info to redux for DrawerChatWidget etc.
-      // store.dispatch(ChatActions.fetchRoomData(room.key))
-      // Listen to each room's messages
-      firebase.database().ref(`messages/${room.key}`).orderByKey().limitToLast(25).on('value', snap => {
-        const messages = []
-        snap.forEach(message => {
-          const msg = message.val()
-          messages.push({
-            _id: message.key,
-            text: msg.text,
-            user: msg.user,
-            createdAt: msg.createdAt
-          })
-        })
-        messages.sort((a, b) => {
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-        })
-        store.dispatch(ChatActions.setChatroomMessages(room.key, messages))
+      console.tron.display({
+        name: 'User Chatroom Found',
+        value: room,
+        preview: room.key
       })
+
+      if (_.includes(existingRoomIds, room.key)) {
+        console.tron.log(`existingRoomIds does include ${room.key}. Skipping...`)
+      } else {
+        console.tron.log(`existingRoomIds does NOT include ${room.key}. Adding to redux...`)
+        store.dispatch(ChatActions.fetchRoomData(room.key))
+        firebase.database().ref(`messages/${room.key}`).orderByKey().limitToLast(25).on('value', snap => {
+          const messages = []
+          snap.forEach(message => {
+            const msg = message.val()
+            messages.push({
+              _id: message.key,
+              text: msg.text,
+              user: msg.user,
+              createdAt: msg.createdAt
+            })
+          })
+          messages.sort((a, b) => {
+            return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+          })
+          store.dispatch(ChatActions.setChatroomMessages(room.key, messages))
+        })
+      }
     })
   })
 }
@@ -104,7 +101,7 @@ export function * fetchOrRegisterRoom ({ uid }) {
         if (key === uid) {
           console.tron.log('Looks like a match... so YAY ' + thisRoomKey)
           roomKey = thisRoomKey
-          store.dispatch(ChatActions.setActiveChatRoom(roomKey))
+          store.dispatch(ChatActions.setActiveChatroom(roomKey))
           store.dispatch(NavigationActions.navigate({ routeName: 'ChatScreen' }))
         }
       })
@@ -143,7 +140,7 @@ fetchRoomData [old]
 */
 export function * fetchRoomData (action) {
   const { roomKey } = action
-  const thisUid = store.getState().user.obj.uid
+  const thisUid = AuthSelectors.getUser(store.getState()).uid
   firebase.database().ref(`rooms/${roomKey}`).once('value', userIds => {
     userIds.forEach(userId => {
       if (userId.key !== thisUid) {
@@ -161,7 +158,7 @@ export function * fetchRoomData (action) {
 setActiveChatroom [old]
 - User selected a chat. Let's grab the messages.
 */
-export function * setActiveChatRoom ({ roomKey }) {
+export function * setActiveChatroom ({ roomKey }) {
   firebase.database().ref(`messages/${roomKey}`).orderByKey().limitToLast(50).once('value', snap => {
     const messages = []
     snap.forEach(message => {
@@ -184,7 +181,7 @@ export function * setActiveChatRoom ({ roomKey }) {
 messageSent [old]
 Given room id and recipient uid, store the message in firebase db
 */
-export function * messageSent (action) {
+export function * sendMessage (action) {
   const { roomKey, rid, text } = action
   const user = store.getState().user
   firebase.database()

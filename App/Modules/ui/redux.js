@@ -4,7 +4,7 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   sendToast: ['title', 'message', 'image', 'toasttype'],
   setClass: ['className']
-})
+}, { prefix: 'ui.' })
 
 export const UserTypes = Types
 export default Creators

@@ -13,34 +13,33 @@ import { UsersTypes } from '../../Modules/users/redux'
 import { fetchNearbyDrivers } from '../../Modules/users/sagas'
 
 import { ChatTypes } from '../../Modules/chat/redux'
-import { initializeChat } from '../../Modules/chat/sagas'
+import { initializeChat, fetchRoomData, fetchOrRegisterRoom, setActiveChatroom, sendMessage } from '../../Modules/chat/sagas'
 
 export default function * root () {
   yield [
-    // New Auth
+    // auth
     takeLatest(AuthTypes.TRACK_EVENT, trackEvent),
     takeLatest(AuthTypes.USER_LOGIN, userLogin),
     takeLatest(AuthTypes.USER_LOGIN_SUCCESS, userLoginSuccess),
     takeLatest(AuthTypes.USER_WELCOMED, userWelcomed),
     takeLatest(AuthTypes.USER_LOGOUT, userLogout),
 
-    // New Loc
-    takeLatest(LocTypes.FETCH_USER_LOC, fetchUserLoc),
+    // chat
+    takeLatest(ChatTypes.INITIALIZE_CHAT, initializeChat),
+    takeLatest(ChatTypes.FETCH_ROOM_DATA, fetchRoomData),
+    takeLatest(ChatTypes.FETCH_OR_REGISTER_ROOM, fetchOrRegisterRoom),
+    takeLatest(ChatTypes.SET_ACTIVE_CHATROOM, setActiveChatroom),
+    takeLatest(ChatTypes.SEND_MESSAGE, sendMessage),
 
-    // New Drive
+    // drive
     takeLatest(DriveTypes.DRIVER_SIGNUP_SUBMIT, driverSignupSubmit),
     takeLatest(DriveTypes.DRIVER_SIGNUP_SUCCESS, driverSignupSuccess),
     takeLatest(DriveTypes.ADD_DRIVER_BEACON, addDriverBeacon),
 
-    // New Users
-    takeLatest(UsersTypes.FETCH_NEARBY_DRIVERS, fetchNearbyDrivers),
+    // loc
+    takeLatest(LocTypes.FETCH_USER_LOC, fetchUserLoc),
 
-    // New Chat
-    takeLatest(ChatTypes.INITIALIZE_CHAT, initializeChat)
-    // takeLatest(ChatroomsTypes.FETCH_ACTIVE_CHATROOMS, fetchActiveChatrooms),
-
-    // New Messages
-    // takeLatest(MessagesTypes.MESSAGE_SENT, messageSent),
-
+    // users
+    takeLatest(UsersTypes.FETCH_NEARBY_DRIVERS, fetchNearbyDrivers)
   ]
 }

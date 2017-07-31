@@ -5,7 +5,7 @@ const { Types, Creators } = createActions({
   fetchNearbyDrivers: null,
   addUser: ['key', 'user'],
   updateDriverLoc: ['key', 'loc']
-}, {prefix: 'users - '})
+}, {prefix: 'users.'})
 
 export const UsersTypes = Types
 export default Creators

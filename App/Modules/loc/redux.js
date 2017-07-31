@@ -5,7 +5,7 @@ const { Types, Creators } = createActions({
   fetchUserLoc: null,
   fetchUserLocError: null,
   updateUserLoc: ['loc']
-}, {prefix: 'loc - '})
+}, {prefix: 'loc.'})
 
 export const LocTypes = Types
 export default Creators
