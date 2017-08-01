@@ -29,6 +29,10 @@ export const getActiveRoomUser = createSelector(
   }
 )
 
+export const getNameFromRoomKey = createSelector(
+  [ getAllRooms ]
+)
+
 export const getActiveMessages = createSelector(
   [ getActiveRoomKey, getAllMessages ],
   (roomKey, messages = {}) => {

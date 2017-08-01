@@ -9,7 +9,7 @@ import { GiftedChat } from 'react-native-gifted-chat'
 
 class ChatScreen extends Component {
   onSend (messages = []) {
-    this.props.sendMessage(this.props.roomKey, this.props.room.user.uid, messages[0].text)
+    this.props.sendMessage(this.props.roomKey, this.props.roomUser.uid, messages[0].text)
   }
 
   render () {

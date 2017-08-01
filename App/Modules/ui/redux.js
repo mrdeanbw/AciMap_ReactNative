@@ -3,6 +3,7 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   sendToast: ['title', 'message', 'image', 'toasttype'],
+  setChatToast: ['roomKey', 'text'],
   setClass: ['className']
 }, { prefix: 'ui.' })
 
@@ -13,6 +14,12 @@ export const INITIAL_STATE = Immutable({
   toast: null,
   className: null
 })
+
+export const setChatToast = (state, { roomKey, text }) => {
+  return state.merge({
+    toast: { roomKey, text }
+  })
+}
 
 export const sendToast = (state, { title, message, image, toasttype }) => {
   return state.merge({

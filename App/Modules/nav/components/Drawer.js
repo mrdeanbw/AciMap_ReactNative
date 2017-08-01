@@ -1,4 +1,5 @@
 import { DrawerNavigator } from 'react-navigation'
+import { Keyboard } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import React from 'react'
 import { getNavigationOptionsWithAction, getDrawerNavigationOptions, getDrawerConfig } from '../NavUtils'
@@ -17,6 +18,7 @@ const getDrawerItem = navigation => (
   <NavBarItem
     iconName='bars'
     onPress={() => {
+      Keyboard.dismiss()
       if (navigation.state.index === 0) {
         navigation.navigate('DrawerOpen')
       } else {

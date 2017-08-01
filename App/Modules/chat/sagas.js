@@ -31,7 +31,7 @@ export function * initializeChat () {
   firebase.messaging().onMessage((message) => {
     console.tron.log(message)
     const not = message.notification
-    if (not.roomKey !== ChatSelectors.getActiveChatroomKey(store.getState())) {
+    if (not.roomKey !== ChatSelectors.getActiveRoomKey(store.getState())) {
       window.alert(not.title + ' - ' + not.body)
       store.dispatch(UiActions.sendToast(not.title, not.body, not.icon, 'chat'))
     }
@@ -65,6 +65,10 @@ export function * initializeChat () {
                 createdAt: msg.createdAt
               }
               store.dispatch(ChatActions.addMessage(newMsg))
+              let timeSince = (new Date) - msg.createdAt
+              if (timeSince < 3000 && msg.roomKey !== ChatSelectors.getActiveRoomKey(store.getState())) {                
+                window.alert(getUserNameFromRoomKey(msg.roomKey), msg.text)
+              }
             }
           })
         })

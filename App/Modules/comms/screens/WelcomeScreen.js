@@ -21,15 +21,29 @@ class WelcomeScreen extends Component {
   render () {
     return (
       <ScrollView style={styles.container} contentContainerStyle={{flexGrow: 1, alignItems: 'center'}} keyboard>
-        <Animatable.Image animation='fadeInDown' source={Images.welcome} style={styles.welcomeText} />
-        <Animatable.Image animation='fadeInDown' delay={500} source={Images.arcadecityis} style={styles.textImage} />
-        <Animatable.Image animation='fadeInDown' delay={3000} source={Images.acmission} style={styles.textImage} />
-        <Animatable.Image animation='fadeIn' delay={5500} source={Images.howcanyouhelp} style={styles.helpText} />
+
+        <Animatable.Text animation='fadeInDown' style={styles.welcomeText}>
+          Welcome!
+        </Animatable.Text>
+          
+        <Animatable.Text animation='fadeInDown' delay={500} style={styles.text}>
+          <Text style={styles.bold}>Arcade City</Text> is a network of local communities for <Text style={styles.bold}>peer-to-peer everything.</Text>
+        </Animatable.Text>
+
+        <Animatable.Text animation='fadeInDown' delay={3000} style={styles.text}>
+          Our first mission is to build a peer-to-peer transportation network -- <Text style={styles.bold}>everywhere!</Text>
+        </Animatable.Text>
+
+        <Animatable.Text animation='fadeInDown' delay={5500} style={styles.helpText}>
+          <Text style={styles.bold}>How can you help?</Text>
+        </Animatable.Text>
+        
         <TouchableOpacity onPress={() => this.selectClass('rider')}>
           <Animatable.View style={styles.button} animation='fadeIn' delay={6000}>
             <Text style={styles.buttonText}>I am a RIDER</Text>
           </Animatable.View>
         </TouchableOpacity>
+
         <TouchableOpacity onPress={() => this.selectClass('driver')}>
           <Animatable.View style={styles.button} animation='fadeIn' delay={6000}>
             <Text style={styles.buttonText}>I am a DRIVER</Text>
@@ -49,27 +63,36 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 25,
     marginTop: 30,
-    marginBottom: 10,
-    maxWidth: Metrics.screenWidth * 0.6,
-    maxHeight: 125,
-    resizeMode: 'contain'
+    marginBottom: 2,
+    fontFamily: 'Montserrat-Bold',
+    backgroundColor: 'transparent',
+    color: 'white',
+    fontSize: 34
   },
-  textImage: {
+  text: {
     paddingHorizontal: 15,
     paddingVertical: 15,
     marginTop: 0,
-    maxWidth: Metrics.screenWidth * 0.8,
-    maxHeight: 135,
-    resizeMode: 'contain'
+    fontFamily: 'Montserrat-Regular',
+    maxWidth: Metrics.screenWidth * 0.85,
+    backgroundColor: 'transparent',
+    color: 'white',
+    fontSize: 18
+  },
+  bold: {
+    fontFamily: 'Montserrat-Bold'
   },
   helpText: {
     paddingHorizontal: 15,
     paddingVertical: 10,
     marginTop: 3,
+    backgroundColor: 'transparent',
     marginBottom: 10,
-    maxWidth: Metrics.screenWidth * 0.7,
+    maxWidth: Metrics.screenWidth * 0.8,
     maxHeight: 125,
-    resizeMode: 'contain'
+    fontFamily: 'Montserrat-Bold',
+    color: 'white',
+    fontSize: 20
   },
   button: {
     backgroundColor: Colors.acturq,

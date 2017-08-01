@@ -9,6 +9,7 @@ import { Metrics, Images } from '../../../Theme/'
 import AuthActions from '../redux'
 import Loading from '../../ui/components/Loading'
 import * as AuthSelectors from '../selectors'
+import * as LocSelectors from '../../loc/selectors'
 
 class LoginScreen extends Component {
   render () {
@@ -16,9 +17,11 @@ class LoginScreen extends Component {
       <Image source={Images.city} style={styles.imageContainer}>
         <View style={styles.hoverContainer}>
           <View style={styles.loginBox}>
+          { ! this.props.userLocError ? (
             <TouchableOpacity onPress={() => this.props.userLogin()}>
               <Image source={Images.loginButton} />
             </TouchableOpacity>
+          ) : <Text style={{color: 'white', fontSize: 20, fontFamily: 'Montserrat-Bold'}}>Location needed to use app. Please enable and reload app.</Text> }
           </View>
         </View>
       </Image>
@@ -52,7 +55,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   user: AuthSelectors.getUser(state),
   initialFetch: AuthSelectors.getInitialFetch(state),
-  welcomed: AuthSelectors.getUserWelcomed(state)
+  welcomed: AuthSelectors.getUserWelcomed(state),
+  userLocError: LocSelectors.getUserLocError(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

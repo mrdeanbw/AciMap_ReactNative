@@ -4,7 +4,7 @@ import { AuthTypes } from '../../Modules/auth/redux'
 import { trackEvent, userLogin, userLoginSuccess, userWelcomed, userLogout } from '../../Modules/auth/sagas'
 
 import { LocTypes } from '../../Modules/loc/redux'
-import { fetchUserLoc } from '../../Modules/loc/sagas'
+import { fetchUserLoc, fetchUserLocError } from '../../Modules/loc/sagas'
 
 import { DriveTypes } from '../../Modules/drive/redux'
 import { driverSignupSubmit, driverSignupSuccess, addDriverBeacon } from '../../Modules/drive/sagas'
@@ -37,6 +37,7 @@ export default function * root () {
 
     // loc
     takeLatest(LocTypes.FETCH_USER_LOC, fetchUserLoc),
+    takeLatest(LocTypes.FETCH_USER_LOC_ERROR, fetchUserLocError),
 
     // users
     takeLatest(UsersTypes.FETCH_NEARBY_DRIVERS, fetchNearbyDrivers)
