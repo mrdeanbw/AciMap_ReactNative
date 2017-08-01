@@ -9,11 +9,16 @@ import ChatActions from '../../chat/redux'
 import DriverMarker from '../../drive/components/DriverMarker'
 import DriverCallout from '../../drive/components/DriverCallout'
 import * as LocSelectors from '../../loc/selectors'
+import * as AuthSelectors from '../../auth/selectors'
 import * as UsersSelectors from '../../users/selectors'
 
 class ACMap extends Component {
   clickProfile (uid) {
-    this.props.fetchOrRegisterRoom(uid)
+    if (uid === this.props.userId) {
+      alert('You clicked yourself')
+    } else {
+      this.props.fetchOrRegisterRoom(uid)
+    }    
   }
   render () {
     let drivers = this.props.nearbyDrivers
@@ -37,7 +42,7 @@ class ACMap extends Component {
                   >
                   <DriverMarker color={'green'} />
                   <MapView.Callout tooltip onPress={() => this.clickProfile(key)}>
-                    <DriverCallout user={driver} />
+                    <DriverCallout user={driver} same={key === this.props.userId} />
                   </MapView.Callout>
                 </MapView.Marker>
               )
@@ -65,7 +70,8 @@ const styles = StyleSheet.create({
 const mapStateToProps = (state) => ({
   loc: LocSelectors.getUserLoc(state),
   nearbyDrivers: UsersSelectors.getNearbyDrivers(state),
-  users: UsersSelectors.getUsersById(state)
+  users: UsersSelectors.getUsersById(state),
+  userId: AuthSelectors.getUserId(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
