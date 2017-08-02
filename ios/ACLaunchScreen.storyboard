@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="ipad10_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Llm-lL-Icb"/>
+                        <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UU9-AP-Qm4">
+                                <rect key="frame" x="0.0" y="0.0" width="834" height="1112"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logotrans.png" translatesAutoresizingMaskIntoConstraints="NO" id="pv0-Mh-BtE">
+                                        <rect key="frame" x="305" y="439" width="224" height="234"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="224" id="sDX-IU-ITM"/>
+                                            <constraint firstAttribute="height" constant="234" id="sLE-qB-Kdg"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" red="0.090196078431372548" green="0.10196078431372549" blue="0.23921568627450979" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="pv0-Mh-BtE" firstAttribute="centerX" secondItem="UU9-AP-Qm4" secondAttribute="centerX" id="97y-EB-p5c"/>
+                                    <constraint firstItem="pv0-Mh-BtE" firstAttribute="centerY" secondItem="UU9-AP-Qm4" secondAttribute="centerY" id="Xyd-ee-ZM0"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="UU9-AP-Qm4" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="1qa-5T-EqW"/>
+                            <constraint firstAttribute="trailing" secondItem="UU9-AP-Qm4" secondAttribute="trailing" id="CwE-NZ-1kQ"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="UU9-AP-Qm4" secondAttribute="bottom" id="aw7-mU-9K2"/>
+                            <constraint firstItem="UU9-AP-Qm4" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="sIf-nn-vYY"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="51.5625" y="374.4140625"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logotrans.png" width="1725" height="1815"/>
+    </resources>
+</document>

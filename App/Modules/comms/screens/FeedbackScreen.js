@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import firebase from '../../../Setup/Config/FirebaseConfig'
 import { Colors, Metrics } from '../../../Theme/'
 import t from 'tcomb-form-native'
+import * as AuthSelectors from '../../auth/selectors'
 
 var Form = t.form.Form
 
@@ -47,8 +48,7 @@ class FeedbackScreen extends Component {
   onPress () {
     var value = this.refs.form.getValue()
     if (value) { // if validation fails, value will be null
-      var user = this.props.user
-      firebase.database().ref('feedback/' + user.obj.uid).push().set({
+      firebase.database().ref('feedback/' + this.props.userId).push().set({
         feedback1: value,
         createdAt: Date.now()
       })
@@ -133,7 +133,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  user: state.user
+  userId: AuthSelectors.getUserId(state)
 })
 
 export default connect(mapStateToProps)(FeedbackScreen)

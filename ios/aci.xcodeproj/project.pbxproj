@@ -60,6 +60,8 @@
 		2CA17D381F198E7800209528 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA17D1D1F198DCE00209528 /* libRCTFBSDK.a */; };
 		2CA17D7C1F1AA20200209528 /* libCodePush.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA17D7B1F1AA1E800209528 /* libCodePush.a */; };
 		2CA17D7E1F1AA22700209528 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CA17D7D1F1AA22700209528 /* libz.tbd */; };
+		2CBF38601F31623900AB05A0 /* logotrans.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CBF385F1F31623900AB05A0 /* logotrans.png */; };
+		2CBF38851F31636B00AB05A0 /* ACLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2CBF38841F31636B00AB05A0 /* ACLaunchScreen.storyboard */; };
 		2CF2037B1F2EA8FC00650299 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2CF203691F2EA8ED00650299 /* Montserrat-Black.ttf */; };
 		2CF2037C1F2EA8FC00650299 /* Montserrat-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2036A1F2EA8ED00650299 /* Montserrat-BlackItalic.ttf */; };
 		2CF2037D1F2EA8FC00650299 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2CF2036B1F2EA8ED00650299 /* Montserrat-Bold.ttf */; };
@@ -454,6 +456,8 @@
 		2CA17D761F1AA1E700209528 /* CodePush.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CodePush.xcodeproj; path = "../node_modules/react-native-code-push/ios/CodePush.xcodeproj"; sourceTree = "<group>"; };
 		2CA17D7D1F1AA22700209528 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		2CA17D7F1F1AA8AF00209528 /* aci.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = aci.entitlements; path = aci/aci.entitlements; sourceTree = "<group>"; };
+		2CBF385F1F31623900AB05A0 /* logotrans.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logotrans.png; sourceTree = "<group>"; };
+		2CBF38841F31636B00AB05A0 /* ACLaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ACLaunchScreen.storyboard; sourceTree = "<group>"; };
 		2CF203691F2EA8ED00650299 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
 		2CF2036A1F2EA8ED00650299 /* Montserrat-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-BlackItalic.ttf"; sourceTree = "<group>"; };
 		2CF2036B1F2EA8ED00650299 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
@@ -658,10 +662,12 @@
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
+				2CBF385F1F31623900AB05A0 /* logotrans.png */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				2C2DE85B1F18EB7800BD7318 /* Firebase.h */,
 				2C2DE7F11F18E15200BD7318 /* GoogleService-Info.plist */,
+				2CBF38841F31636B00AB05A0 /* ACLaunchScreen.storyboard */,
 			);
 			name = aci;
 			sourceTree = "<group>";
@@ -1431,11 +1437,13 @@
 				2CF2038C1F2EA8FC00650299 /* Montserrat-ThinItalic.ttf in Resources */,
 				2C2DE7F21F18E15200BD7318 /* GoogleService-Info.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				2CBF38851F31636B00AB05A0 /* ACLaunchScreen.storyboard in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				01CE60C3E3AC4AF2ABF82EAF /* Entypo.ttf in Resources */,
 				F61A382330704C74938BC5A1 /* EvilIcons.ttf in Resources */,
 				FAE10E3E41974F42A8825C2B /* FontAwesome.ttf in Resources */,
 				C356C71DA9674122A9D99447 /* Foundation.ttf in Resources */,
+				2CBF38601F31623900AB05A0 /* logotrans.png in Resources */,
 				5D80BB0E4DBC4442A550E919 /* Ionicons.ttf in Resources */,
 				D63BB75E604E420DA1AF81EC /* MaterialCommunityIcons.ttf in Resources */,
 				CAB915EDE1C544678B3AD62B /* MaterialIcons.ttf in Resources */,
