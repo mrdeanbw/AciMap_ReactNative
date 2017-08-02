@@ -44,7 +44,7 @@ class WelcomeScreen extends Component {
           </Animatable.View>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={() => window.alert('Driver signups not yet available in your area. Please select Rider.')}>
+        <TouchableOpacity onPress={() => this.selectClass('driver')}>
           <Animatable.View style={styles.button} animation='fadeIn' delay={6000}>
             <Text style={styles.buttonText}>I am a DRIVER</Text>
           </Animatable.View>
@@ -120,4 +120,3 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen)
 
-// <TouchableOpacity onPress={() => this.selectClass('driver')}>

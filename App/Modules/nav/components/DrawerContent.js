@@ -35,7 +35,7 @@ class DrawerContent extends Component {
           <Text style={styles.text}>City Map</Text>
         </TouchableOpacity>
 
-        {this.props.userClass === 'akjsdhfkasdhfkasdf' ? (
+        {this.props.userClass !== 'driver' ? (
           <TouchableOpacity
             style={{ paddingHorizontal: 20, flexDirection: 'row', alignItems: 'center' }}
             onPress={() => this.clickDrawerNav('DriverSignupScreen', navigation)}
