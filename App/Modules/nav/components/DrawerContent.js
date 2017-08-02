@@ -78,6 +78,7 @@ class DrawerContent extends Component {
         </TouchableOpacity>
 
         <RoomsWidget navigation={navigation} />
+        <View style={{marginBottom: 80}} />
       </ScrollView>
     )
   }
@@ -86,6 +87,7 @@ class DrawerContent extends Component {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 40,
+    paddingBottom: 80,
     backgroundColor: Colors.acnavy,
     flex: 1
   },

@@ -31,10 +31,10 @@ export function * initializeChat () {
   firebase.messaging().onMessage((message) => {
     console.tron.log(message)
     const not = message.notification
-    if (not.roomKey !== ChatSelectors.getActiveRoomKey(store.getState())) {
-      window.alert(not.title + ' - ' + not.body)
-      store.dispatch(UiActions.sendToast(not.title, not.body, not.icon, 'chat'))
-    }
+    // if (not.roomKey !== ChatSelectors.getActiveRoomKey(store.getState())) {
+    //   window.alert(not.title + ' - ' + not.body)
+    //   store.dispatch(UiActions.sendToast(not.title, not.body, not.icon, 'chat'))
+    // }
   })
 
   // Handle existing FCM notification..?
@@ -87,13 +87,26 @@ export function * fetchOrRegisterRoom ({ uid }) {
   // First we see if we share any rooms with this person
   let roomKey = null
   firebase.database().ref(`rooms`).once('value', snap => {
+    // I need to loop through snap.val() and see where each obj has this uid as true
+    const rooms = snap.val()
+    // console.tron.log('val is')
+    // console.tron.log(snap.val())
     const keys = _.keys(snap.val())
-    const thisRoomKey = keys[0]
+    const thisRoomKey = keys[0]  // ???????
+    // console.tron.log('keys is')
+    // console.tron.log(keys)
+    // console.tron.log('thisRoomKey is')
+    // console.tron.log(thisRoomKey)
     snap.forEach(someid => {
       const dese = _.keys(someid.val())
+      // console.tron.log('dese is')
+      // console.tron.log(dese)
       dese.forEach(key => {
+        // console.tron.log('looping thru dese. key is')
+        // console.tron.log(key)
         if (key === uid) {
-          roomKey = thisRoomKey
+          // roomKey = thisRoomKey
+          console.tron.log('match key to uid! calling setActiveChatroom with roomKey: ' + roomKey)
           store.dispatch(ChatActions.setActiveChatroom(roomKey))
           store.dispatch(NavigationActions.navigate({ routeName: 'ChatScreen' }))
         }

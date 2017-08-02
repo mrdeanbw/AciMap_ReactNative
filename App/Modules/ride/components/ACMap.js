@@ -24,6 +24,7 @@ class ACMap extends Component {
       window.alert('This is you!')
     } else {
       this.props.fetchOrRegisterRoom(uid)
+      console.tron.log('Calling fetchOrRegisterRoom with uid ' + uid)
     }    
   }
   render () {
