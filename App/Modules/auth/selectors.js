@@ -8,5 +8,11 @@ export const getUserClass = (state) => state.auth.userClass
 
 export const getUserId = createSelector(
   [ getUser ],
-  (user) => user.uid
+  (user) => {
+  	if (user) {
+  		return user.uid
+  	} else {
+  		return null
+  	}
+  }  
 )

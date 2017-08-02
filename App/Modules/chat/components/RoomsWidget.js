@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Image, StyleSheet, Text, TouchableOpacity, ScrollView, View } from 'react-native'
-import { Fonts, Colors } from '../../../Theme/'
+import { Fonts, Colors, Images } from '../../../Theme/'
 import ChatActions from '../redux'
 import * as ChatSelectors from '../selectors'
 import _ from 'lodash'
@@ -26,7 +26,7 @@ class RoomsWidget extends Component {
               onPress={() => this._selectChat(room.roomKey)}
               style={styles.chatButton}>
               <View style={styles.chatImageContainer}>
-                <Image source={{ uri: room.user.photo }} style={styles.userImage} />
+                <Image source={Images.travis} style={styles.userImage} />
               </View>
               <Text style={styles.userText}>{room.user.name}</Text>
             </TouchableOpacity>
@@ -82,3 +82,5 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsWidget)
+
+// <Image source={{ uri: room.user.photo }} style={styles.userImage} />

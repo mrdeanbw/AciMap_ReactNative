@@ -3,7 +3,7 @@ import Immutable from 'seamless-immutable'
 
 const { Types, Creators } = createActions({
   fetchUserLoc: null,
-  fetchUserLocError: null,
+  fetchUserLocError: ['error'],
   updateUserLoc: ['loc']
 }, {prefix: 'loc.'})
 

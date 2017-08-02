@@ -1,7 +1,8 @@
 const colors = {
   acnavy: '#171A3D',
   acturq: '#18C2C0',
-  darktrans: 'rgba(0,0,0,0.7)',
+  acturqt: 'rgba(24,194,192,0.6)',
+  darktrans: 'rgba(0,0,0,0.85)',
   background: '#1F0808',
   clear: 'rgba(0,0,0,0)',
   facebook: '#3b5998',

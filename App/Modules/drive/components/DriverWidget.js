@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, View } from 'react-native'
 import { Metrics, Colors, Fonts } from '../../../Theme/'
-import Icon from 'react-native-vector-icons/FontAwesome'
+import RoundedButton from '../../ui/components/RoundedButton'
 import DriveActions from '../../drive/redux'
 
 class DriverWidget extends Component {
@@ -10,11 +10,11 @@ class DriverWidget extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.beaconText}>Set Driver Beacon</Text>
-        <Icon.Button name='facebook'
-          onPress={() => this.props.addDriverBeacon()}
-          style={styles.button}>
-          <Text style={styles.buttonText}>&nbsp;Set Driver Beacon</Text>
-        </Icon.Button>
+          <RoundedButton
+            text='Set Driver Beacon'
+            style={{alignSelf: 'center'}}
+            onPress={() => this.props.addDriverBeacon()}
+          />
       </View>
     )
   }

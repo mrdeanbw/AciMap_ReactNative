@@ -27,12 +27,12 @@ export default class RoundedButton extends Component {
 
 const styles = StyleSheet.create({
   button: {
-    marginVertical: 5,
-    borderTopColor: Colors.fire,
-    borderBottomColor: Colors.bloodOrange,
+    borderTopColor: Colors.acturq,
+    borderBottomColor: Colors.acturq,
     borderTopWidth: 1,
     borderBottomWidth: 1,
-    backgroundColor: Colors.ember
+    backgroundColor: Colors.acturqt,
+    marginVertical: 10
   },
   buttonText: {
     margin: 18,

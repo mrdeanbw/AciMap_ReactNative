@@ -13,6 +13,12 @@ import * as AuthSelectors from '../../auth/selectors'
 import * as UsersSelectors from '../../users/selectors'
 
 class ACMap extends Component {
+
+  componentDidUpdate () {
+    console.tron.log('ACMap componentDidUpdate, props:')
+    console.tron.log(this.props)
+  }
+
   clickProfile (uid) {
     if (uid === this.props.userId) {
       alert('You clicked yourself')

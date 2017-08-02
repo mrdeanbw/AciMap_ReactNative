@@ -67,7 +67,8 @@ export function * initializeChat () {
               store.dispatch(ChatActions.addMessage(newMsg))
               let timeSince = (new Date) - msg.createdAt
               if (timeSince < 3000 && msg.roomKey !== ChatSelectors.getActiveRoomKey(store.getState())) {                
-                window.alert(getUserNameFromRoomKey(msg.roomKey), msg.text)
+                // window.alert(getUserNameFromRoomKey(msg.roomKey), msg.text)
+                window.alert('New message: ' + msg.text)
               }
             }
           })

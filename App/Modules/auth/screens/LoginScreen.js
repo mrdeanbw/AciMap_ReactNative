@@ -4,7 +4,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { NavigationActions } from 'react-navigation'
-import { Image, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { Image, View, StyleSheet, TouchableOpacity, Text } from 'react-native'
 import { Metrics, Images } from '../../../Theme/'
 import AuthActions from '../redux'
 import Loading from '../../ui/components/Loading'

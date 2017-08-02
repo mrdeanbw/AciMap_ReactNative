@@ -40,5 +40,5 @@ export function * fetchUserLoc () {
 }
 
 export function * fetchUserLocError ({ error }) {
-  window.alert(error)
+  window.alert('Location needed to use app. Error: "' + error + '"')
 }
