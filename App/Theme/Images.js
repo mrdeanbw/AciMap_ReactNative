@@ -5,8 +5,7 @@ const images = {
   arcadecityis: require('./Images/arcadecityis.png'),
   acmission: require('./Images/acmission.png'),
   welcome: require('./Images/welcome.png'),
-  howcanyouhelp: require('./Images/howcanyouhelp.png'),
-  travis: require('./Images/travis2.jpg')
+  howcanyouhelp: require('./Images/howcanyouhelp.png')
 }
 
 export default images

@@ -14,7 +14,7 @@ export function * fetchNearbyDrivers () {
 
   var geoQuery = geofireRef.query({
     center: gloc,
-    radius: 10000 // tie this to an auth(?) selector, set from userobj..
+    radius: 20 // tie this to an auth(?) selector, set from userobj..
   })
 
   geoQuery.on('key_entered', function (key, loc) {
@@ -28,7 +28,7 @@ export function * fetchNearbyDrivers () {
         if (!_.includes(existingUserIds, key)) {
           store.dispatch(UsersActions.addUser(key, user))
         } else {
-          console.tron.log('this bro ' + key + ' already in the thing so no to dat')
+          // console.tron.log('this bro ' + key + ' already in the thing so no to dat')
         }
       })
   })

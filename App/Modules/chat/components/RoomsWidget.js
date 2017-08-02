@@ -26,7 +26,7 @@ class RoomsWidget extends Component {
               onPress={() => this._selectChat(room.roomKey)}
               style={styles.chatButton}>
               <View style={styles.chatImageContainer}>
-                <Image source={Images.travis} style={styles.userImage} />
+                <Image source={{ uri: room.user.photo }} style={styles.userImage} />
               </View>
               <Text style={styles.userText}>{room.user.name}</Text>
             </TouchableOpacity>
@@ -83,4 +83,3 @@ const mapDispatchToProps = (dispatch) => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsWidget)
 
-// <Image source={{ uri: room.user.photo }} style={styles.userImage} />

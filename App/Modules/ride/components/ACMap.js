@@ -21,7 +21,7 @@ class ACMap extends Component {
 
   clickProfile (uid) {
     if (uid === this.props.userId) {
-      alert('You clicked yourself')
+      window.alert('This is you!')
     } else {
       this.props.fetchOrRegisterRoom(uid)
     }    

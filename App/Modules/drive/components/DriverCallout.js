@@ -4,13 +4,10 @@ import RoundedButton from '../../ui/components/RoundedButton'
 import { Colors, Metrics, Images } from '../../../Theme/'
 
 export default class DriverCallout extends Component {
-  componentWillMount () {
-    console.tron.log(this.props)
-  }
   render () {
     return (
       <View style={styles.container}>
-        <Image source={Images.travis} style={styles.userImage} />
+        <Image source={{uri: this.props.user.photo}} style={styles.userImage} />
         <Text style={styles.nameText}>{this.props.user.name}</Text>
         <Text style={styles.text}>{this.props.user.driver.vehicle}</Text>
         <Text style={styles.text}>{this.props.user.driver.self}</Text>
