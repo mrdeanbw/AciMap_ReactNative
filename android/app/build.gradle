@@ -97,8 +97,8 @@ android {
     defaultConfig {
         applicationId "arcade.city.mobile"
         minSdkVersion 16
-        targetSdkVersion 22
-        versionCode 100200
+        targetSdkVersion 23
+        versionCode 1002001
         versionName "2.0.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
