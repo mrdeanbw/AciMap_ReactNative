@@ -98,8 +98,8 @@ android {
         applicationId "arcade.city.mobile"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 100001
-        versionName "2.0"
+        versionCode 100200
+        versionName "2.0.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
