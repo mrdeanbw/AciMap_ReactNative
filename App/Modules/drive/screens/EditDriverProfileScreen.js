@@ -44,7 +44,7 @@ class EditDriverProfileScreen extends Component {
     var value = this.refs.form.getValue()
     if (value) { // if validation fails, value will be null
       this.props.driverSignupSubmit(value)
-      window.alert('Your driver profile has been updated. Log out and in again to see the changes on your driver beacon.')
+      window.alert('Your driver profile has been updated. Log out and in again to see the changes on your driver beacon. Changes may take 15-30 seconds to take effect.')
     }
   }
   render () {
