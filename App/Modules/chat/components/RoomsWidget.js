@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Image, StyleSheet, Text, TouchableOpacity, ScrollView, View } from 'react-native'
-import { Fonts, Colors, Images } from '../../../Theme/'
+import { Fonts, Colors } from '../../../Theme/'
 import ChatActions from '../redux'
 import * as ChatSelectors from '../selectors'
 import _ from 'lodash'
 
 class RoomsWidget extends Component {
-  countMessagesInRoomWithKey(roomKey) {
+  countMessagesInRoomWithKey (roomKey) {
     let messageCount = 0
     const messages = _.values(this.props.messages)
     messages.forEach(function (message) {
@@ -95,4 +95,3 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RoomsWidget)
-

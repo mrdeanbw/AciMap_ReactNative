@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import { Metrics, Colors, Fonts } from '../../../Theme/'
 import RoundedButton from '../../ui/components/RoundedButton'
 import DriveActions from '../../drive/redux'

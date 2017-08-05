@@ -29,7 +29,7 @@ export function * initializeChat () {
   // Handle new incoming FCM notification
   firebase.messaging().onMessage((message) => {
     console.tron.log(message)
-    const not = message.notification
+    // const not = message.notification
     // if (not.roomKey !== ChatSelectors.getActiveRoomKey(store.getState())) {
     //   window.alert(not.title + ' - ' + not.body)
     //   store.dispatch(UiActions.sendToast(not.title, not.body, not.icon, 'chat'))

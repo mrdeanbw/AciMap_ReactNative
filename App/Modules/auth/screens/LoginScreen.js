@@ -17,12 +17,12 @@ class LoginScreen extends Component {
       <Image source={Images.city} style={styles.imageContainer}>
         <View style={styles.hoverContainer}>
           <View style={styles.loginBox}>
-          { ! this.props.userLocError ? (
-            <TouchableOpacity onPress={() => this.props.userLogin()}>
-              <Image source={Images.loginButton} />
-              <Text style={styles.versionText}>v2.0.1</Text>
-            </TouchableOpacity>
-          ) : <Text style={{color: 'white', fontSize: 20, fontFamily: 'Montserrat-Bold'}}>Location needed to use app. Please enable and reload app.</Text> }
+            { !this.props.userLocError ? (
+              <TouchableOpacity onPress={() => this.props.userLogin()}>
+                <Image source={Images.loginButton} />
+                <Text style={styles.versionText}>v2.0.1</Text>
+              </TouchableOpacity>
+            ) : <Text style={{color: 'white', fontSize: 20, fontFamily: 'Montserrat-Bold'}}>Location needed to use app. Please enable and reload app.</Text> }
           </View>
         </View>
       </Image>
