@@ -9,7 +9,6 @@ class DriverWidget extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Text style={styles.beaconText}>Set Driver Beacon</Text>
         <RoundedButton
           text='Set Driver Beacon'
           style={{alignSelf: 'center'}}
@@ -24,9 +23,9 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     backgroundColor: Colors.darktrans,
-    marginBottom: 100,
-    paddingHorizontal: 50,
-    paddingVertical: 30,
+    marginBottom: 20,
+    paddingHorizontal: 25,
+    paddingVertical: 15,
     borderRadius: 15
   },
   beaconText: {

@@ -20,6 +20,7 @@ class LoginScreen extends Component {
           { ! this.props.userLocError ? (
             <TouchableOpacity onPress={() => this.props.userLogin()}>
               <Image source={Images.loginButton} />
+              <Text style={styles.versionText}>v2.0.1</Text>
             </TouchableOpacity>
           ) : <Text style={{color: 'white', fontSize: 20, fontFamily: 'Montserrat-Bold'}}>Location needed to use app. Please enable and reload app.</Text> }
           </View>
@@ -45,10 +46,20 @@ const styles = StyleSheet.create({
   loginBox: {
     alignItems: 'center',
     backgroundColor: 'transparent',
-    marginBottom: 100,
+    marginBottom: 55,
     paddingHorizontal: 30,
     paddingVertical: 30,
     borderRadius: 15
+  },
+  versionText: {
+    marginTop: 45,
+    color: 'white',
+    fontFamily: 'Montserrat-Regular',
+    fontSize: 18,
+    alignSelf: 'center',
+    textShadowRadius: 3,
+    textShadowColor: 'black',
+    textShadowOffset: {width: 1, height: 1}
   }
 })
 
