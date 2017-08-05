@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import RoundedButton from '../../ui/components/RoundedButton'
-import { Colors, Metrics, Images } from '../../../Theme/'
+import { Colors } from '../../../Theme/'
 
 export default class DriverCallout extends Component {
   render () {
@@ -11,8 +11,8 @@ export default class DriverCallout extends Component {
         <Text style={styles.nameText}>{this.props.user.name}</Text>
         <Text style={styles.text}>{this.props.user.driver.vehicle}</Text>
         <Text style={styles.text}>{this.props.user.driver.self}</Text>
-        { !this.props.same ? 
-          <RoundedButton
+        { !this.props.same
+          ? <RoundedButton
             text='Open Chat'
             style={{alignSelf: 'center'}}
           /> : <View />

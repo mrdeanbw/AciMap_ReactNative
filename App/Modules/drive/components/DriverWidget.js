@@ -10,11 +10,11 @@ class DriverWidget extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.beaconText}>Set Driver Beacon</Text>
-          <RoundedButton
-            text='Set Driver Beacon'
-            style={{alignSelf: 'center'}}
-            onPress={() => this.props.addDriverBeacon()}
-          />
+        <RoundedButton
+          text='Set Driver Beacon'
+          style={{alignSelf: 'center'}}
+          onPress={() => this.props.addDriverBeacon()}
+        />
       </View>
     )
   }

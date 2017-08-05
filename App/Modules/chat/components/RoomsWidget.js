@@ -7,6 +7,17 @@ import * as ChatSelectors from '../selectors'
 import _ from 'lodash'
 
 class RoomsWidget extends Component {
+  countMessagesInRoomWithKey(roomKey) {
+    let messageCount = 0
+    const messages = _.values(this.props.messages)
+    messages.forEach(function (message) {
+      if (message.roomKey === roomKey) {
+        messageCount++
+      }
+    })
+    return messageCount
+  }
+
   _selectChat (roomKey) {
     this.props.setActiveChatroom(roomKey)
     this.props.navigation.navigate('ChatScreen')
@@ -17,7 +28,8 @@ class RoomsWidget extends Component {
       <ScrollView style={styles.container}>
         <Text style={styles.text}>Chats:</Text>
         {this.props.rooms.map(room => {
-          if (!room.user) {
+          const messagesInRoomCount = this.countMessagesInRoomWithKey(room.roomKey)
+          if (!room.user || messagesInRoomCount === 0) {
             return
           }
           return (
@@ -74,7 +86,8 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = (state) => ({
   roomKey: ChatSelectors.getActiveRoomKey(state),
-  rooms: _.values(ChatSelectors.getAllRooms(state))
+  rooms: _.values(ChatSelectors.getAllRooms(state)),
+  messages: ChatSelectors.getAllMessages(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

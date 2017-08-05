@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native'
-import { Colors, Metrics, Images } from '../../../Theme/'
+import { Colors, Metrics } from '../../../Theme/'
 import UiActions from '../../ui/redux'
 import AuthActions from '../../auth/redux'
 import { NavigationActions } from 'react-navigation'
@@ -25,7 +25,7 @@ class WelcomeScreen extends Component {
         <Animatable.Text animation='fadeInDown' style={styles.welcomeText}>
           Welcome!
         </Animatable.Text>
-          
+
         <Animatable.Text animation='fadeInDown' delay={500} style={styles.text}>
           <Text style={styles.bold}>Arcade City</Text> is a network of local communities for <Text style={styles.bold}>peer-to-peer everything.</Text>
         </Animatable.Text>
@@ -37,7 +37,7 @@ class WelcomeScreen extends Component {
         <Animatable.Text animation='fadeInDown' delay={5500} style={styles.helpText}>
           <Text style={styles.bold}>How can you help?</Text>
         </Animatable.Text>
-        
+
         <TouchableOpacity onPress={() => this.selectClass('rider')}>
           <Animatable.View style={styles.button} animation='fadeIn' delay={6000}>
             <Text style={styles.buttonText}>I am a RIDER</Text>
@@ -119,4 +119,3 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen)
-

@@ -3,7 +3,6 @@ import { store } from '../../Setup/App'
 import firebase from '../../Setup/Config/FirebaseConfig'
 import { NavigationActions } from 'react-navigation'
 import ChatActions from '../chat/redux'
-import UiActions from '../ui/redux'
 import * as AuthSelectors from '../auth/selectors'
 import * as ChatSelectors from '../chat/selectors'
 import _ from 'lodash'
@@ -66,7 +65,7 @@ export function * initializeChat () {
               }
               store.dispatch(ChatActions.addMessage(newMsg))
               let timeSince = (new Date) - msg.createdAt
-              if (timeSince < 3000 && msg.roomKey !== ChatSelectors.getActiveRoomKey(store.getState())) {                
+              if (timeSince < 3000 && msg.roomKey !== ChatSelectors.getActiveRoomKey(store.getState())) {
                 // window.alert(getUserNameFromRoomKey(msg.roomKey), msg.text)
                 window.alert('New message: ' + msg.text)
               }
@@ -87,25 +86,10 @@ export function * fetchOrRegisterRoom ({ uid }) {
   // First we see if we share any rooms with this person
   let roomKey = null
   firebase.database().ref(`rooms`).once('value', snap => {
-    // I need to loop through snap.val() and see where each obj has this uid as true
-    const rooms = snap.val()
-    // console.tron.log('val is')
-    // console.tron.log(snap.val())
-    const keys = _.keys(snap.val())
-    const thisRoomKey = keys[0]  // ???????
-    // console.tron.log('keys is')
-    // console.tron.log(keys)
-    // console.tron.log('thisRoomKey is')
-    // console.tron.log(thisRoomKey)
     snap.forEach(someid => {
       const dese = _.keys(someid.val())
-      // console.tron.log('dese is')
-      // console.tron.log(dese)
       dese.forEach(key => {
-        // console.tron.log('looping thru dese. key is')
-        // console.tron.log(key)
         if (key === uid) {
-          // roomKey = thisRoomKey
           console.tron.log('match key to uid! calling setActiveChatroom with roomKey: ' + roomKey)
           store.dispatch(ChatActions.setActiveChatroom(roomKey))
           store.dispatch(NavigationActions.navigate({ routeName: 'ChatScreen' }))

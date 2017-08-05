@@ -4,7 +4,6 @@ import { store } from '../../Setup/App'
 import LocActions from './redux'
 import { Metrics } from '../../Theme/'
 
-
 /*
 fetchUserLoc
 Called from anywhere. Grab the user loc (what re permissions?) and call updateUserLoc action.
@@ -29,7 +28,7 @@ async function grabPermissionsAndroid () {
     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
       actuallyFetchUserLoc()
     } else {
-      window.alert("Location required to use app")
+      window.alert('Location required to use app')
     }
   } catch (err) {
     console.warn(err)
@@ -66,9 +65,7 @@ function actuallyFetchUserLoc () {
       store.dispatch(LocActions.updateUserLoc(loc))
     }
   })
-
 }
-
 
 export function * fetchUserLocError ({ error }) {
   window.alert('Location needed to use app. Error: "' + error + '"')
