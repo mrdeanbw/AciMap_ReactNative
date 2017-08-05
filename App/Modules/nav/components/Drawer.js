@@ -12,6 +12,7 @@ import ConnectScreen from '../../comms/screens/ConnectScreen'
 import HomeScreen from '../../ride/screens/HomeScreen'
 import ChatScreen from '../../chat/screens/ChatScreen'
 import DriverSignupScreen from '../../drive/screens/DriverSignupScreen'
+import EditDriverProfileScreen from '../../drive/screens/EditDriverProfileScreen'
 import { Colors } from '../../../Theme/'
 
 const getDrawerItem = navigation => (
@@ -45,6 +46,7 @@ const DrawerRoutes = {
   WelcomeScreen: { screen: WelcomeScreen, navigationOptions: { header: null } },
   HomeScreen: { screen: HomeScreen, navigationOptions: homeNavOptions },
   DriverSignupScreen: { screen: DriverSignupScreen, navigationOptions: userNavOptions },
+  EditDriverProfileScreen: { screen: EditDriverProfileScreen, navigationOptions: userNavOptions },
   ChatScreen: { screen: ChatScreen, navigationOptions: chatNavOptions },
   FeedbackScreen: { screen: FeedbackScreen, navigationOptions: feedbackNavOptions },
   ConnectScreen: { screen: ConnectScreen, navigationOptions: connectNavOptions }

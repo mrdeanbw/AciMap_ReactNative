@@ -15,7 +15,7 @@ import * as UsersSelectors from '../../users/selectors'
 class ACMap extends Component {
   clickProfile (uid) {
     if (uid === this.props.userId) {
-      // Todo: Add driver profile updates
+      this.props.navigateTo('EditDriverProfileScreen')
     } else {
       this.props.fetchOrRegisterRoom(uid)
       console.tron.log('Calling fetchOrRegisterRoom with uid ' + uid)
