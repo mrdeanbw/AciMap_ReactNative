@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Linking, StyleSheet, Text, View, TouchableHighlight, ScrollView, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Text, View, TouchableHighlight, ScrollView, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
 import DriveActions from '../redux'
 import UserActions from '../../users/redux'

@@ -6,6 +6,7 @@ import ACMap from '../components/ACMap'
 import RiderWidget from '../components/RiderWidget'
 import DriverWidget from '../../drive/components/DriverWidget'
 import * as AuthSelectors from '../../auth/selectors'
+import { getActiveUserClass } from '../../drive/selectors'
 
 class HomeScreen extends Component {
   render () {
@@ -14,7 +15,7 @@ class HomeScreen extends Component {
       <View style={{ flex: 1, paddingBottom: '10%', backgroundColor: Colors.acnavy }}>
         <ACMap navigation={navigation} />
         <View style={{position: 'absolute', bottom: 0, alignItems: 'center', width: Metrics.screenWidth}}>
-          { this.props.userClass === 'driver' ? <DriverWidget /> : <RiderWidget /> }
+          { this.props.activeUserClass === 'driver' ? <DriverWidget /> : <RiderWidget /> }
         </View>
       </View>
     )
@@ -23,7 +24,7 @@ class HomeScreen extends Component {
 
 const mapStateToProps = (state) => ({
   user: AuthSelectors.getUser(state),
-  userClass: AuthSelectors.getUserClass(state)
+  activeUserClass: getActiveUserClass(state)
 })
 
 export default connect(mapStateToProps, null)(HomeScreen)

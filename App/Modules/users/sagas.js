@@ -18,7 +18,7 @@ export function * fetchNearbyDrivers () {
   })
 
   geoQuery.on('key_entered', function (key, loc) {
-    console.tron.log(`Key ${key} entered geoQuery!`)
+    // console.tron.log(`Key ${key} entered geoQuery!`)
     firebase.database()
       .ref('users/' + key)
       .on('value', (snapshot) => {

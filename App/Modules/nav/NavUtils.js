@@ -1,5 +1,6 @@
 import React from 'react'
 import DrawerContent from './components/DrawerContent'
+import TopRightButton from './components/TopRightButton'
 
 export const getNavigationOptions = (title, backgroundColor, color) => ({
   title,
@@ -39,7 +40,8 @@ export const getDrawerNavigationOptions = (title, backgroundColor, titleColor, d
   },
   headerTintColor: titleColor,
   drawerLabel: title,
-  drawerIcon
+  drawerIcon,
+  headerRight: <TopRightButton />
 })
 
 export const getDrawerConfig = (drawerWidth, drawerPosition, initialRouteName, drawerRoutes) => ({
