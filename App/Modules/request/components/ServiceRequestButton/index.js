@@ -10,7 +10,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity } from 'react-native'
 import style from './style'
-import { toggleModal } from '../../redux'
+import UiActions from '../../../ui/redux'
 import { selectRequestFormService } from '../../selectors'
 
 const ServiceRequestButton = (props) => {
@@ -31,7 +31,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleModal: (component) => dispatch(toggleModal(component))
+  toggleModal: (component) => dispatch(UiActions.toggleModal(component))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ServiceRequestButton)

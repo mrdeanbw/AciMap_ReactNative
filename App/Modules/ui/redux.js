@@ -4,16 +4,44 @@ import Immutable from 'seamless-immutable'
 const { Types, Creators } = createActions({
   sendToast: ['title', 'message', 'image', 'toasttype'],
   setChatToast: ['roomKey', 'text'],
-  setClass: ['className']
+  setClass: ['className'],
+  toggleModal: ['component']
 }, { prefix: 'ui.' })
 
-export const UserTypes = Types
+export const UiTypes = Types
 export default Creators
 
 export const INITIAL_STATE = Immutable({
   toast: null,
-  className: null
+  className: null,
+  modal: {
+    visible: false,
+    component: null
+  }
 })
+
+export const toggleModal = (state, { component }) => {
+  if (state.modal.visible === false) {
+    return state.merge({
+      ...state,
+      modal: {
+        ...state.modal,
+        visible: true,
+        component: component
+      }
+    })
+  } else if (state.modal.visible === true) {
+    return state.merge({
+      ...state,
+      modal: {
+        ...state.modal,
+        visible: false,
+        component: null
+      }
+    })
+  }
+  return state
+}
 
 export const setChatToast = (state, { roomKey, text }) => {
   return state.merge({
@@ -36,7 +64,6 @@ export const setClass = (state, { className }) => {
 }
 
 export const reducer = createReducer(INITIAL_STATE, {
-  'SET_CLASS': setClass,
-  'SEND_TOAST': sendToast,
-  'USER_LOGOUT': userLogout
+  [Types.TOGGLE_MODAL]: toggleModal,
+  'auth.USER_LOGOUT': userLogout
 })

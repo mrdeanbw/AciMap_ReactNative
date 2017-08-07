@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity } from 'react-native'
 import style from './style'
 import moment from 'moment'
-import { toggleModal } from '../../redux'
+import UiActions from '../../../ui/redux'
 import { selectRequestFormWhen } from '../../selectors'
 
 const DateRequestButton = (props) => {
@@ -39,7 +39,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  toggleModal: (component) => dispatch(toggleModal(component))
+  toggleModal: (component) => dispatch(UiActions.toggleModal(component))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DateRequestButton)

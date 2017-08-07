@@ -21,12 +21,7 @@ export const setActiveUserClass = (state, { userClass }) => {
   return state.merge({ activeUserClass: userClass })
 }
 
-export const toggleRiderDriver = (state, action) => {
-  console.tron.log('here and action is')
-  console.tron.log(action)
-  const { activeUserClass } = action
-  console.tron.log('here and activeUserClass is')
-  console.tron.log(activeUserClass)
+export const toggleRiderDriver = (state, { activeUserClass }) => {
   if (activeUserClass === 'rider') {
     return state.merge({ activeUserClass: 'driver' })
   } else {

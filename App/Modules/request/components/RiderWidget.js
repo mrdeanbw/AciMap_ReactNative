@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = (state) => ({
-  nearbyDriversCount: UsersSelectors.getNearbyDriversCount(state),
+  nearbyDriversCount: UsersSelectors.getNearbyDriversCount(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

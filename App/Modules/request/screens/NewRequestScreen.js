@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, TextInput, View, TouchableHighlight, ScrollView, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Text, TextInput, View, ScrollView, KeyboardAvoidingView } from 'react-native'
 import { connect } from 'react-redux'
-import DriveActions from '../redux'
-import UserActions from '../../users/redux'
 import { Colors, Metrics } from '../../../Theme/'
 import * as AuthSelectors from '../../auth/selectors'
 import ServiceRequestButton from '../components/ServiceRequestButton'
 import DateRequestButton from '../components/DateRequestButton'
 import { updateRequestFormDetails } from '../redux'
-import { selectRequestFormDetails } from '../selectors'
+// import { selectRequestFormDetails } from '../selectors'
 
 class NewRequestScreen extends Component {
-  render() {
+  render () {
     return (
       <KeyboardAvoidingView style={styles.container}>
         <ScrollView ref='scrollView' keyboardShouldPersistTaps={'always'}>
@@ -64,8 +62,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 5
   },
-
-
 
   headline: {
     fontSize: 36,
@@ -128,8 +124,6 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  driverSignupSubmit: (formData, user) => dispatch(DriveActions.driverSignupSubmit(formData, user)),
-  fetchNearbyDrivers: () => dispatch(UserActions.fetchNearbyDrivers()),
   updateRequestFormDetails: (text) => dispatch(updateRequestFormDetails(text))
 })
 

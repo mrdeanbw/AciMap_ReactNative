@@ -6,8 +6,7 @@ const { Types, Creators } = createActions({
   requestSubmitted: ['request'],
   requestCancelled: ['requestId'],
   requestClaimed: ['requestId'],
-  requestResolved: ['requestId'],
-  toggleModal: ['component']
+  requestResolved: ['requestId']
 }, { prefix: 'request.' })
 
 export const RequestTypes = Types

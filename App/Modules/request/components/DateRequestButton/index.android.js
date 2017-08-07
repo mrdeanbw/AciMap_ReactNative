@@ -11,7 +11,7 @@ import { connect } from 'react-redux'
 import { View, Text, TouchableOpacity, DatePickerAndroid, TimePickerAndroid } from 'react-native'
 import style from './style'
 import moment from 'moment'
-import { updateRequestFormWhen } from '../../../Redux/actions'
+import RequestActions from '../../redux'
 import { selectRequestFormWhen } from '../../../Redux/selectors'
 import Reactotron from 'reactotron-react-native'
 
@@ -68,7 +68,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  updateRequestFormWhen: (when) => dispatch(updateRequestFormWhen(when))
+  updateRequestFormWhen: (when) => dispatch(RequestActions.updateRequestFormWhen(when))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(DateRequestButton)
