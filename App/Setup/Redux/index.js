@@ -8,6 +8,7 @@ export default () => {
     chat: require('../../Modules/chat/redux').reducer,
     drive: require('../../Modules/drive/redux').reducer,
     loc: require('../../Modules/loc/redux').reducer,
+    request: require('../../Modules/request/redux').reducer,
     users: require('../../Modules/users/redux').reducer,
     ui: require('../../Modules/ui/redux').reducer,
     nav: require('../../Modules/nav/NavigationRedux').reducer
