@@ -8,7 +8,7 @@ const REDUX_PERSIST = {
   storeConfig: {
     storage: AsyncStorage,
     // blacklist: ['login', 'search', 'nav'], // reducer keys that you do NOT want stored to persistence here
-    whitelist: ['_auth'], // Optionally, just specify the keys you DO want stored to
+    whitelist: ['auth'], // Optionally, just specify the keys you DO want stored to
     // persistence. An empty array means 'don't store any reducers' -> infinitered/ignite#409
     transforms: [immutablePersistenceTransform]
   }

@@ -7,7 +7,7 @@ import { LocTypes } from '../../Modules/loc/redux'
 import { fetchUserLoc, fetchUserLocError } from '../../Modules/loc/sagas'
 
 import { DriveTypes } from '../../Modules/drive/redux'
-import { driverSignupSubmit, driverSignupSuccess, addDriverBeacon } from '../../Modules/drive/sagas'
+import { driverSignupSubmit, driverSignupSuccess, addDriverBeacon, removeDriverBeacon } from '../../Modules/drive/sagas'
 
 import { UsersTypes } from '../../Modules/users/redux'
 import { fetchNearbyDrivers } from '../../Modules/users/sagas'
@@ -34,6 +34,7 @@ export default function * root () {
     takeLatest(DriveTypes.DRIVER_SIGNUP_SUBMIT, driverSignupSubmit),
     takeLatest(DriveTypes.DRIVER_SIGNUP_SUCCESS, driverSignupSuccess),
     takeLatest(DriveTypes.ADD_DRIVER_BEACON, addDriverBeacon),
+    takeLatest(DriveTypes.REMOVE_DRIVER_BEACON, removeDriverBeacon),
 
     // loc
     takeLatest(LocTypes.FETCH_USER_LOC, fetchUserLoc),

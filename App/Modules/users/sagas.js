@@ -18,7 +18,7 @@ export function * fetchNearbyDrivers () {
   })
 
   geoQuery.on('key_entered', function (key, loc) {
-    // console.tron.log(`Key ${key} entered geoQuery!`)
+    console.tron.log(`Key ${key} entered geoQuery!`)
     firebase.database()
       .ref('users/' + key)
       .on('value', (snapshot) => {
@@ -34,9 +34,8 @@ export function * fetchNearbyDrivers () {
   })
 
   geoQuery.on('key_exited', function (key, loc) {
-    // store.dispatch(UsersActions.removeUser(key))
+    store.dispatch(UsersActions.removeUser(key))
     console.tron.log(`geoQuery - key_exited - key ${key}, loc:`)
-    console.tron.log(loc)
   })
 
   geoQuery.on('key_moved', function (key, loc) {

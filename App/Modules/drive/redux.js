@@ -5,6 +5,7 @@ const { Types, Creators } = createActions({
   driverSignupSubmit: ['formData'],
   driverSignupSuccess: null,
   addDriverBeacon: null,
+  removeDriverBeacon: null,
   activeUserClass: null,
   toggleRiderDriver: ['activeUserClass']
 }, { prefix: 'drive.' })

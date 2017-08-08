@@ -3,17 +3,25 @@ import { connect } from 'react-redux'
 import { StyleSheet, View } from 'react-native'
 import { Metrics, Colors, Fonts } from '../../../Theme/'
 import RoundedButton from '../../ui/components/RoundedButton'
-import DriveActions from '../../drive/redux'
+import DriveActions from '../redux'
+import * as DriveSelectors from '../selectors'
 
 class DriverWidget extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <RoundedButton
+        { this.props.driverHasBeacon 
+          ? <RoundedButton
+            text='Remove Beacon'
+            style={{alignSelf: 'center'}}
+            onPress={() => this.props.removeDriverBeacon()}
+          />
+        : <RoundedButton
           text='Set Driver Beacon'
           style={{alignSelf: 'center'}}
           onPress={() => this.props.addDriverBeacon()}
         />
+        }
       </View>
     )
   }
@@ -52,8 +60,13 @@ const styles = StyleSheet.create({
   }
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  addDriverBeacon: () => dispatch(DriveActions.addDriverBeacon())
+const mapStateToProps = (state) => ({
+  driverHasBeacon: DriveSelectors.getThisDriverHasBeacon(state)
 })
 
-export default connect(null, mapDispatchToProps)(DriverWidget)
+const mapDispatchToProps = (dispatch) => ({
+  addDriverBeacon: () => dispatch(DriveActions.addDriverBeacon()),
+  removeDriverBeacon: () => dispatch(DriveActions.removeDriverBeacon())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(DriverWidget)
