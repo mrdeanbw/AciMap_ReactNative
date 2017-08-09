@@ -46,8 +46,8 @@ const newRequestNavOptions = getDrawerNavigationOptions('New Request', Colors.ac
 
 const DrawerRoutes = {
   LoginScreen: { screen: LoginScreen, navigationOptions: { header: null } },
-  WelcomeScreen: { screen: WelcomeScreen, navigationOptions: { header: null } },
   HomeScreen: { screen: HomeScreen, navigationOptions: homeNavOptions },
+  WelcomeScreen: { screen: WelcomeScreen, navigationOptions: { header: null } },
   DriverSignupScreen: { screen: DriverSignupScreen, navigationOptions: userNavOptions },
   EditDriverProfileScreen: { screen: EditDriverProfileScreen, navigationOptions: editDriverProfileOptions },
   ChatScreen: { screen: ChatScreen, navigationOptions: chatNavOptions },
@@ -56,7 +56,7 @@ const DrawerRoutes = {
   NewRequestScreen: { screen: NewRequestScreen, navigationOptions: newRequestNavOptions }
 }
 
-const Drawer = DrawerNavigator(DrawerRoutes, getDrawerConfig(300, 'left', 'LoginScreen', DrawerRoutes))
+const Drawer = DrawerNavigator(DrawerRoutes, getDrawerConfig(300, 'left', 'LoginScreen', DrawerRoutes)) // check for welcome?
 
 Drawer.navigationOptions = ({ navigation }) => getNavigationOptionsWithAction('Arcade City', Colors.acnavy, 'white', getDrawerItem(navigation))
 

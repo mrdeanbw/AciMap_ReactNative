@@ -12,8 +12,7 @@ import { View, Text, TouchableOpacity, DatePickerAndroid, TimePickerAndroid } fr
 import style from './style'
 import moment from 'moment'
 import RequestActions from '../../redux'
-import { selectRequestFormWhen } from '../../../Redux/selectors'
-import Reactotron from 'reactotron-react-native'
+import { selectRequestFormWhen } from '../../selectors'
 
 const DateRequestButton = (props) => {
   let whendate = moment(props.selectRequestFormWhen).format('ddd M/D')

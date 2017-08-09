@@ -25,7 +25,7 @@ class ACMap extends Component {
     let drivers = this.props.nearbyDrivers
     return (
       <View style={styles.container}>
-        { this.props.loc
+        { this.props.loc.latitude
           ? <MapView
             provider={PROVIDER_GOOGLE}
             style={styles.map}

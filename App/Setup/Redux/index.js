@@ -11,7 +11,7 @@ export default () => {
     request: require('../../Modules/request/redux').reducer,
     users: require('../../Modules/users/redux').reducer,
     ui: require('../../Modules/ui/redux').reducer,
-    nav: require('../../Modules/nav/NavigationRedux').reducer
+    nav: require('../../Modules/nav/redux').reducer
   })
 
   return configureStore(rootReducer, rootSaga)

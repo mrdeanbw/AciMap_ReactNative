@@ -13,20 +13,24 @@ import * as LocSelectors from '../../loc/selectors'
 
 class LoginScreen extends Component {
   render () {
-    return this.props.initialFetch === false ? (
-      <Image source={Images.city} style={styles.imageContainer}>
-        <View style={styles.hoverContainer}>
-          <View style={styles.loginBox}>
-            { !this.props.userLocError ? (
-              <TouchableOpacity onPress={() => this.props.userLogin()}>
-                <Image source={Images.loginButton} />
-                <Text style={styles.versionText}>v2.0.4</Text>
-              </TouchableOpacity>
-            ) : <Text style={{color: 'white', fontSize: 20, fontFamily: 'Montserrat-Bold'}}>Location needed to use app. Please enable and reload app.</Text> }
+    if (this.props.initialFetch === false && !this.props.user) {
+      return (
+        <Image source={Images.city} style={styles.imageContainer}>
+          <View style={styles.hoverContainer}>
+            <View style={styles.loginBox}>
+              { !this.props.userLocError ? (
+                <TouchableOpacity onPress={() => this.props.userLogin()}>
+                  <Image source={Images.loginButton} />
+                  <Text style={styles.versionText}>v2.0.5</Text>
+                </TouchableOpacity>
+              ) : <Text style={{color: 'white', fontSize: 20, fontFamily: 'Montserrat-Bold'}}>Location needed to use app. Please enable and reload app.</Text> }
+            </View>
           </View>
-        </View>
-      </Image>
-    ) : (<Loading />)
+        </Image>
+      )
+    } else {
+      return <Loading />
+    }
   }
 }
 

@@ -1,6 +1,6 @@
-import { store } from './App'
-import firebase from './Config/FirebaseConfig'
-import * as AuthSelectors from '../Modules/auth/selectors'
+import { store } from '../App'
+import firebase from '../Config/FirebaseConfig'
+import * as AuthSelectors from '../../Modules/auth/selectors'
 import _ from 'lodash'
 
 export const startDummyData = () => {

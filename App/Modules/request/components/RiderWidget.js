@@ -13,11 +13,6 @@ class RiderWidget extends Component {
         <Text style={styles.nearbyText}>
           Drivers nearby: {this.props.nearbyDriversCount}
         </Text>
-        <RoundedButton
-          text='Request a Ride'
-          style={{alignSelf: 'center'}}
-          onPress={() => this.props.navigateTo('NewRequestScreen')}
-        />
       </View>
     )
   }
@@ -55,3 +50,11 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RiderWidget)
+
+/*
+        <RoundedButton
+          text='Request a Ride'
+          style={{alignSelf: 'center'}}
+          onPress={() => this.props.navigateTo('NewRequestScreen')}
+        />
+*/
