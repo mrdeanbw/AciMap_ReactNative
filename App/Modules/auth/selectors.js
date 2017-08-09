@@ -1,5 +1,6 @@
 import { createSelector } from 'reselect'
 
+export const doesUserExist = (state) => state.auth.obj !== null
 export const getUser = (state) => state.auth.obj
 
 export const getInitialFetch = (state) => state.auth.initialFetch

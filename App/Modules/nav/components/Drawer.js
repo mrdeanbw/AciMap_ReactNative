@@ -5,7 +5,7 @@ import React from 'react'
 import { getNavigationOptionsWithAction, getDrawerNavigationOptions, getDrawerConfig } from '../NavUtils'
 import NavBarItem from './NavBarItem'
 
-import LoginScreen from '../../auth/screens/LoginScreen'
+// import LoginScreen from '../../auth/screens/LoginScreen'
 import HomeScreen from '../../auth/screens/HomeScreen'
 import WelcomeScreen from '../../comms/screens/WelcomeScreen'
 import FeedbackScreen from '../../comms/screens/FeedbackScreen'
@@ -45,7 +45,7 @@ const connectNavOptions = getDrawerNavigationOptions('Connect', Colors.acnavy, '
 const newRequestNavOptions = getDrawerNavigationOptions('New Request', Colors.acnavy, 'white', userDrawerIcon)
 
 const DrawerRoutes = {
-  LoginScreen: { screen: LoginScreen, navigationOptions: { header: null } },
+  // LoginScreen: { screen: LoginScreen, navigationOptions: { header: null } },
   HomeScreen: { screen: HomeScreen, navigationOptions: homeNavOptions },
   WelcomeScreen: { screen: WelcomeScreen, navigationOptions: { header: null } },
   DriverSignupScreen: { screen: DriverSignupScreen, navigationOptions: userNavOptions },
@@ -56,7 +56,7 @@ const DrawerRoutes = {
   NewRequestScreen: { screen: NewRequestScreen, navigationOptions: newRequestNavOptions }
 }
 
-const Drawer = DrawerNavigator(DrawerRoutes, getDrawerConfig(300, 'left', 'LoginScreen', DrawerRoutes)) // check for welcome?
+const Drawer = DrawerNavigator(DrawerRoutes, getDrawerConfig(300, 'left', 'HomeScreen', DrawerRoutes)) // check for welcome?
 
 Drawer.navigationOptions = ({ navigation }) => getNavigationOptionsWithAction('Arcade City', Colors.acnavy, 'white', getDrawerItem(navigation))
 

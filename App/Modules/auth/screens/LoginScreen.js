@@ -8,12 +8,13 @@ import { Image, View, StyleSheet, TouchableOpacity, Text } from 'react-native'
 import { Metrics, Images } from '../../../Theme/'
 import AuthActions from '../redux'
 import Loading from '../../ui/components/Loading'
+import firebase from '../../../Setup/Config/FirebaseConfig'
 import * as AuthSelectors from '../selectors'
 import * as LocSelectors from '../../loc/selectors'
 
 class LoginScreen extends Component {
   render () {
-    if (this.props.initialFetch === false && !this.props.user) {
+    if (!this.props.user || !firebase.auth().currentUser) { // this.props.initialFetch === false &&
       return (
         <Image source={Images.city} style={styles.imageContainer}>
           <View style={styles.hoverContainer}>
