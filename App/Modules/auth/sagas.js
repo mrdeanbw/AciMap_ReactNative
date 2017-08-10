@@ -63,8 +63,6 @@ export function * userLoginSuccess ({ obj }) {
   const user = obj
   const uid = obj.uid
 
-  AsyncStorage.setItem('ac_uid', 'true')
-
   firebase.database().ref(`users/${uid}`).once('value', snap => {
     const userFromFirebase = snap.val()
     if (!userFromFirebase) {
@@ -85,7 +83,7 @@ export function * userLoginSuccess ({ obj }) {
     } else if (userFromFirebase.driver) {
       store.dispatch(AuthActions.setUserClass('driver'))
       store.dispatch(AuthActions.setWelcomed(true))
-      store.dispatch(UsersActions.fetchNearbyDrivers())
+      // store.dispatch(UsersActions.fetchNearbyDrivers()) // TODO Move this to HomeScreen or ACMap
       store.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }))
     } else {
       store.dispatch(AuthActions.setUserClass('rider'))
@@ -93,9 +91,8 @@ export function * userLoginSuccess ({ obj }) {
       store.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }))
     }
   }).then(() => {
-    store.dispatch(ChatActions.initializeChat())
-    store.dispatch(UsersActions.fetchNearbyDrivers())
-    // startDummyData()
+    // store.dispatch(ChatActions.initializeChat()) // TODO Move this to HomeScreen or ACMap
+    // store.dispatch(UsersActions.fetchNearbyDrivers()) // TODO Move this to HomeScreen or ACMap
   })
 }
 

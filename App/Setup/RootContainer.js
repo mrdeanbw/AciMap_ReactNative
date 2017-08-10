@@ -12,18 +12,6 @@ import { doesUserExist } from '../Modules/auth/selectors'
 class RootContainer extends Component {
   componentWillMount () {
     this.props.fetchUserLoc()
-
-    // If user exists in Redux but not authed with Firebase, yeah go do that.
-    console.tron.log('Current user:')
-    console.tron.log(firebase.auth().currentUser)
-  }
-
-  componentDidMount () {
-    console.tron.log('componentDidMount - userExists: ' + this.props.userExists)
-  }
-
-  componentDidUpdate () {
-    console.tron.log('componentDidUpdate - userExists: ' + this.props.userExists)
   }
 
   render () {
