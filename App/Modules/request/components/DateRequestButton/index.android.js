@@ -33,9 +33,6 @@ const DateRequestButton = (props) => {
   const timeButtonPress = async (props) => {
     let hour1 = moment(props.selectRequestFormWhen).hour()
     let minute1 = moment(props.selectRequestFormWhen).minute()
-    Reactotron.log('timebuttonpress infos')
-    Reactotron.log(hour1)
-    Reactotron.log(minute1)
     let options = {
       hour: hour1,
       minute: minute1

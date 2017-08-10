@@ -5,10 +5,15 @@ import { Metrics, Colors } from '../../../Theme/'
 import ACMap from '../../request/components/ACMap'
 import RiderWidget from '../../request/components/RiderWidget'
 import DriverWidget from '../../drive/components/DriverWidget'
+import LocActions from '../../loc/redux'
 import * as AuthSelectors from '../../auth/selectors'
 import { getActiveUserClass } from '../../drive/selectors'
 
 class HomeScreen extends Component {
+  componentWillMount () {
+    this.props.fetchUserLoc()
+  }
+
   render () {
     const { navigation } = this.props.navigation
     return (
@@ -27,4 +32,8 @@ const mapStateToProps = (state) => ({
   activeUserClass: getActiveUserClass(state)
 })
 
-export default connect(mapStateToProps, null)(HomeScreen)
+const mapDispatchToProps = (dispatch) => ({
+  fetchUserLoc: () => dispatch(LocActions.fetchUserLoc())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

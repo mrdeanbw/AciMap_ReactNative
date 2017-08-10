@@ -10,7 +10,7 @@ class DriverWidget extends Component {
   render () {
     return (
       <View style={styles.container}>
-        { this.props.driverHasBeacon 
+        { this.props.driverHasBeacon
           ? <RoundedButton
             text='Remove Beacon'
             style={{alignSelf: 'center'}}

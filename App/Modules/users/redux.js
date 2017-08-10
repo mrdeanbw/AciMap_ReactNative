@@ -1,6 +1,5 @@
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
-import _ from 'lodash'
 
 const { Types, Creators } = createActions({
   fetchNearbyDrivers: null,
@@ -36,7 +35,7 @@ export const addUser = (state, { key, user }) => {
 }
 
 export const removeUser = (state, { key }) => {
-  let newAllIds = Immutable.flatMap(state.allIds, function(value) {
+  let newAllIds = Immutable.flatMap(state.allIds, function (value) {
     if (value === key) {
       return []
     } else {

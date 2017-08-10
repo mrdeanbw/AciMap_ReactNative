@@ -14,7 +14,7 @@ import * as LocSelectors from '../../loc/selectors'
 
 class LoginScreen extends Component {
   render () {
-    if (!this.props.user || !firebase.auth().currentUser) { // this.props.initialFetch === false &&
+    if ((!this.props.user || !firebase.auth().currentUser) && this.props.initialFetch !== true) { // this.props.initialFetch === false &&
       return (
         <Image source={Images.city} style={styles.imageContainer}>
           <View style={styles.hoverContainer}>

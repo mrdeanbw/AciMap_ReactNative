@@ -12,7 +12,7 @@ class Toast extends Component {
   render () {
     return this.props.toast ? (<Animatable.View
       animation='fadeInUp'
-      ref={ci => this.animatedTextRef = ci}
+      ref={ci => (this.animatedTextRef = ci)}
       style={styles.container}>
       <View style={styles.innerContainer}>
         <View style={styles.chatImageContainer}>

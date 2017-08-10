@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { View, Text, StatusBar } from 'react-native'
+import { View, StatusBar } from 'react-native'
 import firebase from './Config/FirebaseConfig'
 import ReduxNavigation from '../Modules/nav/ReduxNavigation'
 import { NavigationActions } from 'react-navigation'
@@ -43,7 +43,6 @@ class RootContainer extends Component {
         </View>
       )
     }
-
   }
 }
 

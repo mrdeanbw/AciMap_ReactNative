@@ -8,7 +8,7 @@ import AuthActions from './redux'
 import UsersActions from '../users/redux'
 import ChatActions from '../chat/redux'
 import * as AuthSelectors from './selectors'
-import { startDummyData } from '../../Setup/Services/dummyData'
+// import { startDummyData } from '../../Setup/Services/dummyData'
 
 /*
 trackEvent
@@ -95,7 +95,7 @@ export function * userLoginSuccess ({ obj }) {
   }).then(() => {
     store.dispatch(ChatActions.initializeChat())
     store.dispatch(UsersActions.fetchNearbyDrivers())
-    startDummyData()
+    // startDummyData()
   })
 }
 
