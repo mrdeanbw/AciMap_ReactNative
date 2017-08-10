@@ -18,7 +18,7 @@ class HomeScreen extends Component {
     this.props.fetchNearbyDrivers()
     this.props.initializeChat()
     this.props.syncCodepush()
-    console.tron.log('Test10')
+    console.tron.log('Test24')
   }
 
   render () {

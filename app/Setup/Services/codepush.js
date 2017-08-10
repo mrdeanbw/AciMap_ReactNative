@@ -18,7 +18,7 @@ export const onSyncStatusChange = (SyncStatus) => {
     case codePush.SyncStatus.DOWNLOADING_PACKAGE:
       console.tron.log('CodePush - Downloading package')
       store.dispatch(UiActions.updateCodepushStatus('downloading'))
-      // Fire action to open loading modal
+      store.dispatch(UiActions.toggleCodepushModal(true))
       break
     case codePush.SyncStatus.INSTALLING_UPDATE:
       console.tron.log('CodePush - Installing update')
@@ -37,5 +37,6 @@ export const onDownloadProgress = (downloadProgress) => {
     const total = downloadProgress.totalBytes
     const perc = Math.round(rec * 100 / total)
     console.tron.log(`Downloading ${rec} of ${total} bytes - ${perc}%`)
+    store.dispatch(UiActions.updateCodepushPerc(perc))
   }
 }

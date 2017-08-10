@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { View, StatusBar } from 'react-native'
 import firebase from './Config/FirebaseConfig'
 import ReduxNavigation from '../Modules/nav/ReduxNavigation'
-import Toast from '../Modules/ui/components/Toast'
+import CodepushToast from '../Modules/ui/components/CodepushToast'
 import Loading from '../Modules/ui/components/Loading'
 import AuthActions from '../Modules/auth/redux'
 import LoginScreen from '../Modules/auth/screens/LoginScreen'
@@ -17,15 +17,6 @@ class RootContainer extends Component {
     this.props.syncCodepush()
   }
 
-  componentDidUpdate () {
-    console.tron.display({
-      name: 'RootContainer',
-      value: this.props,
-      preview: 'componentDidUpdate',
-      important: true
-    })
-  }
-
   render () {
     if (!this.props.codepushStatus && !this.props.userExists) {
       return (
@@ -35,6 +26,7 @@ class RootContainer extends Component {
         </View>
       )
     }
+
     if (this.props.codepushStatus !== 'uptodate' && !this.props.userExists) { //  && !this.props.user ?
       console.tron.log('HM')
       console.tron.log(this.props)
@@ -49,7 +41,7 @@ class RootContainer extends Component {
         <View style={{flex: 1}}>
           <StatusBar barStyle='light-content' />
           <ReduxNavigation />
-          <Toast />
+          <CodepushToast />
         </View>
       )
     } else {

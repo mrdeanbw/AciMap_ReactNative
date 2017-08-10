@@ -44,7 +44,6 @@ export function * userLogin (action) {
       store.dispatch(AuthActions.trackEvent('userLogin'))
     })
     .catch((error) => {
-      console.tron.log(`Login fail with error: ${error}`)
       window.alert(error)
       store.dispatch(AuthActions.userLoginError(error))
     })

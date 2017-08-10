@@ -6,7 +6,9 @@ const { Types, Creators } = createActions({
   setChatToast: ['roomKey', 'text'],
   setClass: ['className'],
   toggleModal: ['component'],
-  updateCodepushStatus: ['status']
+  toggleCodepushModal: ['visible'],
+  updateCodepushStatus: ['status'],
+  updateCodepushPerc: ['perc']
 }, { prefix: 'ui.' })
 
 export const UiTypes = Types
@@ -25,6 +27,26 @@ export const INITIAL_STATE = Immutable({
     component: null
   }
 })
+
+export const toggleCodepushModal = (state, { visible }) => {
+  return state.merge({
+    ...state,
+    codepush: {
+      ...state.codepush,
+      modalVisible: visible
+    }
+  })
+}
+
+export const updateCodePushPerc = (state, { perc }) => {
+  return state.merge({
+    ...state,
+    codepush: {
+      ...state.codepush,
+      downloadPerc: perc
+    }
+  })
+}
 
 export const updateCodePushStatus = (state, { status }) => {
   return state.merge({
@@ -81,6 +103,8 @@ export const setClass = (state, { className }) => {
 
 export const reducer = createReducer(INITIAL_STATE, {
   [Types.TOGGLE_MODAL]: toggleModal,
+  [Types.TOGGLE_CODEPUSH_MODAL]: toggleCodepushModal,
   [Types.UPDATE_CODEPUSH_STATUS]: updateCodePushStatus,
+  [Types.UPDATE_CODEPUSH_PERC]: updateCodePushPerc,
   'auth.USER_LOGOUT': userLogout
 })
