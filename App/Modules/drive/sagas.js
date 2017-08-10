@@ -47,12 +47,11 @@ export function * addDriverBeacon () {
 }
 
 export function * removeDriverBeacon () {
-  console.tron.log('In removeDriverBeacon saga. lets do it...')
   const geofireRef = new Geofire(firebase.database().ref('geofire'))
   const state = store.getState()
   const user = AuthSelectors.getUser(state)
   const uid = user.uid
 
   geofireRef.remove(uid)
-  console.tron.log('removed I think...')
+  console.tron.log('Removed driver beacon for uid ' + uid)
 }

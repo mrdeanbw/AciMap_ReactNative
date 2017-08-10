@@ -4,7 +4,7 @@ import { AsyncStorage } from 'react-native'
 // More info here:  https://shift.infinite.red/shipping-persistant-reducers-7341691232b1
 const REDUX_PERSIST = {
   active: true,
-  reducerVersion: '2.47',
+  reducerVersion: '2.56',
   storeConfig: {
     storage: AsyncStorage,
     blacklist: ['nav'], // reducer keys that you do NOT want stored to persistence here

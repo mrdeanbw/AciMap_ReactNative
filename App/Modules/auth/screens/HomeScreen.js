@@ -8,6 +8,7 @@ import DriverWidget from '../../drive/components/DriverWidget'
 import LocActions from '../../loc/redux'
 import UsersActions from '../../users/redux'
 import ChatActions from '../../chat/redux'
+import AuthActions from '../../auth/redux'
 import * as AuthSelectors from '../../auth/selectors'
 import { getActiveUserClass } from '../../drive/selectors'
 
@@ -16,6 +17,8 @@ class HomeScreen extends Component {
     this.props.fetchUserLoc()
     this.props.fetchNearbyDrivers()
     this.props.initializeChat()
+    this.props.syncCodepush()
+    console.tron.log('Test10')
   }
 
   render () {
@@ -39,7 +42,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   fetchUserLoc: () => dispatch(LocActions.fetchUserLoc()),
   fetchNearbyDrivers: () => dispatch(UsersActions.fetchNearbyDrivers()),
-  initializeChat: () => dispatch(ChatActions.initializeChat())
+  initializeChat: () => dispatch(ChatActions.initializeChat()),
+  syncCodepush: () => dispatch(AuthActions.syncCodepush())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

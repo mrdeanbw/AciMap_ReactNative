@@ -9,7 +9,8 @@ const { Types, Creators } = createActions({
   userLogout: null,
   userWelcomed: null,
   setWelcomed: ['welcomed'],
-  setUserClass: ['userClass']
+  setUserClass: ['userClass'],
+  syncCodepush: null
 }, { prefix: 'auth.' })
 
 export const AuthTypes = Types

@@ -1,14 +1,10 @@
 // AUTH SAGAS
 import { store } from '../../Setup/App'
-import { AsyncStorage } from 'react-native'
 import { AccessToken, LoginManager } from 'react-native-fbsdk'
 import firebase from '../../Setup/Config/FirebaseConfig'
 import { NavigationActions } from 'react-navigation'
 import AuthActions from './redux'
-import UsersActions from '../users/redux'
-import ChatActions from '../chat/redux'
 import * as AuthSelectors from './selectors'
-// import { startDummyData } from '../../Setup/Services/dummyData'
 
 /*
 trackEvent
@@ -101,7 +97,6 @@ export function * userLogout () {
   firebase.auth().signOut()
     .then(() => {
       LoginManager.logOut()
-      AsyncStorage.setItem('ac_uid', 'false')
       store.dispatch(NavigationActions.navigate({ routeName: 'LoginScreen' }))
     })
     .catch() // what
