@@ -27,19 +27,24 @@ class RootContainer extends Component {
   }
 
   render () {
-    /*
-    if (this.props.codepushStatus && this.props.codepushStatus !== 'uptodate') { //  && !this.props.user ?
+    if (!this.props.codepushStatus && !this.props.userExists) {
+      return (
+        <View style={{flex: 1}}>
+          <StatusBar barStyle='light-content' />
+          <LoginScreen />
+        </View>
+      )
+    }
+    if (this.props.codepushStatus !== 'uptodate' && !this.props.userExists) { //  && !this.props.user ?
+      console.tron.log('HM')
+      console.tron.log(this.props)
       return (
         <View style={{flex: 1}}>
           <StatusBar barStyle='light-content' />
           <Loading />
         </View>
       )
-    } else
-    */
-
-if (this.props.userExists && firebase.auth().currentUser) {
-  console.tron.log('heres this user')
+    } else if (this.props.userExists && firebase.auth().currentUser) {
       return (
         <View style={{flex: 1}}>
           <StatusBar barStyle='light-content' />
