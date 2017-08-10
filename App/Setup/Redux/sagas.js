@@ -1,4 +1,7 @@
-import { takeLatest } from 'redux-saga/effects'
+import { spawn, takeLatest } from 'redux-saga/effects'
+import codePush from 'react-native-code-push'
+import codePushSaga from 'react-native-code-push-saga'
+import { onSyncStatusChange, onDownloadProgress } from '../Services/codepush'
 
 import { AuthTypes } from '../../Modules/auth/redux'
 import { trackEvent, userLogin, userLoginSuccess, userWelcomed, userLogout } from '../../Modules/auth/sagas'
@@ -16,7 +19,13 @@ import { ChatTypes } from '../../Modules/chat/redux'
 import { initializeChat, fetchRoomData, fetchOrRegisterRoom, sendMessage } from '../../Modules/chat/sagas'
 
 export default function * root () {
+
   yield [
+    spawn(codePushSaga, {
+      codePushStatusDidChange: onSyncStatusChange,
+      codePushDownloadDidProgress: onDownloadProgress
+    }),
+
     // auth
     takeLatest(AuthTypes.TRACK_EVENT, trackEvent),
     takeLatest(AuthTypes.USER_LOGIN, userLogin),

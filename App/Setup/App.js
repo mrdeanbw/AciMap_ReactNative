@@ -6,6 +6,10 @@ import codePush from 'react-native-code-push'
 
 export const store = createStore()
 
+const codePushOptions = {
+  checkFrequency: codePush.CheckFrequency.MANUAL
+}
+
 class App extends Component {
   render () {
     return (
@@ -16,4 +20,4 @@ class App extends Component {
   }
 }
 
-export default codePush(App)
+export default codePush(codePushOptions)(App)

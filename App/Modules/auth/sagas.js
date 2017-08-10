@@ -83,16 +83,12 @@ export function * userLoginSuccess ({ obj }) {
     } else if (userFromFirebase.driver) {
       store.dispatch(AuthActions.setUserClass('driver'))
       store.dispatch(AuthActions.setWelcomed(true))
-      // store.dispatch(UsersActions.fetchNearbyDrivers()) // TODO Move this to HomeScreen or ACMap
       store.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }))
     } else {
       store.dispatch(AuthActions.setUserClass('rider'))
       store.dispatch(AuthActions.setWelcomed(true))
       store.dispatch(NavigationActions.navigate({ routeName: 'HomeScreen' }))
     }
-  }).then(() => {
-    // store.dispatch(ChatActions.initializeChat()) // TODO Move this to HomeScreen or ACMap
-    // store.dispatch(UsersActions.fetchNearbyDrivers()) // TODO Move this to HomeScreen or ACMap
   })
 }
 
