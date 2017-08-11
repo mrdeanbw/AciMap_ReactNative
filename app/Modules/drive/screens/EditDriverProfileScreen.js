@@ -143,7 +143,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   driverSignupSubmit: (formData, user) => dispatch(DriveActions.driverSignupSubmit(formData, user)),
-  fetchNearbyDrivers: () => dispatch(UserActions.fetchNearbyDrivers())
+  listenForNearbyDrivers: () => dispatch(UserActions.listenForNearbyDrivers())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditDriverProfileScreen)

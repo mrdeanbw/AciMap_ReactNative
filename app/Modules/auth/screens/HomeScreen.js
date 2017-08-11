@@ -15,7 +15,7 @@ import { getActiveUserClass } from '../../drive/selectors'
 class HomeScreen extends Component {
   componentWillMount () {
     this.props.fetchUserLoc()
-    this.props.fetchNearbyDrivers()
+    this.props.listenForNearbyDrivers()
     this.props.initializeChat()
     this.props.syncCodepush()
   }
@@ -40,7 +40,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUserLoc: () => dispatch(LocActions.fetchUserLoc()),
-  fetchNearbyDrivers: () => dispatch(UsersActions.fetchNearbyDrivers()),
+  listenForNearbyDrivers: () => dispatch(UsersActions.listenForNearbyDrivers()),
   initializeChat: () => dispatch(ChatActions.initializeChat()),
   syncCodepush: () => dispatch(AuthActions.syncCodepush())
 })

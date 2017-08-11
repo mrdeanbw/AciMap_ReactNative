@@ -11,7 +11,7 @@ import { trackEvent, userLogin, userLoginSuccess, userWelcomed, userLogout } fro
 import { initializeChat, fetchRoomData, fetchOrRegisterRoom, sendMessage } from '../../Modules/chat/sagas'
 import { driverSignupSubmit, driverSignupSuccess, addDriverBeacon, removeDriverBeacon } from '../../Modules/drive/sagas'
 import { fetchUserLoc, fetchUserLocError } from '../../Modules/loc/sagas'
-import { fetchNearbyDrivers } from '../../Modules/users/sagas'
+import { listenForNearbyDrivers } from '../../Modules/users/sagas'
 
 export default function * root () {
   yield [
@@ -47,6 +47,6 @@ export default function * root () {
     takeLatest(LocTypes.FETCH_USER_LOC_ERROR, fetchUserLocError),
 
     // users
-    takeLatest(UsersTypes.FETCH_NEARBY_DRIVERS, fetchNearbyDrivers)
+    takeLatest(UsersTypes.LISTEN_FOR_NEARBY_DRIVERS, listenForNearbyDrivers)
   ]
 }

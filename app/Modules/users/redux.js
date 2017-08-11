@@ -1,9 +1,11 @@
 import { createReducer, createActions } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
+import _ from 'lodash'
 
 const { Types, Creators } = createActions({
-  fetchNearbyDrivers: null,
+  listenForNearbyDrivers: null,
   addUser: ['key', 'user'],
+  addUsers: ['blob'],
   removeUser: ['key'],
   updateDriverLoc: ['key', 'loc']
 }, {prefix: 'users.'})
@@ -16,7 +18,7 @@ export const INITIAL_STATE = Immutable({
   allIds: []
 })
 
-export const fetchNearbyDrivers = (state) => {
+export const listenForNearbyDrivers = (state) => {
   return state
 }
 
@@ -31,6 +33,13 @@ export const addUser = (state, { key, user }) => {
       ...state.byId,
       [key]: user // do another spread operator to prevent overwrite?
     }
+  })
+}
+
+export const addUsers = (state, { blob }) => {
+  return state.merge({
+    byId: blob,
+    allIds: _.keys(blob)
   })
 }
 
@@ -58,8 +67,9 @@ export const updateDriverLoc = (state, { key, loc }) => {
 }
 
 export const reducer = createReducer(INITIAL_STATE, {
-  [Types.FETCH_NEARBY_DRIVERS]: fetchNearbyDrivers,
+  [Types.FETCH_NEARBY_DRIVERS]: listenForNearbyDrivers,
   [Types.ADD_USER]: addUser,
+  [Types.ADD_USERS]: addUsers,
   [Types.REMOVE_USER]: removeUser,
   [Types.UPDATE_DRIVER_LOC]: updateDriverLoc
 })
