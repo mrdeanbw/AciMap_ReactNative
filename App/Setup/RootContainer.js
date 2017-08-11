@@ -23,17 +23,19 @@ class RootContainer extends Component {
         <View style={{flex: 1}}>
           <StatusBar barStyle='light-content' />
           <LoginScreen />
+          <CodepushToast />
         </View>
       )
     }
 
-    if (this.props.codepushStatus !== 'uptodate' && !this.props.userExists) { //  && !this.props.user ?
+    if ((this.props.codepushStatus === 'updating' || this.props.codepushStatus === 'downloading') && !this.props.userExists) { //  && !this.props.user ?
       console.tron.log('HM')
       console.tron.log(this.props)
       return (
         <View style={{flex: 1}}>
           <StatusBar barStyle='light-content' />
           <Loading />
+          <CodepushToast />
         </View>
       )
     } else if (this.props.userExists && firebase.auth().currentUser) {
@@ -45,11 +47,11 @@ class RootContainer extends Component {
         </View>
       )
     } else {
-      console.tron.log('no user')
       return (
         <View style={{flex: 1}}>
           <StatusBar barStyle='light-content' />
           <LoginScreen />
+          <CodepushToast />
         </View>
       )
     }

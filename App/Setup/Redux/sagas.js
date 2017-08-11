@@ -3,19 +3,15 @@ import codePushSaga from 'react-native-code-push-saga'
 import { onSyncStatusChange, onDownloadProgress } from '../Services/codepush'
 
 import { AuthTypes } from '../../Modules/auth/redux'
-import { trackEvent, userLogin, userLoginSuccess, userWelcomed, userLogout } from '../../Modules/auth/sagas'
-
-import { LocTypes } from '../../Modules/loc/redux'
-import { fetchUserLoc, fetchUserLocError } from '../../Modules/loc/sagas'
-
-import { DriveTypes } from '../../Modules/drive/redux'
-import { driverSignupSubmit, driverSignupSuccess, addDriverBeacon, removeDriverBeacon } from '../../Modules/drive/sagas'
-
-import { UsersTypes } from '../../Modules/users/redux'
-import { fetchNearbyDrivers } from '../../Modules/users/sagas'
-
 import { ChatTypes } from '../../Modules/chat/redux'
+import { DriveTypes } from '../../Modules/drive/redux'
+import { LocTypes } from '../../Modules/loc/redux'
+import { UsersTypes } from '../../Modules/users/redux'
+import { trackEvent, userLogin, userLoginSuccess, userWelcomed, userLogout } from '../../Modules/auth/sagas'
 import { initializeChat, fetchRoomData, fetchOrRegisterRoom, sendMessage } from '../../Modules/chat/sagas'
+import { driverSignupSubmit, driverSignupSuccess, addDriverBeacon, removeDriverBeacon } from '../../Modules/drive/sagas'
+import { fetchUserLoc, fetchUserLocError } from '../../Modules/loc/sagas'
+import { fetchNearbyDrivers } from '../../Modules/users/sagas'
 
 export default function * root () {
   yield [
@@ -23,7 +19,8 @@ export default function * root () {
       codePushStatusDidChange: onSyncStatusChange,
       codePushDownloadDidProgress: onDownloadProgress,
       syncOnStart: false,
-      syncActionName: 'auth.SYNC_CODEPUSH'
+      syncActionName: 'auth.SYNC_CODEPUSH',
+      syncOnInterval: 30
     }),
 
     // auth

@@ -15,7 +15,7 @@ if (Config.useReactotron) {
     .use(sagaPlugin())
     .connect()
 
-  // Reactotron.clear()
+  Reactotron.clear()
 
   console.tron = Reactotron
 }

@@ -14,11 +14,10 @@ export function * fetchNearbyDrivers () {
 
   var geoQuery = geofireRef.query({
     center: gloc,
-    radius: 32.1869 // 20 miles. // tie this to an auth(?) selector, set from userobj..
+    radius: 32.1869 // 20 miles. TODO: Tie this to an auth(?) selector, set from userobj..
   })
 
   geoQuery.on('key_entered', function (key, loc) {
-    console.tron.log(`Key ${key} entered geoQuery!`)
     firebase.database()
       .ref('users/' + key)
       .on('value', (snapshot) => {
@@ -27,8 +26,6 @@ export function * fetchNearbyDrivers () {
         user.loc = loc
         if (!_.includes(existingUserIds, key)) {
           store.dispatch(UsersActions.addUser(key, user))
-        } else {
-          // console.tron.log('this bro ' + key + ' already in the thing so no to dat')
         }
       })
   })
@@ -36,6 +33,7 @@ export function * fetchNearbyDrivers () {
   geoQuery.on('key_exited', function (key, loc) {
     store.dispatch(UsersActions.removeUser(key))
     console.tron.log(`geoQuery - key_exited - key ${key}, loc:`)
+    // TODO: Remove Firebase listener..?
   })
 
   geoQuery.on('key_moved', function (key, loc) {

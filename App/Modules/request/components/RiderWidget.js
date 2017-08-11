@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Colors } from '../../../Theme/'
 import * as UsersSelectors from '../../users/selectors'
 import { NavigationActions } from 'react-navigation'
-import RoundedButton from '../../ui/components/RoundedButton'
+// import RoundedButton from '../../ui/components/RoundedButton'
 
 class RiderWidget extends Component {
   render () {
@@ -13,11 +13,6 @@ class RiderWidget extends Component {
         <Text style={styles.nearbyText}>
           Drivers nearby: {this.props.nearbyDriversCount}
         </Text>
-        <RoundedButton
-          text='Request a Ride'
-          style={{alignSelf: 'center'}}
-          onPress={() => this.props.navigateTo('NewRequestScreen')}
-        />
       </View>
     )
   }
@@ -55,3 +50,11 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RiderWidget)
+
+/*
+<RoundedButton
+  text='Request a Ride'
+  style={{alignSelf: 'center'}}
+  onPress={() => this.props.navigateTo('NewRequestScreen')}
+/>
+*/
