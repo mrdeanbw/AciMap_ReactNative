@@ -36,6 +36,8 @@ export const fbListenForNewDriver = (key, loc, initialKeyFetchDone = false) => {
           console.tron.log(drivers)
           store.dispatch(UsersActions.addUsers(drivers))
         }
+      } else if (!keyExists && initialFetchDone) {
+        store.dispatch(UsersActions.addUser(key, user))
       }
     })
   firebaseListeners[key] = newListener // Needed/helpful?
