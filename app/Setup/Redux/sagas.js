@@ -6,11 +6,13 @@ import { AuthTypes } from '../../Modules/auth/redux'
 import { ChatTypes } from '../../Modules/chat/redux'
 import { DriveTypes } from '../../Modules/drive/redux'
 import { LocTypes } from '../../Modules/loc/redux'
+import { RequestTypes } from '../../Modules/request/redux'
 import { UsersTypes } from '../../Modules/users/redux'
 import { trackEvent, userLogin, userLoginSuccess, userWelcomed, userLogout } from '../../Modules/auth/sagas'
 import { initializeChat, fetchRoomData, fetchOrRegisterRoom, sendMessage } from '../../Modules/chat/sagas'
 import { driverSignupSubmit, driverSignupSuccess, addDriverBeacon, removeDriverBeacon } from '../../Modules/drive/sagas'
 import { fetchUserLoc, fetchUserLocError } from '../../Modules/loc/sagas'
+import * as RequestSagas from '../../Modules/request/sagas'
 import { listenForNearbyDrivers } from '../../Modules/users/sagas'
 
 export default function * root () {
@@ -45,6 +47,9 @@ export default function * root () {
     // loc
     takeLatest(LocTypes.FETCH_USER_LOC, fetchUserLoc),
     takeLatest(LocTypes.FETCH_USER_LOC_ERROR, fetchUserLocError),
+
+    // request
+    takeLatest(RequestTypes.REQUEST_SUBMITTED, RequestSagas.requestSubmitted),
 
     // users
     takeLatest(UsersTypes.LISTEN_FOR_NEARBY_DRIVERS, listenForNearbyDrivers)
