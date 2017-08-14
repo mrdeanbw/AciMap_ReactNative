@@ -18,6 +18,7 @@ class HomeScreen extends Component {
     this.props.listenForNearbyDrivers()
     this.props.initializeChat()
     this.props.syncCodepush()
+    // TODO: If driver, listen for nearby requests
   }
 
   render () {

@@ -6,7 +6,10 @@ const { Types, Creators } = createActions({
   requestSubmitted: ['request'],
   requestCancelled: ['requestId'],
   requestClaimed: ['requestId'],
-  requestResolved: ['requestId']
+  requestResolved: ['requestId'],
+  updateRequestFormDetails: ['details'],
+  updateRequestFormService: ['service'],
+  updateRequestFormWhen: ['when']
 }, { prefix: 'request.' })
 
 export const RequestTypes = Types
@@ -17,16 +20,46 @@ export const INITIAL_STATE = Immutable({
   requestScreen: 'main',
   requestForm: {
     service: 'ride',
-    when: moment().toDate(), // add(toAdd, 'm'). ??
+    when: moment().toDate(), // add(toAdd, 'm'). ??   --- And what about server time?
     details: ''
   },
   viewRequest: {}
 })
+
+export const updateRequestFormDetails = (state, { details }) => {
+  return state.merge({
+    requestForm: {
+      ...state.requestForm,
+      details
+    }
+  })
+}
+
+export const updateRequestFormService = (state, { service }) => {
+  return state.merge({
+    requestForm: {
+      ...state.requestForm,
+      service
+    }
+  })
+}
+
+export const updateRequestFormWhen = (state, { when }) => {
+  return state.merge({
+    requestForm: {
+      ...state.requestForm,
+      when
+    }
+  })
+}
 
 export const userLogout = (state) => {
   return INITIAL_STATE
 }
 
 export const reducer = createReducer(INITIAL_STATE, {
+  [Types.UPDATE_REQUEST_FORM_DETAILS]: updateRequestFormDetails,
+  [Types.UPDATE_REQUEST_FORM_SERVICE]: updateRequestFormService,
+  [Types.UPDATE_REQUEST_FORM_WHEN]: updateRequestFormWhen,
   'auth.USER_LOGOUT': userLogout
 })
