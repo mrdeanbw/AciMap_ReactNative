@@ -7,7 +7,8 @@ const { Types, Creators } = createActions({
   addDriverBeacon: null,
   removeDriverBeacon: null,
   activeUserClass: null,
-  toggleRiderDriver: ['activeUserClass']
+  toggleRiderDriver: ['activeUserClass'],
+  listenForNearbyRequests: null,
 }, { prefix: 'drive.' })
 
 export const DriveTypes = Types

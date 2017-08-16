@@ -8,12 +8,12 @@ import { DriveTypes } from '../../Modules/drive/redux'
 import { LocTypes } from '../../Modules/loc/redux'
 import { RequestTypes } from '../../Modules/request/redux'
 import { UsersTypes } from '../../Modules/users/redux'
-import { trackEvent, userLogin, userLoginSuccess, userWelcomed, userLogout } from '../../Modules/auth/sagas'
-import { initializeChat, fetchRoomData, fetchOrRegisterRoom, sendMessage } from '../../Modules/chat/sagas'
-import { driverSignupSubmit, driverSignupSuccess, addDriverBeacon, removeDriverBeacon } from '../../Modules/drive/sagas'
-import { fetchUserLoc, fetchUserLocError } from '../../Modules/loc/sagas'
+import * as AuthSagas from '../../Modules/auth/sagas'
+import * as ChatSagas from '../../Modules/chat/sagas'
+import * as DriveSagas from '../../Modules/drive/sagas'
+import * as LocSagas from '../../Modules/loc/sagas'
 import * as RequestSagas from '../../Modules/request/sagas'
-import { listenForNearbyDrivers } from '../../Modules/users/sagas'
+import * as UsersSagas from '../../Modules/users/sagas'
 
 export default function * root () {
   yield [
@@ -26,32 +26,33 @@ export default function * root () {
     }),
 
     // auth
-    takeLatest(AuthTypes.TRACK_EVENT, trackEvent),
-    takeLatest(AuthTypes.USER_LOGIN, userLogin),
-    takeLatest(AuthTypes.USER_LOGIN_SUCCESS, userLoginSuccess),
-    takeLatest(AuthTypes.USER_WELCOMED, userWelcomed),
-    takeLatest(AuthTypes.USER_LOGOUT, userLogout),
+    takeLatest(AuthTypes.TRACK_EVENT, AuthSagas.trackEvent),
+    takeLatest(AuthTypes.USER_LOGIN, AuthSagas.userLogin),
+    takeLatest(AuthTypes.USER_LOGIN_SUCCESS, AuthSagas.userLoginSuccess),
+    takeLatest(AuthTypes.USER_WELCOMED, AuthSagas.userWelcomed),
+    takeLatest(AuthTypes.USER_LOGOUT, AuthSagas.userLogout),
 
     // chat
-    takeLatest(ChatTypes.INITIALIZE_CHAT, initializeChat),
-    takeLatest(ChatTypes.FETCH_ROOM_DATA, fetchRoomData),
-    takeLatest(ChatTypes.FETCH_OR_REGISTER_ROOM, fetchOrRegisterRoom),
-    takeLatest(ChatTypes.SEND_MESSAGE, sendMessage),
+    takeLatest(ChatTypes.INITIALIZE_CHAT, ChatSagas.initializeChat),
+    takeLatest(ChatTypes.FETCH_ROOM_DATA, ChatSagas.fetchRoomData),
+    takeLatest(ChatTypes.FETCH_OR_REGISTER_ROOM, ChatSagas.fetchOrRegisterRoom),
+    takeLatest(ChatTypes.SEND_MESSAGE, ChatSagas.sendMessage),
 
     // drive
-    takeLatest(DriveTypes.DRIVER_SIGNUP_SUBMIT, driverSignupSubmit),
-    takeLatest(DriveTypes.DRIVER_SIGNUP_SUCCESS, driverSignupSuccess),
-    takeLatest(DriveTypes.ADD_DRIVER_BEACON, addDriverBeacon),
-    takeLatest(DriveTypes.REMOVE_DRIVER_BEACON, removeDriverBeacon),
+    takeLatest(DriveTypes.DRIVER_SIGNUP_SUBMIT, DriveSagas.driverSignupSubmit),
+    takeLatest(DriveTypes.DRIVER_SIGNUP_SUCCESS, DriveSagas.driverSignupSuccess),
+    takeLatest(DriveTypes.ADD_DRIVER_BEACON, DriveSagas.addDriverBeacon),
+    takeLatest(DriveTypes.REMOVE_DRIVER_BEACON, DriveSagas.removeDriverBeacon),
+    takeLatest(DriveTypes.LISTEN_FOR_NEARBY_REQUESTS, DriveSagas.listenForNearbyRequests),
 
     // loc
-    takeLatest(LocTypes.FETCH_USER_LOC, fetchUserLoc),
-    takeLatest(LocTypes.FETCH_USER_LOC_ERROR, fetchUserLocError),
+    takeLatest(LocTypes.FETCH_USER_LOC, LocSagas.fetchUserLoc),
+    takeLatest(LocTypes.FETCH_USER_LOC_ERROR, LocSagas.fetchUserLocError),
 
     // request
     takeLatest(RequestTypes.REQUEST_SUBMITTED, RequestSagas.requestSubmitted),
 
     // users
-    takeLatest(UsersTypes.LISTEN_FOR_NEARBY_DRIVERS, listenForNearbyDrivers)
+    takeLatest(UsersTypes.LISTEN_FOR_NEARBY_DRIVERS, UsersSagas.listenForNearbyDrivers)
   ]
 }

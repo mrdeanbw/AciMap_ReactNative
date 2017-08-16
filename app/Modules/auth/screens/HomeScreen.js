@@ -5,11 +5,12 @@ import { Metrics, Colors } from '../../../Theme/'
 import ACMap from '../../request/components/ACMap'
 import RiderWidget from '../../request/components/RiderWidget'
 import DriverWidget from '../../drive/components/DriverWidget'
+import AuthActions from '../../auth/redux'
+import ChatActions from '../../chat/redux'
+import DriveActions from '../../drive/redux'
 import LocActions from '../../loc/redux'
 import UsersActions from '../../users/redux'
-import ChatActions from '../../chat/redux'
-import AuthActions from '../../auth/redux'
-import * as AuthSelectors from '../../auth/selectors'
+import { getUser, getUserClass } from '../../auth/selectors'
 import { getActiveUserClass } from '../../drive/selectors'
 
 class HomeScreen extends Component {
@@ -18,7 +19,9 @@ class HomeScreen extends Component {
     this.props.listenForNearbyDrivers()
     this.props.initializeChat()
     this.props.syncCodepush()
-    // TODO: If driver, listen for nearby requests
+    if (this.props.userClass === 'driver') {
+      this.props.listenForNearbyRequests()
+    }
   }
 
   render () {
@@ -35,13 +38,15 @@ class HomeScreen extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  user: AuthSelectors.getUser(state),
+  user: getUser(state),
+  userClass: getUserClass(state),
   activeUserClass: getActiveUserClass(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
   fetchUserLoc: () => dispatch(LocActions.fetchUserLoc()),
   listenForNearbyDrivers: () => dispatch(UsersActions.listenForNearbyDrivers()),
+  listenForNearbyRequests: () => dispatch(DriveActions.listenForNearbyRequests()),
   initializeChat: () => dispatch(ChatActions.initializeChat()),
   syncCodepush: () => dispatch(AuthActions.syncCodepush())
 })

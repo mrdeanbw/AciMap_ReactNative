@@ -6,7 +6,7 @@ import UsersActions from '../users/redux'                 // UsersActions so we 
 import * as LocSelectors from '../loc/selectors'          // LocSelectors so we can get loc to pass to geoquery
 const Geofire = require('geofire')                        // Geofire so we can check for nearby drivers
 
-export function * listenForNearbyDrivers () {             // TODO: Rename listenForNearbyDrivers?
+export function * listenForNearbyDrivers () {
   const loc = LocSelectors.getUserLoc(store.getState())   // Get the current user location
   const gloc = [loc.latitude, loc.longitude]              // Format user location for geoquery
   const geofireRef = new Geofire(firebase.database().ref('geofire'))    // Initialize Geofire and get firebase db ref

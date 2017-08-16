@@ -8,6 +8,38 @@ import * as AuthSelectors from '../auth/selectors'
 import * as LocSelectors from '../loc/selectors'
 const Geofire = require('geofire')
 
+export function * listenForNearbyRequests () {
+  const loc = LocSelectors.getUserLoc(store.getState())   // Get the current user location
+  const gloc = [loc.latitude, loc.longitude]              // Format user location for geoquery
+  const geofireRef = new Geofire(firebase.database().ref('geofire_requests'))    // Initialize Geofire and get firebase db ref
+  let initialKeyFetchDone = false                         // Track when the partial fetch (geofire keys only) is done
+
+  var geoQuery = geofireRef.query({                       // Create a 20-mile geoquery centered at user loc
+    center: gloc,
+    radius: 32.1869 // 20 miles                           // TODO: Tie this to an auth(?) selector, set from userobj..
+  })
+
+  geoQuery.on('ready', function () {                      // When initial geoquery fetch is done...
+    initialKeyFetchDone = true
+    console.tron.log('listenForNearbyRequests geoQuery ready!')
+  })
+
+  geoQuery.on('key_entered', function (key, loc) {
+    console.tron.display({
+      name: 'Request in area!',
+      value: { key, loc },
+      preview: 'Key: ' + key,
+      important: true
+    })
+    fbListenForNewRequest(key, loc, initialKeyFetchDone)      // Set up firebase listener for this driver
+  })
+
+  geoQuery.on('key_exited', function (key) {
+    store.dispatch(RequestActions.removeRequest(key))
+    fbStopListeningForRequest(key)
+  })
+}
+
 export function * driverSignupSubmit ({ formData }) {
   const user = AuthSelectors.getUser(store.getState())
   firebase.database().ref('users/' + user.uid).update({
