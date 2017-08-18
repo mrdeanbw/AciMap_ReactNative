@@ -14,7 +14,8 @@ export function * listenForNearbyDrivers () {
 
   var geoQuery = geofireRef.query({                       // Create a 20-mile geoquery centered at user loc
     center: gloc,
-    radius: 32.1869 // 20 miles                           // TODO: Tie this to an auth(?) selector, set from userobj..
+    // radius: 32.1869 // 20 miles                           // TODO: Tie this to an auth(?) selector, set from userobj..
+    radius: 75
   })
 
   geoQuery.on('ready', function () {                      // When initial geoquery fetch is done...

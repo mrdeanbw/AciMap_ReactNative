@@ -26,10 +26,12 @@ class HomeScreen extends Component {
 
   render () {
     const { navigation } = this.props.navigation
+    const realWidth = Metrics.screenWidth > Metrics.screenHeight ? Metrics.screenWidth : Metrics.screenHeight
+    console.tron.log('realwidth is ' + realWidth)
     return (
       <View style={{ flex: 1, paddingBottom: '10%', backgroundColor: Colors.acnavy }}>
         <ACMap navigation={navigation} />
-        <View style={{position: 'absolute', bottom: 0, alignItems: 'center', width: Metrics.screenWidth}}>
+        <View style={{position: 'absolute', bottom: 0, alignItems: 'center', width: '100%'}}>
           { this.props.activeUserClass === 'driver' ? <DriverWidget /> : <RiderWidget /> }
         </View>
       </View>
